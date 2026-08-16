@@ -887,144 +887,40 @@ tout en partageant le même chemin.` },
     poiCardDesc.textContent = lieu.desc;
     poiCardIcon.innerHTML = ICONS[lieu.icon] || '';
 
+    moveDioramaCamera(n);
     syncCurrentIndicators(n);
   }
   poiCardCta.addEventListener('click', function(){ openEpisode(currentSelectedLieu, poiCard); });
 
-  /* ---------------- interactive 3D model (real GLB via three.js ES modules) ---------------- */
-  var sceneHomeEl = document.getElementById('scene3dHome');
-  var modelLoading = document.getElementById('modelLoading');
-  var homeRotY = 0, homeRotTarget = 0;
+  /* ---------------- diorama camera: pan/zoom + colour spotlight on the selected lieu ---------------- */
+  var dioramaCamera = document.getElementById('dioramaCamera');
+  var dioramaColor = document.getElementById('dioramaColor');
+  var DIORAMA_ZOOM = 2.1;
 
-  (async function initModel(){
-    try {
-      if (!sceneHomeEl) return;
+  // normalised (0-1) coordinates of each lieu within the diorama illustration.
+  // Best-effort estimates from the artwork — nudge these if a lieu isn't framed quite right.
+  var CAM_POINTS = {
+    1:  { x:0.456, y:0.322 }, // La Mairie
+    2:  { x:0.645, y:0.322 }, // L'École
+    3:  { x:0.449, y:0.605 }, // Monument aux morts (statue "Liberté Égalité Fraternité")
+    4:  { x:0.378, y:0.488 }, // La Poste / France services
+    5:  { x:0.690, y:0.635 }, // Le lieu de culte (façade à droite)
+    6:  { x:0.260, y:0.449 }, // La Bibliothèque
+    7:  { x:0.358, y:0.830 }, // La rue Aristide Briand — pas de rue visible sur l'illustration, cadré sur l'allée
+    8:  { x:0.540, y:0.488 }, // Le CCAS
+    9:  { x:0.573, y:0.596 }, // La salle des fêtes
+    10: { x:0.215, y:0.684 }  // L'arrêt de bus
+  };
 
-      var THREE = await import('./vendor/three.module.js');
-      var GLTFLoaderMod = await import('./vendor/GLTFLoader.js');
-      var GLTFLoader = GLTFLoaderMod.GLTFLoader;
-
-      var canvas = document.getElementById('modelCanvas');
-      var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-
-      var scene = new THREE.Scene();
-      var camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
-      camera.position.set(0, 0.4, 6);
-
-      scene.add(new THREE.AmbientLight(0xffffff, 0.65));
-      var keyLight = new THREE.DirectionalLight(0xffffff, 1.1);
-      keyLight.position.set(3, 5, 4);
-      scene.add(keyLight);
-      var rimLight = new THREE.DirectionalLight(0x9db8e8, 0.6);
-      rimLight.position.set(-4, 2, -3);
-      scene.add(rimLight);
-
-      var modelGroup = new THREE.Group();
-      scene.add(modelGroup);
-
-      var resizeRenderer = function(){
-        var w = sceneHomeEl.clientWidth, h = sceneHomeEl.clientHeight;
-        if (!w || !h) return;
-        renderer.setSize(w, h, false);
-        camera.aspect = w / h;
-        camera.updateProjectionMatrix();
-      };
-      resizeRenderer();
-      window.addEventListener('resize', resizeRenderer);
-      // belt-and-braces: if the canvas was 0x0 at first paint (grid/flex not yet settled,
-      // fonts still loading, etc.) a plain window resize never fires — watch the element itself.
-      if (window.ResizeObserver) {
-        var ro = new ResizeObserver(function(){ resizeRenderer(); });
-        ro.observe(sceneHomeEl);
-      } else {
-        [100, 300, 800, 1500].forEach(function(delay){ setTimeout(resizeRenderer, delay); });
-      }
-
-      var loadIsSlowTimer = setTimeout(function(){
-        if (modelLoading && !modelLoading.classList.contains('hidden')) {
-          modelLoading.textContent = 'Chargement du modèle 3D… le fichier est volumineux (34 Mo), ça peut prendre un moment.';
-        }
-      }, 4000);
-
-      var loader = new GLTFLoader();
-      loader.load(
-        './lieux-communs-model.glb',
-        function(gltf){
-          clearTimeout(loadIsSlowTimer);
-          var model = gltf.scene;
-
-          // the source mesh has no normals/materials and is very heavy (~1.9M triangles):
-          // use an unlit material so we don't pay the cost of computing normals on load
-          model.traverse(function(child){
-            if (child.isMesh) {
-              child.material = new THREE.MeshBasicMaterial({ color: 0x1a5fd0 });
-            }
-          });
-
-          // auto-fit: center and scale to a consistent size regardless of source units
-          var box = new THREE.Box3().setFromObject(model);
-          var size = new THREE.Vector3(); box.getSize(size);
-          var center = new THREE.Vector3(); box.getCenter(center);
-          var maxDim = Math.max(size.x, size.y, size.z) || 1;
-          var scale = 2.6 / maxDim;
-          model.position.sub(center);
-          model.scale.setScalar(scale);
-
-          modelGroup.add(model);
-          if (window.console && console.log) {
-            console.log('Modèle 3D chargé. Taille du canvas :', sceneHomeEl.clientWidth, 'x', sceneHomeEl.clientHeight, 'px.');
-          }
-          if (modelLoading) modelLoading.classList.add('hidden');
-        },
-        function(xhr){
-          if (modelLoading && xhr.lengthComputable) {
-            modelLoading.textContent = 'Chargement du modèle 3D… ' + Math.round((xhr.loaded / xhr.total) * 100) + '%';
-          }
-        },
-        function(err){
-          clearTimeout(loadIsSlowTimer);
-          if (modelLoading) {
-            modelLoading.textContent = 'Le modèle 3D n\'a pas pu être chargé — vérifiez que lieux-communs-model.glb est bien dans le même dossier qu\'index.html (F12 → Console pour le détail).';
-          }
-          if (window.console && console.error) console.error('GLTFLoader error:', err);
-        }
-      );
-
-      (function animate(){
-        requestAnimationFrame(animate);
-        if (!dragging && !reduceMotion) { homeRotTarget += 0.045; }
-        homeRotY += (homeRotTarget - homeRotY) * 0.15;
-        modelGroup.rotation.y = homeRotY * Math.PI / 180;
-        modelGroup.rotation.x = -0.05;
-        renderer.render(scene, camera);
-      })();
-    } catch (modelErr) {
-      if (modelLoading) {
-        modelLoading.textContent = 'Le modèle 3D n\'a pas pu s\'initialiser sur cet écran (F12 → Console pour le détail).';
-      }
-      if (window.console && console.error) console.error('Erreur d\'initialisation 3D:', modelErr);
-    }
-  })();
-
-  // drag to rotate (left/right only), independent of the list/card — idle auto-rotation resumes once released
-  var dragging = false, dragStartX = 0, dragStartRot = 0;
-  sceneHomeEl.addEventListener('pointerdown', function(e){
-    dragging = true; dragStartX = e.clientX; dragStartRot = homeRotTarget;
-    sceneHomeEl.classList.add('grabbing');
-    try { sceneHomeEl.setPointerCapture(e.pointerId); } catch(err){}
-  });
-  sceneHomeEl.addEventListener('pointermove', function(e){
-    if (!dragging) return;
-    homeRotTarget = dragStartRot + (e.clientX - dragStartX) * 0.4;
-  });
-  function endHomeDrag(){ dragging = false; sceneHomeEl.classList.remove('grabbing'); }
-  sceneHomeEl.addEventListener('pointerup', endHomeDrag);
-  sceneHomeEl.addEventListener('pointercancel', endHomeDrag);
-  sceneHomeEl.addEventListener('keydown', function(e){
-    if (e.key === 'ArrowLeft') { homeRotTarget -= 30; }
-    if (e.key === 'ArrowRight') { homeRotTarget += 30; }
-  });
+  function moveDioramaCamera(n){
+    var p = CAM_POINTS[n];
+    if (!p || !dioramaCamera) return;
+    var tx = (0.5 - p.x) * 100;
+    var ty = (0.5 - p.y) * 100;
+    dioramaCamera.style.transform = 'scale(' + DIORAMA_ZOOM + ') translate(' + tx + '%, ' + ty + '%)';
+    dioramaColor.style.setProperty('--fx', (p.x * 100) + '%');
+    dioramaColor.style.setProperty('--fy', (p.y * 100) + '%');
+  }
 
   /* ---------------- timeline (line + dots) and round-thumbnail carousel below it ---------------- */
   function buildTimelineCarousel(timelineEl, carouselEl, onSelect){
