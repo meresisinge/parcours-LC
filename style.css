@@ -253,43 +253,6 @@
   }
   .carousel-nav button:hover{border-color:var(--blue-deep); color:var(--blue-deep);}
 
-  /* the horizontal carousel below reuses .frise-mini-wrap / .stop-mini, already styled */
-
-  /* compact frise, reused inside episode pages — horizontal, partial view */
-  .frise-mini-wrap{
-    overflow-x:auto; overflow-y:hidden; margin:0 24px; padding:10px 0 16px;
-    -webkit-overflow-scrolling:touch;
-  }
-  .frise-mini{position:relative; height:150px; width:2200px;}
-  .frise-mini svg.path{position:absolute; inset:0; width:100%; height:100%; overflow:visible;}
-  .stop-mini{
-    position:absolute; transform:translate(-50%,-50%);
-    display:flex; flex-direction:column; align-items:center; gap:6px;
-    background:none; border:none; cursor:pointer; padding:4px;
-    text-decoration:none; color:var(--navy);
-  }
-  .stop-mini .thumb{
-    width:52px; height:52px; border-radius:50%; overflow:hidden; flex-shrink:0;
-    border:2px solid #fff; box-shadow:0 2px 0 var(--line), 0 5px 14px rgba(10,31,68,.12);
-    background:linear-gradient(135deg,var(--blue-deep),var(--blue-bright)); position:relative;
-    transition:transform .25s var(--ease), box-shadow .25s var(--ease);
-  }
-  .stop-mini .thumb img{width:100%; height:100%; object-fit:cover;}
-  .stop-mini .thumb .n{
-    position:absolute; bottom:-3px; right:-3px; width:19px; height:19px; border-radius:50%;
-    background:var(--red); color:#fff; font-size:9px; font-weight:800;
-    display:flex; align-items:center; justify-content:center; border:1.5px solid #fff;
-    font-family:'Big Shoulders Display',sans-serif;
-  }
-  .stop-mini .label{font-size:11.5px; font-weight:700; line-height:1.2; text-align:center; max-width:84px;}
-  .stop-mini:hover .thumb, .stop-mini:focus-visible .thumb{transform:scale(1.08); box-shadow:0 3px 0 var(--blue-bright), 0 8px 18px rgba(10,31,68,.18);}
-  .stop-mini.current .thumb{box-shadow:0 0 0 2px var(--blue-deep), 0 5px 14px rgba(10,31,68,.18);}
-  .stop-mini.current .label{color:var(--blue-deep);}
-  .stop-mini:focus-visible{outline:2px solid var(--blue-deep); outline-offset:3px; border-radius:8px;}
-  @media (max-width:640px){
-    .frise-mini-wrap{margin:0 16px;}
-  }
-
   /* ---------- projet ---------- */
   .projet{
     background:var(--navy); color:#fff; padding:110px 40px;
@@ -458,6 +421,8 @@
 
   .mini-frise-wrap{margin-top:52px; border-top:1px solid var(--line);}
   .mini-frise-label{padding:24px 24px 12px; font-size:12px; font-weight:700; color:var(--grey); letter-spacing:0.08em; text-transform:uppercase;}
+  .mini-frise-wrap .timeline-line{margin:0 24px 22px; padding:0 6px;}
+  .mini-frise-wrap .thumb-carousel-wrap{margin:0 24px;}
 
   .ep-nav{display:flex; align-items:center; justify-content:space-between; padding:40px 24px 0; font-size:13px; font-weight:700; color:var(--blue-bright);}
   .ep-nav a{text-decoration:none;}
