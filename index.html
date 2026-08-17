@@ -208,7 +208,9 @@
     width:34px; height:34px; border-radius:8px; background:var(--mist); color:var(--red);
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
-  .poi-card-index{font-family:'Big Shoulders Display',sans-serif; font-weight:800; color:var(--red); font-size:14px; letter-spacing:.04em;}
+  .poi-card-index{font-family:'Big Shoulders Display',sans-serif; font-weight:800; font-size:14px; letter-spacing:.04em;}
+  .poi-card-index .current{color:var(--red);}
+  .poi-card-index .total{color:var(--grey);}
   .poi-card h3{font-size:21px; font-weight:900; margin:0 0 10px; color:var(--navy);}
   .poi-card p{font-size:13.5px; line-height:1.6; color:#33415c; margin:0 0 18px;}
   .poi-card .btn-primary{width:100%; justify-content:center; gap:8px; margin-bottom:18px;}
@@ -218,7 +220,6 @@
   .poi-card-meta .meta-label{font-size:11px; color:var(--grey);}
 
   /* --- timeline (line + numbered dots) above the round-thumbnail carousel --- */
-  .poi-timeline-wrap{max-width:1000px; margin:56px auto 0; padding:0 40px;}
   .timeline-line{
     position:relative; display:flex; align-items:center; justify-content:space-between;
     margin-bottom:22px; padding:0 6px;
@@ -481,7 +482,6 @@
     .site-header{flex-wrap:wrap; gap:10px; justify-content:center; text-align:center;}
     .epic-title h1{font-size:clamp(32px,10vw,52px);}
     .parcours2-grid{padding:0 20px;}
-    .poi-timeline-wrap{padding:0 20px;}
   }
 
   @media (prefers-reduced-motion:reduce){
@@ -543,7 +543,6 @@
         <h2 class="poi-left-title"><span class="word">LIEUX</span><br><span class="word l2">COMMUNS</span></h2>
         <div class="rule"></div>
         <p class="poi-left-tagline">Un parcours au cœur des lieux qui font vivre nos valeurs au quotidien.</p>
-        <span class="badge">Lauréat du Prix de la Laïcité 2025 · Ministère de l'Intérieur</span>
 
         <nav class="poi-list-wrap" aria-label="Liste des lieux du parcours">
           <ol class="poi-list" id="poiList"></ol>
@@ -563,7 +562,7 @@
         <div class="poi-card" id="poiCard">
           <div class="poi-card-top">
             <span class="poi-card-icon" id="poiCardIcon"></span>
-            <span class="poi-card-index" id="poiCardIndex">01 / 10</span>
+            <span class="poi-card-index" id="poiCardIndex"><span class="current">01</span> <span class="total">/ 10</span></span>
           </div>
           <h3 id="poiCardTitle"></h3>
           <p id="poiCardDesc"></p>
@@ -575,21 +574,6 @@
             <div><div class="meta-value">3 min</div><div class="meta-label">Durée moyenne</div></div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="poi-timeline-wrap">
-      <div class="timeline-line" id="timelineLine"></div>
-      <div class="thumb-carousel-wrap" id="thumbCarouselWrap">
-        <div class="thumb-carousel" id="thumbCarousel"></div>
-      </div>
-      <div class="carousel-nav">
-        <button type="button" id="carouselPrev" aria-label="Lieux précédents">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg>
-        </button>
-        <button type="button" id="carouselNext" aria-label="Lieux suivants">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
       </div>
     </div>
   </section>
@@ -641,7 +625,6 @@
     </div>
     <div class="modal-actions">
       <a href="#parcours" class="btn-primary" id="ctaParcours">Découvrir le parcours</a>
-      <button class="btn-ghost" id="ctaFerme" type="button">Plus tard</button>
     </div>
   </div>
 </div>
@@ -1612,7 +1595,7 @@ tout en partageant le même chemin.` },
     currentSelectedLieu = n;
     var lieu = LIEUX.filter(function(l){ return l.n === n; })[0];
 
-    poiCardIndex.textContent = String(n).padStart(2,'0') + ' / ' + LIEUX.length;
+    poiCardIndex.innerHTML = '<span class="current">' + String(n).padStart(2,'0') + '</span> <span class="total">/ ' + LIEUX.length + '</span>';
     poiCardTitle.textContent = lieu.name;
     poiCardDesc.textContent = lieu.desc;
     poiCardIcon.innerHTML = ICONS[lieu.icon] || '';
@@ -1676,25 +1659,7 @@ tout en partageant le même chemin.` },
     });
   }
 
-  var timelineLine = document.getElementById('timelineLine');
-  var thumbCarousel = document.getElementById('thumbCarousel');
-  buildTimelineCarousel(timelineLine, thumbCarousel, function(n, el){ selectLieu(n); openEpisode(n, el); });
-
-  var thumbCarouselWrap = document.getElementById('thumbCarouselWrap');
-  document.getElementById('carouselPrev').addEventListener('click', function(){
-    thumbCarouselWrap.scrollBy({ left: -220, behavior: reduceMotion ? 'auto' : 'smooth' });
-  });
-  document.getElementById('carouselNext').addEventListener('click', function(){
-    thumbCarouselWrap.scrollBy({ left: 220, behavior: reduceMotion ? 'auto' : 'smooth' });
-  });
-  thumbCarouselWrap.addEventListener('wheel', function(e){
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      thumbCarouselWrap.scrollLeft += e.deltaY;
-      e.preventDefault();
-    }
-  }, { passive:false });
-
-  // same timeline + carousel, reused identically inside each episode page
+  // timeline + carousel: kept on episode pages only (removed from the home parcours section)
   var epTimelineLine = document.getElementById('epTimelineLine');
   var epThumbCarousel = document.getElementById('epThumbCarousel');
   buildTimelineCarousel(epTimelineLine, epThumbCarousel, function(n){ switchEpisode(n); });
@@ -1726,7 +1691,6 @@ tout en partageant le même chemin.` },
   }
   setTimeout(openWelcome, 900);
   document.getElementById('closeWelcome').addEventListener('click', closeWelcome);
-  document.getElementById('ctaFerme').addEventListener('click', closeWelcome);
   document.getElementById('ctaParcours').addEventListener('click', closeWelcome);
   welcomeModal.addEventListener('click', function(e){ if (e.target === welcomeModal) closeWelcome(); });
 
