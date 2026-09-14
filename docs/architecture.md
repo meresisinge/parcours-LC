@@ -74,6 +74,9 @@ Le dépôt est un **projet Astro 7** (template Basics) avec la maquette HTML arc
 
 ### Arborescence cible
 
+Découpage **par domaine métier** (voir `AGENTS.md` / `CLAUDE.md`).  
+`pages/` = routes Astro uniquement ; UI statique dans `components/{domaine}/` ; React dans `islands/{domaine}/`.
+
 ```
 /
 ├── docs/                          # documentation + maquette archivée
@@ -85,27 +88,40 @@ Le dépôt est un **projet Astro 7** (template Basics) avec la maquette HTML arc
 │   ├── content/
 │   │   └── parcours.json          # configuration éditable
 │   ├── types/
-│   │   └── parcours.ts            # types alignés sur le schéma
+│   │   └── parcours.ts
+│   ├── lib/
+│   │   ├── config.ts
+│   │   ├── urls.ts
+│   │   └── media.ts
+│   ├── styles/
+│   │   └── global.css
 │   ├── layouts/
 │   │   └── BaseLayout.astro
 │   ├── pages/
-│   │   ├── index.astro            # accueil + exploration
-│   │   ├── lieux/
-│   │   │   └── [slug].astro       # une page = un QR code
-│   │   └── 404.astro
-│   ├── components/
-│   │   ├── astro/                 # UI statique
-│   │   └── islands/               # React / TS hydratés
-│   │       ├── ParcoursExplorer.tsx
-│   │       ├── AudioPlayer.tsx
-│   │       ├── RecitDrawer.tsx
-│   │       ├── MediaLightbox.tsx
-│   │       └── WelcomeModal.tsx
-│   └── lib/
-│       ├── config.ts              # chargement + validation JSON
-│       └── urls.ts                # helpers slug / QR
+│   │   ├── index.astro
+│   │   ├── 404.astro
+│   │   └── lieux/
+│   │       └── [slug].astro
+│   ├── components/                # .astro — ui, site, accueil, parcours,
+│   │   ├── ui/                    # lieu, projet, chronologie, mentions
+│   │   ├── site/
+│   │   ├── accueil/
+│   │   ├── parcours/
+│   │   ├── lieu/
+│   │   ├── projet/
+│   │   ├── chronologie/
+│   │   └── mentions/
+│   └── islands/                   # React .tsx hydratés
+│       ├── accueil/WelcomeModal.tsx
+│       ├── parcours/ParcoursExplorer.tsx
+│       └── lieu/
+│           ├── AudioPlayer.tsx
+│           ├── RecitDrawer.tsx
+│           └── MediaLightbox.tsx
 ├── astro.config.mjs
 ├── wrangler.toml                  # optionnel Cloudflare
+├── AGENTS.md                      # consignes agents (FR + domaines)
+├── CLAUDE.md                      # → AGENTS.md
 └── package.json
 ```
 

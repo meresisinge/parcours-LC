@@ -1,0 +1,16 @@
+---
+description: Conventions frontend Lieux communs — français, domaines métier, Astro
+alwaysApply: true
+---
+
+# Frontend Lieux communs
+
+- Répondre toujours en français.
+- Suivre `AGENTS.md` / `CLAUDE.md` à la racine.
+- Structure par domaine sous `src/components/{domaine}/` et `src/islands/{domaine}/`.
+- `src/pages/` = routes uniquement.
+- Contenu dans `src/content/parcours.json`, pas hardcodé.
+- React = îlots interactifs seulement ; reste en `.astro`.
+- Domaines : `site`, `accueil`, `parcours`, `lieu`, `chronologie`, `projet`, `mentions`, `content`.
+- Ne pas modifier `docs/maquette/` sauf demande.
+- Jamais de secrets R2 côté client / `PUBLIC_*`.
