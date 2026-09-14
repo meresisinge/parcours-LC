@@ -1,30 +1,27 @@
-# Lieux communs — prototype
+# Lieux communs
 
-Prototype de navigation pour le parcours urbain "Lieux communs" (Mérésis / Jaïka), sur le thème de la laïcité.
+Parcours audio urbain — site Astro (en construction), maquette de référence dans `docs/maquette/`.
 
-## Structure du projet
+## Documentation
 
-```
-index.html                  # page principale
-style.css                   # tous les styles
-script.js                   # toute la logique + toutes les illustrations embarquées (base64)
-```
+→ **[docs/README.md](./docs/README.md)**
 
-Plus aucune dépendance externe (fini le modèle 3D / Three.js / GLTFLoader) : la section
-parcours utilise désormais le diorama illustré fourni, avec un effet de caméra qui zoome
-et se déplace vers le lieu sélectionné, et une révélation en couleur autour de ce point
-pendant que le reste de l'illustration reste en retrait (désaturé).
+- [Vision](./docs/vision.md)
+- [Architecture (état + cible)](./docs/architecture.md)
+- [Configuration JSON](./docs/configuration.md)
+- [Maquette](./docs/maquette.md)
 
-## Diorama — coordonnées des lieux
+## État rapide
 
-Les coordonnées de cadrage de chaque lieu (variable `CAM_POINTS` dans `script.js`) sont
-des estimations visuelles à partir de l'illustration fournie. Deux points sont à vérifier :
+- Astro 7 initialisé (template Basics)
+- Maquette HTML archivée sous `docs/maquette/`
+- Contenu JSON, îlots React et pages `/lieux/[slug]` : **à venir**
 
-- **La rue Aristide Briand** : aucune rue n'est visible sur l'illustration actuelle,
-  le cadrage pointe pour l'instant vers l'allée centrale en bas de la composition.
-- **Le lieu de culte** : l'illustration montre deux éléments qui pourraient correspondre
-  (une tour à dôme bleu en haut à droite, et une façade avec rosace et croix en bas à
-  droite) — le cadrage actuel pointe vers la seconde.
+## Commandes
 
-Si le cadrage d'un lieu ne tombe pas juste, ce sont des nombres simples (x/y entre 0 et 1)
-à ajuster dans `CAM_POINTS`.
+| Commande | Action |
+|---|---|
+| `npm install` | Installer les dépendances |
+| `npm run dev` | Serveur de dev |
+| `npm run build` | Build statique → `dist/` |
+| `npm run preview` | Prévisualiser le build |

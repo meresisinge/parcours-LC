@@ -1,0 +1,217 @@
+{
+  "version": 1,
+  "site": {
+    "nom": "Lieux communs",
+    "nomCourt": "LIEUX COMMUNS",
+    "langue": "fr",
+    "eyebrow": "Métropole et outre-mer",
+    "tagline": "Et si la laïcité se découvrait en arpentant la ville ?",
+    "badge": "Lauréat du Prix de la Laïcité 2025 · Ministère de l'Intérieur",
+    "descriptionSeo": "Parcours audio urbain en 10 lieux pour découvrir la laïcité sur le terrain.",
+    "urlCanonique": "https://exemple.pages.dev",
+    "credits": "Un projet Jaïka et Mérésis",
+    "contact": "contact@meresis.fr",
+    "theme": {
+      "bleuProfond": "#0d47a1",
+      "bleuVif": "#1a5fd0",
+      "navy": "#0a1f44",
+      "rouge": "#d32f2f",
+      "papier": "#fdfdfb"
+    }
+  },
+  "accueil": {
+    "seuil": "Je suis partout où vous ne me voyez pas.",
+    "imageSeuil": "/images/marianne.webp",
+    "heroImages": {
+      "back": "/images/hero-back.webp",
+      "mid": "/images/hero-mid.webp",
+      "front": "/images/hero-front.webp"
+    },
+    "bienvenue": {
+      "titre": "Bienvenue dans Lieux communs",
+      "texte": "Un parcours en 10 lieux pour découvrir la laïcité autrement : sur place, au fil des rues, à l'écoute d'un patrimoine ordinaire. Scannez un QR code sur le terrain, ou explorez le parcours ici même.",
+      "badge": "Prix de la Laïcité 2025",
+      "ctaLabel": "Découvrir le parcours",
+      "audio": {
+        "src": "/audio/intro.mp3",
+        "duree": 45,
+        "titre": "Introduction",
+        "version": "2025-08"
+      }
+    }
+  },
+  "projet": {
+    "eyebrow": "Le projet",
+    "titre": "La laïcité se comprend mieux quand on la marche",
+    "paragraphes": [
+      "Lieux communs propose un parcours urbain en 10 étapes : la mairie, l'école, le monument aux morts, la poste, le lieu de culte, la bibliothèque, une rue, le CCAS, la salle des fêtes, l'arrêt de bus... autant de lieux ordinaires où se joue, discrètement, le principe de laïcité.",
+      "Chaque épisode se déclenche par un QR code posé sur place : un court récit audio, une image, un document d'archive, pour comprendre ce que ce lieu précis raconte de la République."
+    ],
+    "image": "/images/walker.webp"
+  },
+  "diorama": {
+    "image": "/images/diorama-couleur.webp",
+    "imageNeutre": "/images/diorama-neutre.webp",
+    "alt": "Illustration du parcours regroupant les lieux de la commune"
+  },
+  "chronologieGlobale": [
+    {
+      "annee": "1790",
+      "titre": "La Nation comme source du pouvoir",
+      "texte": "La Révolution affirme que l'autorité politique ne tient plus de l'Église, mais de la Nation.",
+      "lieuId": "mairie"
+    },
+    {
+      "annee": "1905",
+      "titre": "Loi de séparation",
+      "texte": "La République inscrit dans la loi la liberté de croire et de ne pas croire.",
+      "lieuId": "mairie"
+    }
+  ],
+  "lieux": [
+    {
+      "id": "mairie",
+      "slug": "mairie",
+      "ordre": 1,
+      "actif": true,
+      "titre": "La Mairie",
+      "icone": "mairie",
+      "accroche": "Ici, vous êtes d'abord un citoyen. Je ne vous demande pas ce que vous croyez, ni d'où vous venez — je vous accueille de la même manière.",
+      "recit": "Vous savez… quand vous poussez la porte d'une mairie… c'est un peu chez moi.\nJe vous y attends depuis longtemps.\n\n(Texte complet à reprendre depuis la maquette / rédaction finale.)",
+      "dureeLabel": "3 min",
+      "image": {
+        "hero": "/images/mairie.webp",
+        "miniature": "/images/mairie.webp",
+        "alt": "Façade de la mairie"
+      },
+      "audio": {
+        "src": "/audio/mairie.mp3",
+        "duree": 204,
+        "titre": "Récit — La Mairie",
+        "version": "2025-08",
+        "transcript": "/audio/mairie.vtt"
+      },
+      "diorama": {
+        "x": 0.456,
+        "y": 0.322,
+        "zoom": 2.2
+      },
+      "chronologie": [
+        {
+          "annee": "1792",
+          "titre": "État civil à la mairie",
+          "texte": "La naissance officielle commence ici, et non plus dans les registres de l'Église."
+        },
+        {
+          "annee": "1905",
+          "titre": "Un principe protégé par la loi",
+          "texte": "Liberté de croire, de ne pas croire ; neutralité de l'État."
+        }
+      ],
+      "medias": [
+        {
+          "id": "mairie-photo",
+          "type": "image",
+          "tag": "PHOTO",
+          "label": "Photo du lieu",
+          "src": "/images/mairie.webp",
+          "alt": "La mairie aujourd'hui"
+        },
+        {
+          "id": "mairie-plan",
+          "type": "carte",
+          "tag": "CARTE",
+          "label": "Plan du quartier",
+          "src": "/images/plan-centre.webp"
+        },
+        {
+          "id": "mairie-archive",
+          "type": "document",
+          "tag": "DOCUMENT",
+          "label": "Archive municipale",
+          "src": "/documents/mairie-registre.pdf",
+          "credit": "Archives communales"
+        }
+      ],
+      "qr": {
+        "labelImpression": "Étape 1 — La Mairie",
+        "note": "À placer près de l'entrée principale"
+      }
+    },
+    {
+      "id": "ecole",
+      "slug": "ecole",
+      "ordre": 2,
+      "actif": true,
+      "titre": "L'École",
+      "icone": "ecole",
+      "accroche": "Chaque matin, ils franchissent ce portail avec leur histoire. Moi, je ne leur demande jamais de la laisser à la porte.",
+      "recit": "(Texte complet à reprendre depuis la maquette / rédaction finale.)",
+      "image": {
+        "hero": "/images/ecole.webp",
+        "miniature": "/images/ecole.webp",
+        "alt": "Entrée de l'école"
+      },
+      "audio": {
+        "src": "/audio/ecole.mp3",
+        "duree": 210,
+        "version": "2025-08"
+      },
+      "diorama": {
+        "x": 0.645,
+        "y": 0.322
+      },
+      "chronologie": [
+        {
+          "annee": "1881",
+          "titre": "École gratuite"
+        },
+        {
+          "annee": "1882",
+          "titre": "École obligatoire et laïque"
+        },
+        {
+          "annee": "2004",
+          "titre": "Signes religieux ostensibles",
+          "texte": "Rappel des règles à l'école publique."
+        }
+      ],
+      "medias": [
+        {
+          "id": "ecole-photo",
+          "type": "image",
+          "tag": "PHOTO",
+          "label": "Photo du lieu",
+          "src": "/images/ecole.webp"
+        }
+      ],
+      "qr": {
+        "labelImpression": "Étape 2 — L'École",
+        "note": "Portail de l'école publique"
+      }
+    }
+  ],
+  "mentions": {
+    "titre": "Mentions légales",
+    "sections": [
+      {
+        "titre": "Éditeur",
+        "paragraphes": [
+          "Mérésis Ingénierie — studio d'ingénierie culturelle et mémorielle."
+        ]
+      },
+      {
+        "titre": "Contenu",
+        "paragraphes": [
+          "Les textes, visuels et enregistrements du parcours « Lieux communs » sont la propriété de Mérésis Ingénierie et de ses partenaires, sauf mention contraire."
+        ]
+      },
+      {
+        "titre": "Contact",
+        "paragraphes": [
+          "contact@meresis.fr"
+        ]
+      }
+    ]
+  }
+}
