@@ -1,0 +1,8 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: classe = '' } = Astro.props;
+---
+
+<div class:list={['my-4 h-1 w-14 bg-red', classe]} aria-hidden="true"></div>

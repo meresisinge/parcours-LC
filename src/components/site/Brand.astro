@@ -1,0 +1,14 @@
+---
+import { config } from '../../lib/config';
+
+interface Props {
+  href?: string;
+}
+const { href = '/' } = Astro.props;
+const { site } = config;
+---
+
+<a href={href} class="flex items-center gap-2.5 text-navy no-underline">
+  <span class="h-3 w-3 rounded-full border-2 border-blue-deep" aria-hidden="true"></span>
+  <span class="text-[13px] font-extrabold tracking-[0.08em]">{site.nomCourt ?? site.nom}</span>
+</a>

@@ -1,0 +1,27 @@
+---
+import ParcoursExplorer from '../../islands/parcours/ParcoursExplorer';
+import type { LieuExplorateur } from '../../islands/parcours/ParcoursExplorer';
+import { config, getLieux } from '../../lib/config';
+
+const { site, diorama } = config;
+
+const lieux: LieuExplorateur[] = getLieux().map((lieu) => ({
+  slug: lieu.slug,
+  ordre: lieu.ordre,
+  titre: lieu.titre,
+  accroche: lieu.accroche,
+  icone: lieu.icone,
+  dureeLabel: lieu.dureeLabel,
+  focus: lieu.diorama,
+}));
+---
+
+<section id="parcours" class="pt-[70px] pb-[70px] sm:pt-[90px]">
+  <ParcoursExplorer
+    client:visible
+    lieux={lieux}
+    diorama={diorama}
+    nom={site.nomCourt ?? site.nom}
+    tagline="Un parcours au cœur des lieux qui font vivre nos valeurs au quotidien."
+  />
+</section>

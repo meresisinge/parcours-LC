@@ -2,54 +2,41 @@
 
 ## État actuel
 
-Le dépôt est un **projet Astro 7** (template Basics) avec la maquette HTML archivée dans `docs/maquette/`. La stack cible (React, JSON de contenu, pages lieux, Cloudflare) n’est **pas encore** en place.
+Le dépôt est un **projet Astro 7 + React + Tailwind CSS 4** en SSG. La maquette HTML reste archivée dans `docs/maquette/` comme référence visuelle ; l'intégration vit sous `src/`, découpée par domaine métier.
 
 ### Arborescence actuelle
 
 ```
 /
-├── docs/
-│   ├── README.md
-│   ├── vision.md
-│   ├── architecture.md          # ce fichier
-│   ├── maquette.md
-│   ├── configuration.md
-│   ├── qr-codes.md
-│   ├── schema/parcours.schema.json
-│   ├── exemples/parcours.exemple.json
-│   └── maquette/                # prototype HTML archivé
-│       ├── index.html
-│       ├── style.css
-│       ├── script.js
-│       ├── README.md
-│       └── public/images/*.webp
+├── docs/                        # documentation + maquette archivée
 ├── public/
+│   ├── images/                  # visuels extraits de la maquette (webp)
 │   ├── favicon.ico
 │   └── favicon.svg
+├── scripts/
+│   └── validate-config.mjs      # validation JSON Schema + cohérence médias
 ├── src/
-│   ├── assets/                  # assets starter Astro
-│   ├── components/
-│   │   └── Welcome.astro        # composant starter (à remplacer)
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro          # page starter uniquement
-├── astro.config.mjs             # config vide (défaut)
-├── package.json                 # dépendance : astro uniquement
-├── package-lock.json
+│   ├── content/parcours.json    # source de vérité du contenu (10 lieux)
+│   ├── types/parcours.ts
+│   ├── lib/                     # config, urls, media, icons (+ __tests__)
+│   ├── styles/global.css        # tokens Tailwind + classes de composant
+│   ├── layouts/BaseLayout.astro
+│   ├── pages/                   # index, 404, lieux/[slug]
+│   ├── components/              # ui, site, accueil, parcours, lieu,
+│   │                            # projet, chronologie, mentions
+│   └── islands/                 # accueil, parcours, lieu, site
+├── astro.config.mjs
+├── package.json
 ├── tsconfig.json
 ├── AGENTS.md
 └── README.md
 ```
 
-### Absent pour l’instant
+### Absent pour l'instant
 
-- `@astrojs/react`, îlots `.tsx`
-- `src/content/parcours.json`, `src/types/parcours.ts`
-- `src/pages/lieux/[slug].astro`, `404.astro`
-- `public/images|audio|documents/` (hors maquette)
+- `public/audio/` et `public/documents/` — pistes et archives réelles
 - `wrangler.toml`
-- script `validate:config`
+- Génération automatique des QR codes
 
 ### Commandes actuelles
 
@@ -57,8 +44,11 @@ Le dépôt est un **projet Astro 7** (template Basics) avec la maquette HTML arc
 |---|---|
 | `npm install` | Dépendances |
 | `npm run dev` | Serveur local (`localhost:4321`) |
-| `npm run build` | Build → `dist/` |
+| `npm run build` | Validation de la config puis build → `dist/` |
 | `npm run preview` | Prévisualiser le build |
+| `npm run check` | Diagnostics Astro / TypeScript |
+| `npm test` | Tests unitaires des modules `src/lib/` (Vitest) |
+| `npm run validate:config` | Valide `parcours.json` contre le schéma |
 
 ---
 
@@ -178,11 +168,11 @@ Référence de contenu actuelle : [exemples/parcours.exemple.json](./exemples/pa
 | 1 | Initialiser Astro + TypeScript de base | Fait |
 | 2 | Archiver la maquette sous `docs/maquette/` | Fait |
 | 3 | Documenter schéma JSON + exemple | Fait |
-| 4 | Ajouter React (`@astrojs/react`) + types `parcours.ts` | À faire |
-| 5 | Créer `src/content/parcours.json` (migrer les 10 lieux) | À faire |
-| 6 | Implémenter `/` (sections maquette en Astro) | À faire |
-| 7 | Implémenter `/lieux/[slug]` + `AudioPlayer` | À faire |
-| 8 | Porter le diorama dans `ParcoursExplorer` | À faire |
-| 9 | Brancher médias réels, retirer base64 | À faire |
+| 4 | Ajouter React (`@astrojs/react`) + types `parcours.ts` | Fait |
+| 5 | Créer `src/content/parcours.json` (migrer les 10 lieux) | Fait |
+| 6 | Implémenter `/` (sections maquette en Astro) | Fait |
+| 7 | Implémenter `/lieux/[slug]` + `AudioPlayer` | Fait |
+| 8 | Porter le diorama dans `ParcoursExplorer` | Fait |
+| 9 | Brancher médias réels, retirer base64 | Partiel — visuels extraits dans `public/images/`, audios et documents à fournir |
 | 10 | Générer / documenter les URLs QR | À faire |
 | 11 | Déployer sur Cloudflare Pages | À faire |

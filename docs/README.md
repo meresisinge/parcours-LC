@@ -6,12 +6,13 @@ Parcours audio urbain (village / commune). Chaque étape est accessible via un Q
 
 | Zone | État |
 |---|---|
-| Astro (template Basics) | Initialisé à la racine |
-| React / îlots TypeScript | Pas encore installés |
-| `src/content/parcours.json` | Absent (spécifié seulement) |
-| Pages `/lieux/[slug]` | Absentes |
+| Astro + Tailwind 4 | En place à la racine |
+| React / îlots TypeScript | 7 îlots sous `src/islands/` |
+| `src/content/parcours.json` | En place (10 lieux) |
+| Pages `/lieux/[slug]` | Générées (une par lieu actif) |
 | Maquette HTML | Archivée dans [`maquette/`](./maquette/) |
 | Schéma + exemple JSON | Présents sous `schema/` et `exemples/` |
+| Médias | Visuels dans `public/images/` ; audios et documents à fournir |
 
 La documentation ci-dessous décrit à la fois **l’existant** et la **cible**. Voir [architecture.md](./architecture.md) pour le détail.
 

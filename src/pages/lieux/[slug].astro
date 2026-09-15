@@ -1,0 +1,71 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/site/Header.astro';
+import Footer from '../../components/site/Footer.astro';
+import EpisodeHero from '../../components/lieu/EpisodeHero.astro';
+import EpisodeNav from '../../components/lieu/EpisodeNav.astro';
+import FriseParcours from '../../components/lieu/FriseParcours.astro';
+import Chronologie from '../../components/chronologie/Chronologie.astro';
+import AudioPlayer from '../../islands/lieu/AudioPlayer';
+import RecitDrawer from '../../islands/lieu/RecitDrawer';
+import MediaLightbox from '../../islands/lieu/MediaLightbox';
+import { getLieux, getResumes, getVoisins } from '../../lib/config';
+import { episodeLabel, lieuPath } from '../../lib/urls';
+
+// Une page par lieu actif : chaque URL est gravée dans un QR code (docs/qr-codes.md).
+export const getStaticPaths = (() => {
+  return getLieux().map((lieu) => ({
+    params: { slug: lieu.slug },
+    props: { lieu },
+  }));
+}) satisfies GetStaticPaths;
+
+const { lieu } = Astro.props;
+const voisins = getVoisins(lieu.slug)!;
+const resumes = getResumes();
+const eyebrow = episodeLabel(lieu.ordre);
+---
+
+<BaseLayout
+  titre={lieu.titre}
+  description={lieu.accroche}
+  chemin={lieuPath(lieu.slug)}
+  image={lieu.image.hero}
+>
+  <Header href="/" />
+
+  <main class="mx-auto w-full max-w-[600px] pb-[70px]">
+    <EpisodeHero lieu={lieu} />
+
+    <div class="px-6 pt-7.5">
+      <div class="mb-2 text-[13px] font-extrabold tracking-[0.1em] text-blue-bright">{eyebrow}</div>
+      <h1 class="mb-6 text-[32px] font-black">{lieu.titre}</h1>
+
+      <AudioPlayer
+        client:load
+        audio={lieu.audio}
+        titre={lieu.audio?.titre ?? lieu.titre}
+        dureeSecondes={lieu.audio?.duree}
+      />
+
+      <p class="mt-6 text-base leading-[1.65] text-ink">{lieu.accroche}</p>
+
+      <RecitDrawer client:idle titre={lieu.titre} eyebrow={eyebrow} recit={lieu.recit} />
+    </div>
+
+    {
+      lieu.medias?.length && (
+        <MediaLightbox client:idle titre="Contenus complémentaires" medias={lieu.medias} />
+      )
+    }
+
+    {lieu.chronologie?.length && <Chronologie items={lieu.chronologie} />}
+
+    <FriseParcours lieux={resumes} slugCourant={lieu.slug} />
+
+    <EpisodeNav precedent={voisins.precedent} suivant={voisins.suivant} />
+  </main>
+
+  <Footer />
+</BaseLayout>

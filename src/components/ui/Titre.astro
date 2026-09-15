@@ -1,0 +1,17 @@
+---
+/** Titre bicolore « LIEUX / COMMUNS » repris du hero et de la section parcours. */
+interface Props {
+  niveau?: 'h1' | 'h2';
+  nom: string;
+  class?: string;
+}
+const { niveau = 'h2', nom, class: classe = '' } = Astro.props;
+const Tag = niveau;
+const [premier, ...reste] = nom.split(' ');
+const second = reste.join(' ');
+---
+
+<Tag class:list={['font-black leading-[0.94]', classe]}>
+  <span class="text-navy">{premier}</span>
+  {second && <><br /><span class="text-blue-bright">{second}</span></>}
+</Tag>

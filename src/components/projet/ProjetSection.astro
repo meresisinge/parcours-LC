@@ -1,0 +1,43 @@
+---
+import type { Projet } from '../../types/parcours';
+
+interface Props {
+  projet: Projet;
+}
+const { projet } = Astro.props;
+---
+
+<section id="projet" class="bg-navy px-5 py-20 text-white sm:px-10 sm:py-[110px]">
+  <div class="mx-auto flex max-w-[1080px] flex-wrap items-center gap-9 sm:gap-16">
+    <div class="flex-[1_1_420px]">
+      {projet.eyebrow && <div class="eyebrow text-sky">{projet.eyebrow}</div>}
+      {
+        projet.titre && (
+          <h2 class="mt-2.5 mb-5.5 text-[clamp(30px,4vw,46px)] leading-[1.02] font-black">
+            {projet.titre}
+          </h2>
+        )
+      }
+      {
+        projet.paragraphes?.map((paragraphe, index) => (
+          <p class:list={['max-w-[520px] text-base leading-[1.7] text-fog', index > 0 && 'mt-3.5']}>
+            {paragraphe}
+          </p>
+        ))
+      }
+    </div>
+
+    {
+      projet.image && (
+        <div class="mx-auto max-w-[300px] flex-[1_1_260px]">
+          <img
+            src={projet.image}
+            alt="Silhouette arpentant une rue, illustration bleu et rouge"
+            class="rounded-md saturate-105"
+            loading="lazy"
+          />
+        </div>
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,30 @@
+---
+import type { ChronologieItem } from '../../types/parcours';
+
+interface Props {
+  items: ChronologieItem[];
+  titre?: string;
+}
+const { items, titre = 'Repères' } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="mt-13 border-t border-line px-6 pt-6">
+      <h3 class="mb-4 text-xs font-bold tracking-[0.08em] text-grey uppercase">{titre}</h3>
+      <ol class="m-0 list-none border-l border-line p-0 pl-5">
+        {items.map((item) => (
+          <li class="relative mb-5 last:mb-0">
+            <span
+              class="absolute top-1.5 -left-[23px] h-2 w-2 rounded-full bg-red ring-2 ring-paper"
+              aria-hidden="true"
+            />
+            <div class="font-display text-[15px] font-extrabold text-blue-deep">{item.annee}</div>
+            <div class="text-sm font-bold text-navy">{item.titre}</div>
+            {item.texte && <p class="mt-1 text-[13.5px] leading-relaxed text-ink">{item.texte}</p>}
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}

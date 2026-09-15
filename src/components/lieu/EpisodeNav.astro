@@ -1,0 +1,19 @@
+---
+import type { Lieu } from '../../types/parcours';
+import { lieuPath } from '../../lib/urls';
+
+interface Props {
+  precedent: Lieu;
+  suivant: Lieu;
+}
+const { precedent, suivant } = Astro.props;
+---
+
+<nav
+  class="flex items-center justify-between gap-4 px-6 pt-10 text-[13px] font-bold text-blue-bright"
+  aria-label="Navigation entre les épisodes"
+>
+  <a href={lieuPath(precedent.slug)} class="no-underline" rel="prev">← {precedent.titre}</a>
+  <a href="/#parcours" class="font-semibold text-grey no-underline">Retour au parcours</a>
+  <a href={lieuPath(suivant.slug)} class="no-underline" rel="next">{suivant.titre} →</a>
+</nav>

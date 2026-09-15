@@ -1,0 +1,17 @@
+---
+import type { Lieu } from '../../types/parcours';
+
+interface Props {
+  lieu: Lieu;
+}
+const { lieu } = Astro.props;
+---
+
+<div class="aspect-square w-full overflow-hidden bg-mist sm:aspect-[4/3]">
+  <img
+    src={lieu.image.hero}
+    alt={lieu.image.alt ?? lieu.titre}
+    class="h-full w-full object-cover"
+    fetchpriority="high"
+  />
+</div>

@@ -1,0 +1,115 @@
+---
+import type { LieuResume } from '../../types/parcours';
+import { formatOrdre, lieuPath } from '../../lib/urls';
+
+interface Props {
+  lieux: LieuResume[];
+  slugCourant: string;
+  label?: string;
+}
+const { lieux, slugCourant, label = 'Le parcours' } = Astro.props;
+---
+
+<nav class="mt-13 border-t border-line" aria-label="Autres lieux du parcours">
+  <div class="px-6 pt-6 pb-3 text-xs font-bold tracking-[0.08em] text-grey uppercase">{label}</div>
+
+  <ol class="relative mx-6 mb-5.5 flex list-none items-center justify-between px-1.5">
+    <span class="absolute inset-x-0 top-1/2 h-px bg-line" aria-hidden="true"></span>
+    {
+      lieux.map((lieu) => {
+        const courant = lieu.slug === slugCourant;
+        return (
+          <li class="relative z-1">
+            <a
+              href={lieuPath(lieu.slug)}
+              class="flex flex-col items-center gap-1.5 p-1 no-underline"
+              aria-label={`Épisode ${lieu.ordre} — ${lieu.titre}`}
+              aria-current={courant ? 'page' : undefined}
+            >
+              <span
+                class:list={[
+                  'rounded-full border-2 border-paper',
+                  courant ? 'h-2.5 w-2.5 bg-red' : 'h-2 w-2 bg-line',
+                ]}
+                aria-hidden="true"
+              />
+              <span
+                class:list={[
+                  'font-display text-[11px] font-bold',
+                  courant ? 'text-red' : 'text-grey',
+                ]}
+              >
+                {formatOrdre(lieu.ordre)}
+              </span>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ol>
+
+  <div class="no-scrollbar mx-6 overflow-x-auto overflow-y-hidden" id="friseCarousel">
+    <ul class="m-0 flex w-max list-none gap-5.5 p-1 pb-2.5">
+      {
+        lieux.map((lieu) => {
+          const courant = lieu.slug === slugCourant;
+          return (
+            <li>
+              <a
+                href={lieuPath(lieu.slug)}
+                class="flex w-[82px] flex-col items-center gap-2 p-1 no-underline"
+                aria-current={courant ? 'page' : undefined}
+              >
+                <span
+                  class:list={[
+                    'h-16 w-16 overflow-hidden rounded-full border-2 border-white',
+                    courant
+                      ? 'shadow-[0_0_0_2px_var(--color-blue-deep),0_6px_16px_rgba(10,31,68,.18)]'
+                      : 'shadow-[0_2px_0_var(--color-line),0_6px_16px_rgba(10,31,68,.12)]',
+                  ]}
+                >
+                  <img
+                    src={lieu.miniature}
+                    alt=""
+                    class="h-full w-full object-cover"
+                    loading="lazy"
+                    width="64"
+                    height="64"
+                  />
+                </span>
+                <span
+                  class:list={[
+                    'text-center text-[11px] leading-tight font-bold',
+                    courant ? 'text-blue-deep' : 'text-grey',
+                  ]}
+                >
+                  {lieu.titre}
+                </span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Molette verticale → défilement horizontal du carrousel (comportement de la maquette).
+  const carousel = document.getElementById('friseCarousel');
+  carousel?.addEventListener(
+    'wheel',
+    (event) => {
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      carousel.scrollLeft += event.deltaY;
+      event.preventDefault();
+    },
+    { passive: false }
+  );
+
+  // Centre la vignette du lieu courant au chargement.
+  const courant = carousel?.querySelector<HTMLElement>('[aria-current="page"]');
+  if (carousel && courant) {
+    carousel.scrollLeft = courant.offsetLeft - carousel.clientWidth / 2 + courant.offsetWidth / 2;
+  }
+</script>

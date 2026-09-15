@@ -1,0 +1,85 @@
+---
+interface Props {
+  phrase: string;
+  image?: string;
+}
+const { phrase, image } = Astro.props;
+---
+
+<section class="relative overflow-hidden" id="accueil">
+  <svg
+    class="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible"
+    viewBox="0 0 100 400"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M 50 0 L 60.52 66.67 L 63.88 133.33 L 57.81 200 L 46.42 266.67 L 37.47 333.33 L 37.04 400"
+      fill="none"
+      stroke="var(--color-line)"
+      stroke-width="2.5"
+      stroke-dasharray="1 10"
+      stroke-linecap="round"></path>
+  </svg>
+
+  <a
+    href="#parcours"
+    class="absolute top-[-60px] left-4 z-50 rounded-[5px] bg-blue-deep px-4 py-2.5 text-[13px] font-bold text-white no-underline transition-[top] duration-200 ease-soft focus:top-4"
+  >
+    Aller directement au parcours
+  </a>
+
+  <div
+    id="stageSeuil"
+    class="relative z-1 flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 py-[90px] sm:px-10 sm:py-[100px]"
+  >
+    {
+      image && (
+        <div
+          class="seuil-fond absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-[1400ms] ease-soft"
+          aria-hidden="true"
+        >
+          <img src={image} alt="" class="w-[min(60vw,520px)] opacity-[0.14] grayscale contrast-90" />
+        </div>
+      )
+    }
+    <p
+      class="seuil-ligne relative max-w-[640px] translate-y-3.5 text-center font-serif text-[clamp(20px,3.4vw,34px)] font-medium text-navy italic opacity-0 transition-[opacity,transform] duration-[1100ms] ease-soft"
+    >
+      {phrase}
+    </p>
+  </div>
+</section>
+
+<script>
+  const stage = document.getElementById('stageSeuil');
+  if (stage) {
+    const reveler = () => stage.classList.add('is-in');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              reveler();
+              observer.disconnect();
+            }
+          }
+        },
+        { threshold: 0.45 }
+      );
+      observer.observe(stage);
+    } else {
+      reveler();
+    }
+  }
+</script>
+
+<style>
+  #stageSeuil.is-in .seuil-fond {
+    opacity: 1;
+  }
+  #stageSeuil.is-in .seuil-ligne {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

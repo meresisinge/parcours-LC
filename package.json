@@ -1,5 +1,5 @@
 {
-  "name": "intergalactic-inclination",
+  "name": "lieux-communs",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -7,9 +7,12 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm run validate:config && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "test": "vitest run",
+    "validate:config": "node scripts/validate-config.mjs"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",
@@ -23,5 +26,12 @@
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.1"
   }
 }
