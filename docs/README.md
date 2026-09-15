@@ -12,7 +12,7 @@ Parcours audio urbain (village / commune). Chaque étape est accessible via un Q
 | Pages `/lieux/[slug]` | Générées (une par lieu actif) |
 | Maquette HTML | Archivée dans [`maquette/`](./maquette/) |
 | Schéma + exemple JSON | Présents sous `schema/` et `exemples/` |
-| Médias | Visuels dans `public/images/` ; audios et documents à fournir |
+| Médias | Visuels réels dans `public/images/` ; audios et documents de démonstration à remplacer |
 
 La documentation ci-dessous décrit à la fois **l’existant** et la **cible**. Voir [architecture.md](./architecture.md) pour le détail.
 

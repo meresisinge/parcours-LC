@@ -11,6 +11,16 @@ interface Props {
 /** Fraction de la piste scrollée au-delà de laquelle le titre s'efface. */
 const FIN_TITRE = 0.7;
 
+/**
+ * Hauteur de scroll supplémentaire pendant laquelle la scène reste épinglée,
+ * en plus du premier écran. La maquette utilisait 140vh : on raccourcit la
+ * respiration verticale pour atteindre le seuil plus tôt.
+ */
+const PISTE_SUPPLEMENTAIRE = '90vh';
+
+/** Amplitude totale de rotation de la scène sur la piste, en degrés. */
+const ROTATION_MAX = 220;
+
 export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props) {
   const pisteRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<HTMLDivElement>(null);
@@ -31,7 +41,7 @@ export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props
       setTitreVisible(progression < FIN_TITRE);
 
       if (!reduceMotion && sceneRef.current) {
-        sceneRef.current.style.transform = `rotateY(${progression * 220}deg) rotateX(-4deg)`;
+        sceneRef.current.style.transform = `rotateY(${progression * ROTATION_MAX}deg) rotateX(-4deg)`;
       }
     };
 
@@ -50,9 +60,10 @@ export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props
   return (
     <div
       ref={pisteRef}
-      className="relative h-[calc(100vh+140vh)] min-h-[calc(100vh+140px)]"
+      className="relative min-h-[calc(100vh+140px)]"
+      style={{ height: `calc(100vh + ${PISTE_SUPPLEMENTAIRE})` }}
     >
-      <div className="pointer-events-none sticky top-0 z-5 flex h-screen flex-wrap items-center justify-center gap-10 px-5 sm:gap-16 sm:px-10">
+      <div className="pointer-events-none sticky top-0 z-5 flex h-screen flex-wrap items-center justify-center gap-8 px-5 sm:gap-14 sm:px-10">
         <div className="scene3d">
           <div ref={sceneRef} className="scene3d-inner">
             {images.back && (

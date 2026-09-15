@@ -2,6 +2,7 @@
 import ParcoursExplorer from '../../islands/parcours/ParcoursExplorer';
 import type { LieuExplorateur } from '../../islands/parcours/ParcoursExplorer';
 import { config, getLieux } from '../../lib/config';
+import { dureeLabel } from '../../lib/media';
 
 const { site, diorama } = config;
 
@@ -11,7 +12,7 @@ const lieux: LieuExplorateur[] = getLieux().map((lieu) => ({
   titre: lieu.titre,
   accroche: lieu.accroche,
   icone: lieu.icone,
-  dureeLabel: lieu.dureeLabel,
+  dureeLabel: dureeLabel(lieu.audio, lieu.dureeLabel),
   focus: lieu.diorama,
 }));
 ---

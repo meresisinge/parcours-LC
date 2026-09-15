@@ -11,6 +11,8 @@ Le dépôt est un **projet Astro 7 + React + Tailwind CSS 4** en SSG. La maquett
 ├── docs/                        # documentation + maquette archivée
 ├── public/
 │   ├── images/                  # visuels extraits de la maquette (webp)
+│   ├── audio/                   # pistes de démonstration (à remplacer)
+│   ├── documents/               # archives de démonstration (à remplacer)
 │   ├── favicon.ico
 │   └── favicon.svg
 ├── scripts/
@@ -34,7 +36,7 @@ Le dépôt est un **projet Astro 7 + React + Tailwind CSS 4** en SSG. La maquett
 
 ### Absent pour l'instant
 
-- `public/audio/` et `public/documents/` — pistes et archives réelles
+- Médias réels : `public/audio/` et `public/documents/` ne contiennent que des fichiers de démonstration (synthèse vocale, PDF factices)
 - `wrangler.toml`
 - Génération automatique des QR codes
 

@@ -31,7 +31,13 @@
       "titre": "Bienvenue dans Lieux communs",
       "texte": "Un parcours en 10 lieux pour découvrir la laïcité autrement : sur place, au fil des rues, à l'écoute d'un patrimoine ordinaire. Scannez un QR code sur le terrain, ou explorez le parcours ici même.",
       "badge": "Prix de la Laïcité 2025",
-      "ctaLabel": "Découvrir le parcours"
+      "ctaLabel": "Découvrir le parcours",
+      "audio": {
+        "src": "/audio/intro.m4a",
+        "duree": 8,
+        "titre": "Introduction au parcours",
+        "version": "2026-09-mock"
+      }
     }
   },
   "projet": {
@@ -89,7 +95,9 @@
           "id": "mairie-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/mairie-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "mairie-detail",
@@ -101,8 +109,32 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 1 — La Mairie"
-      }
+        "labelImpression": "Étape 1 — La Mairie",
+        "note": "À placer près de l'entrée principale, sous les panneaux d'affichage légal."
+      },
+      "audio": {
+        "src": "/audio/mairie.m4a",
+        "duree": 12,
+        "titre": "Récit — La Mairie",
+        "version": "2026-09-mock"
+      },
+      "chronologie": [
+        {
+          "annee": "1790",
+          "titre": "La Nation, source du pouvoir",
+          "texte": "La Révolution affirme que l'autorité politique ne tient plus de l'Église, mais de la Nation."
+        },
+        {
+          "annee": "1792",
+          "titre": "L'état civil passe à la mairie",
+          "texte": "La naissance officielle d'un enfant commence ici, et non plus dans les registres de la paroisse."
+        },
+        {
+          "annee": "1905",
+          "titre": "Loi de séparation des Églises et de l'État",
+          "texte": "Liberté de croire et de ne pas croire ; neutralité de l'État et de ses agents."
+        }
+      ]
     },
     {
       "id": "ecole",
@@ -145,7 +177,9 @@
           "id": "ecole-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/ecole-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "ecole-detail",
@@ -157,8 +191,35 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 2 — L'École"
-      }
+        "labelImpression": "Étape 2 — L'École",
+        "note": "Portail de l'école publique, côté rue."
+      },
+      "audio": {
+        "src": "/audio/ecole.m4a",
+        "duree": 11,
+        "titre": "Récit — L'École",
+        "version": "2026-09-mock"
+      },
+      "chronologie": [
+        {
+          "annee": "1881",
+          "titre": "L'école devient gratuite"
+        },
+        {
+          "annee": "1882",
+          "titre": "L'école devient obligatoire et laïque",
+          "texte": "L'instruction morale et civique remplace l'instruction religieuse dans les programmes."
+        },
+        {
+          "annee": "1886",
+          "titre": "Laïcité du personnel enseignant"
+        },
+        {
+          "annee": "2004",
+          "titre": "Signes religieux ostensibles",
+          "texte": "La loi encadre le port de signes religieux ostensibles dans les écoles publiques."
+        }
+      ]
     },
     {
       "id": "monument",
@@ -201,7 +262,9 @@
           "id": "monument-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/monument-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "monument-detail",
@@ -213,8 +276,27 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 3 — Monument aux morts"
-      }
+        "labelImpression": "Étape 3 — Monument aux morts",
+        "note": "Sur le socle, face à l'allée centrale."
+      },
+      "audio": {
+        "src": "/audio/monument.m4a",
+        "duree": 10,
+        "titre": "Récit — Monument aux morts",
+        "version": "2026-09-mock"
+      },
+      "chronologie": [
+        {
+          "annee": "1919",
+          "titre": "Loi sur les monuments aux morts",
+          "texte": "L'État subventionne les communes qui souhaitent honorer leurs morts de la Grande Guerre."
+        },
+        {
+          "annee": "1920",
+          "titre": "Des noms sans confession",
+          "texte": "Les noms sont gravés par ordre alphabétique ou par année, sans distinction de croyance."
+        }
+      ]
     },
     {
       "id": "poste",
@@ -257,7 +339,9 @@
           "id": "poste-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/poste-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "poste-detail",
@@ -269,7 +353,14 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 4 — La Poste / La Maison France services"
+        "labelImpression": "Étape 4 — La Poste / La Maison France services",
+        "note": "Vitrine de la Maison France services."
+      },
+      "audio": {
+        "src": "/audio/poste.m4a",
+        "duree": 13,
+        "titre": "Récit — La Poste / La Maison France services",
+        "version": "2026-09-mock"
       }
     },
     {
@@ -313,7 +404,9 @@
           "id": "culte-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/culte-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "culte-detail",
@@ -325,8 +418,27 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 5 — Le lieu de culte"
-      }
+        "labelImpression": "Étape 5 — Le lieu de culte",
+        "note": "Sur le mur d'enceinte, hors de l'édifice."
+      },
+      "audio": {
+        "src": "/audio/culte.m4a",
+        "duree": 11,
+        "titre": "Récit — Le lieu de culte",
+        "version": "2026-09-mock"
+      },
+      "chronologie": [
+        {
+          "annee": "1789",
+          "titre": "Déclaration des droits de l'homme et du citoyen",
+          "texte": "« Nul ne doit être inquiété pour ses opinions, même religieuses. »"
+        },
+        {
+          "annee": "1905",
+          "titre": "Les édifices deviennent propriété publique",
+          "texte": "Les communes héritent de l'entretien des lieux de culte construits avant la loi."
+        }
+      ]
     },
     {
       "id": "biblio",
@@ -369,7 +481,9 @@
           "id": "biblio-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/biblio-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "biblio-detail",
@@ -381,8 +495,26 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 6 — La Bibliothèque"
-      }
+        "labelImpression": "Étape 6 — La Bibliothèque",
+        "note": "Banque d'accueil et vitrine extérieure."
+      },
+      "audio": {
+        "src": "/audio/biblio.m4a",
+        "duree": 11,
+        "titre": "Récit — La Bibliothèque",
+        "version": "2026-09-mock"
+      },
+      "chronologie": [
+        {
+          "annee": "1803",
+          "titre": "Les bibliothèques confiées aux communes"
+        },
+        {
+          "annee": "1945",
+          "titre": "Lecture publique et accès libre",
+          "texte": "La bibliothèque publique s'affirme comme un service ouvert à tous, sans condition."
+        }
+      ]
     },
     {
       "id": "rue",
@@ -425,7 +557,9 @@
           "id": "rue-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/rue-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "rue-detail",
@@ -437,7 +571,14 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 7 — La rue Aristide Briand"
+        "labelImpression": "Étape 7 — La rue Aristide Briand",
+        "note": "Sous la plaque de rue, au croisement."
+      },
+      "audio": {
+        "src": "/audio/rue.m4a",
+        "duree": 13,
+        "titre": "Récit — La rue Aristide Briand",
+        "version": "2026-09-mock"
       }
     },
     {
@@ -481,7 +622,9 @@
           "id": "ccas-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/ccas-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "ccas-detail",
@@ -493,7 +636,14 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 8 — Le CCAS"
+        "labelImpression": "Étape 8 — Le CCAS",
+        "note": "Hall d'accueil du CCAS."
+      },
+      "audio": {
+        "src": "/audio/ccas.m4a",
+        "duree": 12,
+        "titre": "Récit — Le CCAS",
+        "version": "2026-09-mock"
       }
     },
     {
@@ -537,7 +687,9 @@
           "id": "salle-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/salle-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "salle-detail",
@@ -549,7 +701,14 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 9 — La salle des fêtes"
+        "labelImpression": "Étape 9 — La salle des fêtes",
+        "note": "Panneau d'affichage à l'entrée de la salle."
+      },
+      "audio": {
+        "src": "/audio/salle.m4a",
+        "duree": 11,
+        "titre": "Récit — La salle des fêtes",
+        "version": "2026-09-mock"
       }
     },
     {
@@ -593,7 +752,9 @@
           "id": "bus-archive",
           "type": "document",
           "tag": "DOCUMENT",
-          "label": "Archive municipale"
+          "label": "Archive municipale",
+          "src": "/documents/bus-archive.pdf",
+          "credit": "Archives communales (document de démonstration)"
         },
         {
           "id": "bus-detail",
@@ -605,7 +766,14 @@
         }
       ],
       "qr": {
-        "labelImpression": "Étape 10 — L'arrêt de bus"
+        "labelImpression": "Étape 10 — L'arrêt de bus",
+        "note": "Abribus, panneau horaires."
+      },
+      "audio": {
+        "src": "/audio/bus.m4a",
+        "duree": 9,
+        "titre": "Récit — L'arrêt de bus",
+        "version": "2026-09-mock"
       }
     }
   ],
