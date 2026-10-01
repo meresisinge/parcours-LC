@@ -1,12 +1,12 @@
 ---
-import ParcoursExplorer from '../../islands/parcours/ParcoursExplorer';
-import type { LieuExplorateur } from '../../islands/parcours/ParcoursExplorer';
+import TrailExplorer from '../../islands/parcours/TrailExplorer';
+import type { PlaceExplorerItem } from '../../islands/parcours/TrailExplorer';
 import { config, getLieux } from '../../lib/config';
 import { dureeLabel } from '../../lib/media';
 
 const { site, diorama } = config;
 
-const lieux: LieuExplorateur[] = getLieux().map((lieu) => ({
+const lieux: PlaceExplorerItem[] = getLieux().map((lieu) => ({
   slug: lieu.slug,
   ordre: lieu.ordre,
   titre: lieu.titre,
@@ -18,7 +18,7 @@ const lieux: LieuExplorateur[] = getLieux().map((lieu) => ({
 ---
 
 <section id="parcours" class="pt-[70px] pb-[70px] sm:pt-[90px]">
-  <ParcoursExplorer
+  <TrailExplorer
     client:visible
     lieux={lieux}
     diorama={diorama}

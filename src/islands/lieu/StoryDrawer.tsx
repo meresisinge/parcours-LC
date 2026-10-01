@@ -6,7 +6,7 @@ interface Props {
   recit: string;
 }
 
-export default function RecitDrawer({ titre, eyebrow, recit }: Props) {
+export default function StoryDrawer({ titre, eyebrow, recit }: Props) {
   const [ouvert, setOuvert] = useState(false);
   const declencheurRef = useRef<HTMLButtonElement>(null);
   const fermerRef = useRef<HTMLButtonElement>(null);

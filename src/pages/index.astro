@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/site/Header.astro';
 import Footer from '../components/site/Footer.astro';
-import Seuil from '../components/accueil/Seuil.astro';
-import ParcoursSection from '../components/parcours/ParcoursSection.astro';
-import ProjetSection from '../components/projet/ProjetSection.astro';
+import Threshold from '../components/accueil/Threshold.astro';
+import TrailSection from '../components/parcours/TrailSection.astro';
+import ProjectSection from '../components/projet/ProjectSection.astro';
 import EpicHero from '../islands/accueil/EpicHero';
 import WelcomeModal from '../islands/accueil/WelcomeModal';
 import { config } from '../lib/config';
@@ -27,11 +27,11 @@ const { site, accueil, projet } = config;
       />
     </section>
 
-    {accueil?.seuil && <Seuil phrase={accueil.seuil} image={accueil.imageSeuil} />}
+    {accueil?.seuil && <Threshold phrase={accueil.seuil} image={accueil.imageSeuil} />}
 
-    <ParcoursSection />
+    <TrailSection />
 
-    {projet && <ProjetSection projet={projet} />}
+    {projet && <ProjectSection projet={projet} />}
   </main>
 
   <Footer brandHref="#epic" />

@@ -4,7 +4,7 @@ import { iconePath } from '../../lib/icons';
 import { formatOrdre, lieuPath } from '../../lib/urls';
 
 /** Projection d'un lieu limitée à ce dont l'explorateur a besoin. */
-export interface LieuExplorateur {
+export interface PlaceExplorerItem {
   slug: string;
   ordre: number;
   titre: string;
@@ -15,7 +15,7 @@ export interface LieuExplorateur {
 }
 
 interface Props {
-  lieux: LieuExplorateur[];
+  lieux: PlaceExplorerItem[];
   diorama?: Diorama;
   nom: string;
   tagline: string;
@@ -23,7 +23,7 @@ interface Props {
 
 const ZOOM_DEFAUT = 2.6;
 
-export default function ParcoursExplorer({ lieux, diorama, nom, tagline }: Props) {
+export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
   const [slugActif, setSlugActif] = useState(lieux[0]?.slug ?? '');
   const actif = lieux.find((lieu) => lieu.slug === slugActif) ?? lieux[0];
 

@@ -1,6 +1,6 @@
 ---
 import Brand from './Brand.astro';
-import MentionsModal from '../../islands/site/MentionsModal';
+import LegalModal from '../../islands/site/LegalModal';
 import { config } from '../../lib/config';
 
 interface Props {
@@ -26,7 +26,7 @@ const { site, mentions } = config;
     {
       mentions?.sections?.length && (
         <nav class="flex gap-6">
-          <MentionsModal
+          <LegalModal
             client:idle
             titre={mentions.titre ?? 'Mentions légales'}
             sections={mentions.sections}

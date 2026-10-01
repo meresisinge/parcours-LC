@@ -7,7 +7,7 @@ interface Props {
   declencheurLabel: string;
 }
 
-export default function MentionsModal({ titre, sections, declencheurLabel }: Props) {
+export default function LegalModal({ titre, sections, declencheurLabel }: Props) {
   const [ouvert, setOuvert] = useState(false);
   const declencheurRef = useRef<HTMLButtonElement>(null);
   const fermerRef = useRef<HTMLButtonElement>(null);

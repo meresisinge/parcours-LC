@@ -5,10 +5,10 @@ import Header from '../../components/site/Header.astro';
 import Footer from '../../components/site/Footer.astro';
 import EpisodeHero from '../../components/lieu/EpisodeHero.astro';
 import EpisodeNav from '../../components/lieu/EpisodeNav.astro';
-import FriseParcours from '../../components/lieu/FriseParcours.astro';
-import Chronologie from '../../components/chronologie/Chronologie.astro';
+import TrailStrip from '../../components/lieu/TrailStrip.astro';
+import Timeline from '../../components/chronologie/Timeline.astro';
 import AudioPlayer from '../../islands/lieu/AudioPlayer';
-import RecitDrawer from '../../islands/lieu/RecitDrawer';
+import StoryDrawer from '../../islands/lieu/StoryDrawer';
 import MediaLightbox from '../../islands/lieu/MediaLightbox';
 import { getLieux, getResumes, getVoisins } from '../../lib/config';
 import { episodeLabel, lieuPath } from '../../lib/urls';
@@ -51,7 +51,7 @@ const eyebrow = episodeLabel(lieu.ordre);
 
       <p class="mt-6 text-base leading-[1.65] text-ink">{lieu.accroche}</p>
 
-      <RecitDrawer client:idle titre={lieu.titre} eyebrow={eyebrow} recit={lieu.recit} />
+      <StoryDrawer client:idle titre={lieu.titre} eyebrow={eyebrow} recit={lieu.recit} />
     </div>
 
     {
@@ -60,9 +60,9 @@ const eyebrow = episodeLabel(lieu.ordre);
       )
     }
 
-    {lieu.chronologie?.length && <Chronologie items={lieu.chronologie} />}
+    {lieu.chronologie?.length && <Timeline items={lieu.chronologie} />}
 
-    <FriseParcours lieux={resumes} slugCourant={lieu.slug} />
+    <TrailStrip lieux={resumes} slugCourant={lieu.slug} />
 
     <EpisodeNav precedent={voisins.precedent} suivant={voisins.suivant} />
   </main>
