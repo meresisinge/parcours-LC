@@ -82,10 +82,10 @@ src/
     ├── accueil/
     │   └── WelcomeModal.tsx
     ├── parcours/
-    │   └── ParcoursExplorer.tsx    # Liste + diorama + sélection
+    │   └── TrailExplorer.tsx       # Liste + diorama + sélection
     └── lieu/
         ├── AudioPlayer.tsx
-        ├── RecitDrawer.tsx
+        ├── StoryDrawer.tsx
         └── MediaLightbox.tsx
 ```
 
