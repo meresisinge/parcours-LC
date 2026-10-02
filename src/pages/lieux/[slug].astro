@@ -35,36 +35,42 @@ const eyebrow = episodeLabel(lieu.ordre);
 >
   <Header href="/" />
 
-  <main class="mx-auto w-full max-w-[600px] pb-[70px]">
-    <EpisodeHero lieu={lieu} />
+  <main class="pb-[70px]">
+    <div class="mx-auto w-full max-w-episode">
+      <EpisodeHero lieu={lieu} />
 
-    <div class="px-6 pt-7.5">
-      <div class="mb-2 text-[13px] font-extrabold tracking-[0.1em] text-blue-bright">{eyebrow}</div>
-      <h1 class="mb-6 text-[32px] font-black">{lieu.titre}</h1>
+      <div class="px-5 pt-7.5 sm:px-8">
+        <div class="mb-2 text-[13px] font-extrabold tracking-[0.1em] text-blue-bright">{eyebrow}</div>
+        <h1 class="mb-6 text-[32px] font-black">{lieu.titre}</h1>
 
-      <AudioPlayer
-        client:load
-        audio={lieu.audio}
-        titre={lieu.audio?.titre ?? lieu.titre}
-        dureeSecondes={lieu.audio?.duree}
-      />
+        <AudioPlayer
+          client:load
+          audio={lieu.audio}
+          titre={lieu.audio?.titre ?? lieu.titre}
+          dureeSecondes={lieu.audio?.duree}
+        />
 
-      <p class="mt-6 text-base leading-[1.65] text-ink">{lieu.accroche}</p>
+        <p class="mt-6 text-base leading-[1.65] text-ink">{lieu.accroche}</p>
 
-      <StoryDrawer client:idle titre={lieu.titre} eyebrow={eyebrow} recit={lieu.recit} />
+        <StoryDrawer client:idle titre={lieu.titre} eyebrow={eyebrow} recit={lieu.recit} />
+
+        {
+          lieu.medias?.length && (
+            <MediaLightbox client:idle titre="Contenus complémentaires" medias={lieu.medias} />
+          )
+        }
+
+        {lieu.chronologie?.length && <Timeline items={lieu.chronologie} />}
+      </div>
     </div>
 
-    {
-      lieu.medias?.length && (
-        <MediaLightbox client:idle titre="Contenus complémentaires" medias={lieu.medias} />
-      )
-    }
+    <div class="mx-auto w-full max-w-shell px-5 sm:px-10">
+      <TrailStrip lieux={resumes} slugCourant={lieu.slug} />
+    </div>
 
-    {lieu.chronologie?.length && <Timeline items={lieu.chronologie} />}
-
-    <TrailStrip lieux={resumes} slugCourant={lieu.slug} />
-
-    <EpisodeNav precedent={voisins.precedent} suivant={voisins.suivant} />
+    <div class="mx-auto w-full max-w-episode px-5 sm:px-8">
+      <EpisodeNav precedent={voisins.precedent} suivant={voisins.suivant} />
+    </div>
   </main>
 
   <Footer />

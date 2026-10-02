@@ -11,9 +11,9 @@ const { lieux, slugCourant, label = 'Le parcours' } = Astro.props;
 ---
 
 <nav class="mt-13 border-t border-line" aria-label="Autres lieux du parcours">
-  <div class="px-6 pt-6 pb-3 text-xs font-bold tracking-[0.08em] text-grey uppercase">{label}</div>
+  <div class="pt-6 pb-3 text-xs font-bold tracking-[0.08em] text-grey uppercase">{label}</div>
 
-  <ol class="relative mx-6 mb-5.5 flex list-none items-center justify-between px-1.5">
+  <ol class="relative mb-5.5 flex list-none items-center justify-between px-1.5">
     <span class="absolute inset-x-0 top-1/2 h-px bg-line" aria-hidden="true"></span>
     {
       lieux.map((lieu) => {
@@ -48,16 +48,16 @@ const { lieux, slugCourant, label = 'Le parcours' } = Astro.props;
     }
   </ol>
 
-  <div class="no-scrollbar mx-6 overflow-x-auto overflow-y-hidden" id="friseCarousel">
-    <ul class="m-0 flex w-max list-none gap-5.5 p-1 pb-2.5">
+  <div class="no-scrollbar overflow-x-auto overflow-y-hidden" id="friseCarousel">
+    <ul class="m-0 flex w-max list-none gap-5.5 p-1 pb-2.5 sm:w-full sm:justify-between sm:gap-3">
       {
         lieux.map((lieu) => {
           const courant = lieu.slug === slugCourant;
           return (
-            <li>
+            <li class="sm:min-w-0 sm:flex-1">
               <a
                 href={lieuPath(lieu.slug)}
-                class="flex w-[82px] flex-col items-center gap-2 p-1 no-underline"
+                class="flex w-[82px] flex-col items-center gap-2 p-1 no-underline sm:w-full"
                 aria-current={courant ? 'page' : undefined}
               >
                 <span

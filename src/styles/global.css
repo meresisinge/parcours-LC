@@ -23,6 +23,12 @@
 
   /* Point de bascule du parcours (grille 3 colonnes), repris de la maquette. */
   --breakpoint-wide: 960px;
+
+  /* Largeur desktop commune (parcours, projet, footer). */
+  --max-width-shell: 1240px;
+
+  /* Colonne de lecture des pages épisode. */
+  --max-width-episode: 640px;
 }
 
 @layer base {
@@ -174,10 +180,63 @@
     box-shadow: 0 16px 34px rgb(10 31 68 / 0.32);
   }
 
+  /* ---- Parcours : grille explorateur -------------------------------------
+     La colonne du panneau passe de 0 à sa largeur cible : l'illustration
+     se redimensionne dans le même mouvement que l'ouverture de la fiche. */
+  .trail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 2rem;
+  }
+
+  .trail-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      grid-template-rows 0.55s var(--ease-soft),
+      opacity 0.3s ease;
+  }
+  .trail-panel.is-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  @media (width >= 960px) {
+    .trail-grid {
+      /* Colonnes étirées sur la hauteur de la ligne : illustration et fiche
+         ont exactement la même hauteur, seule la liste est centrée. */
+      align-items: stretch;
+      grid-template-columns: 250px minmax(0, 1fr) var(--panel-w, 0px);
+      column-gap: 0;
+      transition: grid-template-columns 0.6s var(--ease-soft);
+    }
+    .trail-grid > .trail-list {
+      padding-right: 2rem;
+      align-self: center;
+    }
+    /* Fermée, la fiche reste à 0 ligne : elle ne gonfle pas la hauteur de la
+       grille alors que sa colonne est réduite à 0. */
+    .trail-grid > .trail-panel {
+      padding-left: 2rem;
+      transform: translateX(14px) scale(0.98);
+      transition:
+        opacity 0.4s ease 0.12s,
+        transform 0.55s var(--ease-soft) 0.12s;
+    }
+    .trail-grid > .trail-panel.is-open {
+      grid-template-rows: 1fr;
+      transform: none;
+    }
+  }
+
+  /* ---- Parcours : diorama ------------------------------------------------- */
   .diorama-camera {
     position: absolute;
     inset: 0;
-    transition: transform 1s var(--ease-soft);
+    transition: transform 0.95s var(--ease-soft);
   }
   .diorama-img {
     position: absolute;
@@ -186,24 +245,65 @@
     height: 100%;
     object-fit: contain;
   }
+  /* Couche grise posée AU-DESSUS de l'image couleur, percée au point du lieu.
+     Image entière = opacité 0 : l'illustration reste pleinement lisible. */
   .diorama-img--neutre {
-    filter: grayscale(0.85) brightness(0.97) contrast(0.94);
-    opacity: 0.85;
-  }
-  .diorama-img--couleur {
+    filter: grayscale(0.92) brightness(0.99) contrast(0.92);
+    opacity: 0;
     transition:
-      -webkit-mask-image 0.8s ease,
-      mask-image 0.8s ease;
-  }
-  /* Projecteur couleur centré sur le lieu sélectionné (--fx / --fy en %). */
-  .diorama-img--couleur.is-focused {
+      opacity 0.7s var(--ease-soft),
+      --fx 0.95s var(--ease-soft),
+      --fy 0.95s var(--ease-soft);
     -webkit-mask-image: radial-gradient(
       circle at var(--fx) var(--fy),
-      #000 0%,
-      #000 20%,
-      transparent 46%
+      transparent 0%,
+      transparent 15%,
+      #000 42%
     );
-    mask-image: radial-gradient(circle at var(--fx) var(--fy), #000 0%, #000 20%, transparent 46%);
+    mask-image: radial-gradient(
+      circle at var(--fx) var(--fy),
+      transparent 0%,
+      transparent 15%,
+      #000 42%
+    );
+  }
+  .diorama-img--neutre.is-focused {
+    opacity: 0.94;
+  }
+
+  /* Pastilles d'invitation : hors caméra, donc jamais déformées par le zoom. */
+  .diorama-pois {
+    position: absolute;
+    inset: 0;
+    transition:
+      opacity 0.4s ease,
+      transform 0.5s var(--ease-soft);
+  }
+  .diorama-pois[data-dim='true'] {
+    opacity: 0;
+    transform: scale(1.04);
+    pointer-events: none;
+  }
+  .diorama-poi {
+    position: absolute;
+    translate: -50% -50%;
+    transition:
+      transform 0.25s var(--ease-soft),
+      background-color 0.25s ease;
+  }
+  .diorama-poi::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    opacity: 0.45;
+    animation: poi-ping 2.6s var(--ease-soft) infinite;
+    animation-delay: var(--poi-delay, 0s);
+  }
+  .diorama-poi:hover,
+  .diorama-poi:focus-visible {
+    transform: scale(1.18);
   }
 
   .wave-bar {
@@ -228,6 +328,41 @@
   }
   50% {
     transform: scaleY(1);
+  }
+}
+
+/* Interpolables : le projecteur glisse d'un lieu à l'autre au lieu de sauter. */
+@property --fx {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+@property --fy {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@keyframes poi-ping {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+@keyframes poi-card-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 

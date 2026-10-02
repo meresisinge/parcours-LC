@@ -41,7 +41,7 @@ export default function MediaLightbox({ titre, medias }: Props) {
   if (!medias.length) return null;
 
   return (
-    <section className="px-6 pt-11">
+    <section className="pt-11">
       <h3 className="mb-4 text-[17px] font-extrabold">{titre}</h3>
 
       <div className="grid grid-cols-2 gap-3">
