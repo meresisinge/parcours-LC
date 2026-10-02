@@ -15,11 +15,12 @@
     "validate:config": "node scripts/validate-config.mjs"
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.5",
+    "@astrojs/react": "^7.0.0",
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "astro": "^7.3.2",
+    "oxc-transform-react": "^0.145.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "tailwindcss": "^4.3.3"

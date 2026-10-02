@@ -19,7 +19,7 @@ const lieux: PlaceExplorerItem[] = getLieux().map((lieu) => ({
 
 <section id="parcours" class="pt-[70px] pb-[70px] sm:pt-[90px]">
   <TrailExplorer
-    client:visible
+    client:load
     lieux={lieux}
     diorama={diorama}
     nom={site.nomCourt ?? site.nom}
