@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { MediaItem } from '../../types/parcours';
 import { estMediaImage } from '../../lib/media';
+import { deverrouillerScroll, verrouillerScroll } from '../../lib/scroll-lock';
 
 interface Props {
   titre: string;
@@ -31,20 +32,24 @@ export default function MediaLightbox({ titre, medias }: Props) {
 
   useEffect(() => {
     if (!actif) return;
+    verrouillerScroll();
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') fermer();
     };
     document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      deverrouillerScroll();
+    };
   }, [actif, fermer]);
 
   if (!medias.length) return null;
 
   return (
-    <section className="pt-11">
-      <h3 className="mb-4 text-[17px] font-extrabold">{titre}</h3>
+    <section className="mt-13">
+      <h3 className="mb-4 text-sm font-bold tracking-[0.08em] text-grey uppercase">{titre}</h3>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {medias.map((media) => {
           const image = estMediaImage(media);
           const contenu = (
@@ -53,12 +58,14 @@ export default function MediaLightbox({ titre, medias }: Props) {
                 <img src={media.src} alt={media.alt ?? ''} className="h-full w-full object-cover" />
               ) : (
                 <>
-                  <IconeDocument />
-                  <span className="text-[11px] font-bold tracking-[0.04em]">{media.label}</span>
+                  <IconeDocument taille={30} />
+                  <span className="text-[13.5px] leading-snug font-bold text-navy sm:text-[14.5px]">
+                    {media.label}
+                  </span>
                 </>
               )}
               {media.tag && (
-                <span className="absolute top-2 left-2 rounded-[3px] bg-navy/75 px-2 py-0.5 text-[10px] font-bold tracking-[0.05em] text-white">
+                <span className="absolute top-2 left-2 rounded-[4px] bg-navy/80 px-2 py-0.5 text-[10px] font-bold tracking-[0.05em] text-white backdrop-blur-sm">
                   {media.tag}
                 </span>
               )}
@@ -66,7 +73,7 @@ export default function MediaLightbox({ titre, medias }: Props) {
           );
 
           const classes =
-            'relative flex aspect-square cursor-pointer flex-col items-center justify-center gap-2 overflow-hidden rounded-md border border-line bg-[#fbfcfe] p-0 text-grey';
+            'group relative flex aspect-square cursor-pointer flex-col items-center justify-center gap-2.5 overflow-hidden rounded-xl border border-line bg-[#fbfcfe] p-4 text-center text-grey transition-all duration-200 ease-soft hover:-translate-y-0.5 hover:border-blue-deep hover:shadow-[0_10px_24px_rgba(10,31,68,0.1)]';
 
           return media.type === 'lien' && media.url ? (
             <a
@@ -116,13 +123,18 @@ export default function MediaLightbox({ titre, medias }: Props) {
           </svg>
         </button>
 
-        <div className="w-full max-w-[420px]">
+        <div className="max-h-full w-full max-w-[min(960px,92vw)]">
           {actif && estMediaImage(actif) ? (
             <figure className="m-0">
-              <img src={actif.src} alt={actif.alt ?? actif.label} className="w-full rounded-md" />
-              {actif.credit && (
-                <figcaption className="mt-2 text-center text-xs text-fog">{actif.credit}</figcaption>
-              )}
+              <img
+                src={actif.src}
+                alt={actif.alt ?? actif.label}
+                className="mx-auto max-h-[78vh] w-auto max-w-full rounded-lg object-contain"
+              />
+              <figcaption className="mt-3 text-center text-[13px] font-semibold text-white">
+                {actif.label}
+                {actif.credit && <span className="ml-2 font-normal text-fog">{actif.credit}</span>}
+              </figcaption>
             </figure>
           ) : (
             actif && (

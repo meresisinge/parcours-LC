@@ -28,7 +28,7 @@
   --max-width-shell: 1240px;
 
   /* Colonne de lecture des pages épisode. */
-  --max-width-episode: 640px;
+  --max-width-episode: 680px;
 }
 
 @layer base {
@@ -304,6 +304,51 @@
   .diorama-poi:hover,
   .diorama-poi:focus-visible {
     transform: scale(1.18);
+  }
+
+  /* ---- Chronologie ---------------------------------------------------------
+     Verticale en mobile, frise horizontale pleine largeur en desktop. */
+  .timeline {
+    border-left: 1px solid var(--color-line);
+    padding-left: 1.3rem;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.4rem;
+  }
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+  .timeline-dot {
+    position: absolute;
+    top: 0.3rem;
+    left: calc(-1.3rem - 5px);
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: var(--color-red);
+    box-shadow: 0 0 0 3px var(--color-paper);
+  }
+
+  @media (width >= 960px) {
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      column-gap: 2rem;
+      border-left: 0;
+      border-top: 1px solid var(--color-line);
+      padding-left: 0;
+      padding-top: 1.9rem;
+    }
+    .timeline-item {
+      margin-bottom: 0;
+      padding-right: 0.5rem;
+    }
+    .timeline-dot {
+      top: -1.9rem;
+      left: 0;
+      translate: 0 -50%;
+    }
   }
 
   .wave-bar {

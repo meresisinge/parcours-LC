@@ -4,6 +4,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/site/Header.astro';
 import Footer from '../../components/site/Footer.astro';
 import EpisodeHero from '../../components/lieu/EpisodeHero.astro';
+import EpisodeHeader from '../../components/lieu/EpisodeHeader.astro';
+import AudioFeature from '../../components/lieu/AudioFeature.astro';
 import EpisodeNav from '../../components/lieu/EpisodeNav.astro';
 import TrailStrip from '../../components/lieu/TrailStrip.astro';
 import Timeline from '../../components/chronologie/Timeline.astro';
@@ -11,6 +13,7 @@ import AudioPlayer from '../../islands/lieu/AudioPlayer';
 import StoryDrawer from '../../islands/lieu/StoryDrawer';
 import MediaLightbox from '../../islands/lieu/MediaLightbox';
 import { getLieux, getResumes, getVoisins } from '../../lib/config';
+import { dureeLabel } from '../../lib/media';
 import { episodeLabel, lieuPath } from '../../lib/urls';
 
 // Une page par lieu actif : chaque URL est gravée dans un QR code (docs/qr-codes.md).
@@ -25,6 +28,9 @@ const { lieu } = Astro.props;
 const voisins = getVoisins(lieu.slug)!;
 const resumes = getResumes();
 const eyebrow = episodeLabel(lieu.ordre);
+const duree = dureeLabel(lieu.audio, lieu.dureeLabel);
+const medias = lieu.medias ?? [];
+const reperes = lieu.chronologie ?? [];
 ---
 
 <BaseLayout
@@ -36,33 +42,55 @@ const eyebrow = episodeLabel(lieu.ordre);
   <Header href="/" />
 
   <main class="pb-[70px]">
-    <div class="mx-auto w-full max-w-episode">
-      <EpisodeHero lieu={lieu} />
+    <article class="mx-auto w-full max-w-episode wide:pt-7">
+      <EpisodeHero lieu={lieu} eyebrow={eyebrow} />
 
-      <div class="px-5 pt-7.5 sm:px-8">
-        <div class="mb-2 text-[13px] font-extrabold tracking-[0.1em] text-blue-bright">{eyebrow}</div>
-        <h1 class="mb-6 text-[32px] font-black">{lieu.titre}</h1>
-
-        <AudioPlayer
-          client:load
-          audio={lieu.audio}
-          titre={lieu.audio?.titre ?? lieu.titre}
-          dureeSecondes={lieu.audio?.duree}
+      <div class="px-5 pt-7 sm:px-8 sm:pt-8">
+        <EpisodeHeader
+          titre={lieu.titre}
+          accroche={lieu.accroche}
+          dureeLabel={duree}
+          nbMedias={medias.length}
+          nbReperes={reperes.length}
         />
 
-        <p class="mt-6 text-base leading-[1.65] text-ink">{lieu.accroche}</p>
+        <!-- Bloc d'écoute : point focal de la page. -->
+        <AudioFeature
+          titre={lieu.audio?.titre ?? `Le récit de ${lieu.titre}`}
+          dureeLabel={duree}
+          indisponible={!lieu.audio?.src}
+        >
+          <AudioPlayer
+            slot="player"
+            client:load
+            vedette
+            elementId="episodeAudio"
+            audio={lieu.audio}
+            titre={lieu.audio?.titre ?? lieu.titre}
+            dureeSecondes={lieu.audio?.duree}
+          />
+          <StoryDrawer
+            slot="recit"
+            client:idle
+            titre={lieu.titre}
+            eyebrow={eyebrow}
+            recit={lieu.recit}
+            dureeLabel={duree}
+            audioId="episodeAudio"
+          />
+        </AudioFeature>
 
-        <StoryDrawer client:idle titre={lieu.titre} eyebrow={eyebrow} recit={lieu.recit} />
-
-        {
-          lieu.medias?.length && (
-            <MediaLightbox client:idle titre="Contenus complémentaires" medias={lieu.medias} />
-          )
-        }
-
-        {lieu.chronologie?.length && <Timeline items={lieu.chronologie} />}
+        {medias.length > 0 && <MediaLightbox client:idle titre="Contenus complémentaires" medias={medias} />}
       </div>
-    </div>
+    </article>
+
+    {
+      reperes.length > 0 && (
+        <div class="mx-auto w-full max-w-shell px-5 sm:px-10">
+          <Timeline items={reperes} />
+        </div>
+      )
+    }
 
     <div class="mx-auto w-full max-w-shell px-5 sm:px-10">
       <TrailStrip lieux={resumes} slugCourant={lieu.slug} />

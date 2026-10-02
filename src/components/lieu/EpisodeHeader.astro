@@ -1,0 +1,38 @@
+---
+interface Props {
+  titre: string;
+  accroche: string;
+  dureeLabel?: string;
+  nbMedias?: number;
+  nbReperes?: number;
+}
+const { titre, accroche, dureeLabel, nbMedias = 0, nbReperes = 0 } = Astro.props;
+
+const metas = [
+  dureeLabel && `${dureeLabel} d'écoute`,
+  nbMedias > 0 && `${nbMedias} contenus`,
+  nbReperes > 0 && `${nbReperes} repères`,
+].filter(Boolean) as string[];
+---
+
+<header class="mb-6 sm:mb-7">
+  <h1 class="text-[clamp(28px,6vw,38px)] leading-[1.04] font-black text-navy">{titre}</h1>
+
+  {
+    metas.length > 0 && (
+      <ul
+        class="mt-3 flex list-none flex-wrap items-center gap-x-3 gap-y-1 p-0 text-[12px] font-semibold tracking-[0.03em] text-grey uppercase"
+        aria-label="Informations sur l'épisode"
+      >
+        {metas.map((meta, index) => (
+          <li class="flex items-center gap-3">
+            {index > 0 && <span class="h-1 w-1 rounded-full bg-fog" aria-hidden="true" />}
+            {meta}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  <p class="mt-4.5 text-[16.5px] leading-[1.65] font-medium text-ink sm:text-[17.5px]">{accroche}</p>
+</header>
