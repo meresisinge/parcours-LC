@@ -112,7 +112,7 @@ export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
                       type="button"
                       onClick={() => selectionner(lieu.slug)}
                       aria-current={estActif ? 'true' : undefined}
-                      className={`group flex w-full cursor-pointer items-baseline gap-3 rounded-md border-none px-2.5 py-2 text-left transition-colors duration-200 ${
+                      className={`group flex w-full cursor-pointer items-baseline gap-2.5 rounded-lg border-none px-3 py-2.5 text-left transition-colors duration-200 wide:gap-3 wide:px-2.5 wide:py-2 ${
                         estActif ? 'bg-[#eaf1fb]' : 'bg-transparent hover:bg-mist'
                       }`}
                     >
@@ -158,7 +158,7 @@ export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
 
         {/* Cadre étiré sur la hauteur de la ligne ; la scène garde le ratio
             exact de l'illustration, donc les repères restent alignés. */}
-        <div className="flex w-full min-w-0 items-center wide:col-start-2">
+        <div className="diorama-frame flex w-full min-w-0 items-center wide:col-start-2">
           <div
             className="relative aspect-[1400/933] w-full overflow-hidden rounded-[18px] bg-mist"
             aria-label={
@@ -200,7 +200,7 @@ export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
                           tabIndex={-1}
                           onClick={() => selectionner(lieu.slug)}
                           title={lieu.titre}
-                          className="diorama-poi flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-red font-display text-[10px] font-extrabold text-white shadow-[0_3px_10px_rgb(10_31_68/0.35)] hover:bg-red-dark"
+                          className="diorama-poi flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border-2 border-white bg-red font-display text-[11px] font-extrabold text-white shadow-[0_3px_10px_rgb(10_31_68/0.35)] hover:bg-red-dark wide:h-6 wide:w-6 wide:text-[10px]"
                           style={
                             {
                               left: `${lieu.focus.x * 100}%`,

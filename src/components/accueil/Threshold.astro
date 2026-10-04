@@ -31,7 +31,7 @@ const { phrase, image } = Astro.props;
 
   <div
     id="stageSeuil"
-    class="relative z-1 flex min-h-screen flex-col items-center justify-center overflow-hidden px-5 py-[90px] sm:px-10 sm:py-[100px]"
+    class="relative z-1 flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 py-20 sm:px-10 sm:py-[100px]"
   >
     {
       image && (
@@ -39,7 +39,7 @@ const { phrase, image } = Astro.props;
           class="seuil-fond absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-[1400ms] ease-soft"
           aria-hidden="true"
         >
-          <img src={image} alt="" class="w-[min(60vw,520px)] opacity-[0.14] grayscale contrast-90" />
+          <img src={image} alt="" class="w-[min(78vw,520px)] opacity-[0.14] grayscale contrast-90" />
         </div>
       )
     }

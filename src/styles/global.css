@@ -187,7 +187,18 @@
     display: grid;
     grid-template-columns: 1fr;
     align-items: start;
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+  /* Mobile : on voit d'abord l'illustration et ses repères, la fiche s'ouvre
+     juste en dessous, la liste complète ferme la section. */
+  .trail-grid > .diorama-frame {
+    order: 1;
+  }
+  .trail-grid > .trail-panel {
+    order: 2;
+  }
+  .trail-grid > .trail-list {
+    order: 3;
   }
 
   .trail-panel {
@@ -212,6 +223,11 @@
       grid-template-columns: 250px minmax(0, 1fr) var(--panel-w, 0px);
       column-gap: 0;
       transition: grid-template-columns 0.6s var(--ease-soft);
+    }
+    .trail-grid > .diorama-frame,
+    .trail-grid > .trail-panel,
+    .trail-grid > .trail-list {
+      order: 0;
     }
     .trail-grid > .trail-list {
       padding-right: 2rem;
@@ -290,6 +306,13 @@
     transition:
       transform 0.25s var(--ease-soft),
       background-color 0.25s ease;
+  }
+  /* Cible tactile élargie sans grossir la pastille. */
+  .diorama-poi::after {
+    content: '';
+    position: absolute;
+    inset: -11px;
+    border-radius: 999px;
   }
   .diorama-poi::before {
     content: '';

@@ -101,7 +101,7 @@ export default function MediaLightbox({ titre, medias }: Props) {
       </div>
 
       <div
-        className={`fixed inset-0 z-95 flex items-center justify-center bg-navy/95 p-6 transition-opacity duration-250 ${
+        className={`fixed inset-0 z-95 flex items-center justify-center bg-navy/95 px-4 pt-18 pb-8 transition-opacity duration-250 sm:p-6 ${
           actif ? 'opacity-100' : 'pointer-events-none opacity-0'
         }`}
         role="dialog"
@@ -116,7 +116,7 @@ export default function MediaLightbox({ titre, medias }: Props) {
           type="button"
           onClick={fermer}
           aria-label="Fermer"
-          className="absolute top-5 right-5 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/40 bg-transparent text-white"
+          className="absolute top-4 right-4 flex h-11 w-11 sm:top-5 sm:right-5 cursor-pointer items-center justify-center rounded-full border border-white/40 bg-transparent text-white"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M6 6l12 12M18 6L6 18" />
@@ -129,7 +129,7 @@ export default function MediaLightbox({ titre, medias }: Props) {
               <img
                 src={actif.src}
                 alt={actif.alt ?? actif.label}
-                className="mx-auto max-h-[78vh] w-auto max-w-full rounded-lg object-contain"
+                className="mx-auto max-h-[68svh] w-auto max-w-full rounded-lg object-contain sm:max-h-[78vh]"
               />
               <figcaption className="mt-3 text-center text-[13px] font-semibold text-white">
                 {actif.label}
@@ -138,7 +138,7 @@ export default function MediaLightbox({ titre, medias }: Props) {
             </figure>
           ) : (
             actif && (
-              <div className="flex flex-col items-center gap-3.5 rounded-lg bg-white p-10 text-center">
+              <div className="flex flex-col items-center gap-3.5 rounded-lg bg-white p-7 text-center sm:p-10">
                 <IconeDocument taille={36} couleur="#0d47a1" />
                 <div className="font-bold text-navy">{actif.label}</div>
                 <span className="text-xs text-grey">

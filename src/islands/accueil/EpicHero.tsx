@@ -16,7 +16,7 @@ const FIN_TITRE = 0.7;
  * en plus du premier écran. La maquette utilisait 140vh : on raccourcit la
  * respiration verticale pour atteindre le seuil plus tôt.
  */
-const PISTE_SUPPLEMENTAIRE = '90vh';
+const PISTE_SUPPLEMENTAIRE = '90svh';
 
 /** Amplitude totale de rotation de la scène sur la piste, en degrés. */
 const ROTATION_MAX = 220;
@@ -60,10 +60,10 @@ export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props
   return (
     <div
       ref={pisteRef}
-      className="relative min-h-[calc(100vh+140px)]"
-      style={{ height: `calc(100vh + ${PISTE_SUPPLEMENTAIRE})` }}
+      className="relative min-h-[calc(100svh+140px)]"
+      style={{ height: `calc(100svh + ${PISTE_SUPPLEMENTAIRE})` }}
     >
-      <div className="pointer-events-none sticky top-0 z-5 flex h-screen flex-wrap items-center justify-center gap-8 px-5 sm:gap-14 sm:px-10">
+      <div className="pointer-events-none sticky top-0 z-5 flex h-[100svh] flex-col items-center justify-center gap-7 px-5 pt-16 pb-10 wide:flex-row wide:gap-14 wide:px-10 wide:pt-0 wide:pb-0">
         <div className="scene3d">
           <div ref={sceneRef} className="scene3d-inner">
             {images.back && (
@@ -85,7 +85,7 @@ export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props
         </div>
 
         <div
-          className={`w-[min(90vw,460px)] text-left transition-[opacity,transform] duration-600 ease-soft ${
+          className={`w-full max-w-[460px] text-left transition-[opacity,transform] duration-600 ease-soft ${
             titreVisible ? 'pointer-events-auto translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}
         >

@@ -18,6 +18,13 @@ const { lieu, eyebrow } = Astro.props;
     fetchpriority="high"
   />
 
+  <!-- Voile haut : garde la marque du header fixe lisible au-dessus de l'image. -->
+  <div
+    class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-paper/85 to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+
   <!-- Dégradé bas : porte le numéro d'épisode sans masquer l'illustration. -->
   <div
     class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy/75 to-transparent"
