@@ -20,7 +20,7 @@
     }
   },
   "maintenance": {
-    "actif": false,
+    "actif": true,
     "eyebrow": "Bientôt sur le terrain",
     "titre": "Votre parcours",
     "titreAccent": "arrive prochainement",
