@@ -30,6 +30,7 @@ Exemple : [exemples/parcours.exemple.json](./exemples/parcours.exemple.json)
 {
   "version": 1,
   "site": { },
+  "maintenance": { },
   "accueil": { },
   "projet": { },
   "diorama": { },
@@ -43,6 +44,7 @@ Exemple : [exemples/parcours.exemple.json](./exemples/parcours.exemple.json)
 |---|---|---|---|
 | `version` | number | oui | Version du format de config (`1`) |
 | `site` | object | oui | Identité, SEO, crédits |
+| `maintenance` | object | non | Page d'attente « parcours à venir » |
 | `accueil` | object | non | Hero, seuil, modal de bienvenue |
 | `projet` | object | non | Section éditoriale « Le projet » |
 | `diorama` | object | non | Illustration globale du parcours |
@@ -77,6 +79,21 @@ Exemple : [exemples/parcours.exemple.json](./exemples/parcours.exemple.json)
 | `navy` | string | Hex CSS |
 | `rouge` | string | Hex CSS |
 | `papier` | string | Hex fond |
+
+---
+
+## `maintenance`
+
+Quand `actif` vaut `true`, **toutes les routes** (accueil, `/lieux/{slug}`, 404) affichent la page d'attente, marquée `noindex`. Les URL des QR codes restent générées : un scan précoce ne tombe pas sur une 404.
+
+| Champ | Type | Requis | Description |
+|---|---|---|---|
+| `actif` | boolean | oui | Active / désactive la page d'attente |
+| `eyebrow` | string | non | Surtitre |
+| `titre` | string | non | Première ligne du titre (navy) |
+| `titreAccent` | string | non | Seconde ligne du titre (bleu vif) |
+| `message` | string | non | Texte d'attente (aussi utilisé en meta description) |
+| `signature` | string | non | Phrase en pied de page |
 
 ---
 
@@ -261,6 +278,10 @@ Galerie « contenus complémentaires » (remplace `GAL_TEMPLATE` unique de la ma
 ### Désactiver un lieu temporairement
 
 `"actif": false` — retiré des listes ; l’URL peut renvoyer 404 ou une page « bientôt ».
+
+### Ouvrir / fermer le site au public
+
+`"maintenance": { "actif": false }` puis rebuild / redeploy. Repasser à `true` pour revenir à la page d'attente.
 
 ### Personnaliser les textes du site
 

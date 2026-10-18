@@ -8,10 +8,12 @@ interface Props {
   /** Chemin absolu de la page, pour l'URL canonique (ex. `/lieux/mairie`). */
   chemin?: string;
   image?: string;
+  /** Exclut la page des moteurs de recherche (mode maintenance). */
+  noindex?: boolean;
 }
 
 const { site } = config;
-const { titre, description = site.descriptionSeo, chemin, image } = Astro.props;
+const { titre, description = site.descriptionSeo, chemin, image, noindex = false } = Astro.props;
 
 const titreComplet = titre ? `${titre} — ${site.nom}` : `${site.nom} — ${site.tagline}`;
 const base = site.urlCanonique?.replace(/\/+$/, '');
@@ -30,6 +32,7 @@ const imageAbsolue = base && image ? `${base}${image}` : undefined;
 
     <title>{titreComplet}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     {canonique && <link rel="canonical" href={canonique} />}
 
     <meta property="og:type" content="website" />

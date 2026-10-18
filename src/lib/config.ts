@@ -3,6 +3,11 @@ import type { Lieu, LieuResume, ParcoursConfig } from '../types/parcours';
 
 export const config = raw as unknown as ParcoursConfig;
 
+/** Mode maintenance actif : toutes les routes affichent la page d'attente. */
+export function enMaintenance(): boolean {
+  return config.maintenance?.actif === true;
+}
+
 /** Lieux actifs, triés par `ordre`. Source de vérité de la navigation du parcours. */
 export function getLieux(): Lieu[] {
   return config.lieux

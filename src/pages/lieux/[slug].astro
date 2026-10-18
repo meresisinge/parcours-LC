@@ -12,7 +12,8 @@ import Timeline from '../../components/chronologie/Timeline.astro';
 import AudioPlayer from '../../islands/lieu/AudioPlayer';
 import StoryDrawer from '../../islands/lieu/StoryDrawer';
 import MediaLightbox from '../../islands/lieu/MediaLightbox';
-import { getLieux, getResumes, getVoisins } from '../../lib/config';
+import MaintenancePage from '../../components/site/MaintenancePage.astro';
+import { enMaintenance, getLieux, getResumes, getVoisins } from '../../lib/config';
 import { dureeLabel } from '../../lib/media';
 import { episodeLabel, lieuPath } from '../../lib/urls';
 
@@ -33,83 +34,89 @@ const medias = lieu.medias ?? [];
 const reperes = lieu.chronologie ?? [];
 ---
 
-<BaseLayout
-  titre={lieu.titre}
-  description={lieu.accroche}
-  chemin={lieuPath(lieu.slug)}
-  image={lieu.image.hero}
->
-  <Header href="/" />
+{
+  enMaintenance() ? (
+    <MaintenancePage />
+  ) : (
+    <BaseLayout
+      titre={lieu.titre}
+      description={lieu.accroche}
+      chemin={lieuPath(lieu.slug)}
+      image={lieu.image.hero}
+    >
+      <Header href="/" />
 
-  <main class="pb-[70px]">
-    <article class="mx-auto w-full max-w-episode wide:pt-7">
-      <EpisodeHero lieu={lieu} eyebrow={eyebrow} />
+      <main class="pb-[70px]">
+        <article class="mx-auto w-full max-w-episode wide:pt-7">
+          <EpisodeHero lieu={lieu} eyebrow={eyebrow} />
 
-      <div class="shell-x pt-5 sm:pt-7">
-        <EpisodeNav
-          position="haut"
-          precedent={voisins.precedent}
-          suivant={voisins.suivant}
-        />
+          <div class="shell-x pt-5 sm:pt-7">
+            <EpisodeNav
+              position="haut"
+              precedent={voisins.precedent}
+              suivant={voisins.suivant}
+            />
 
-        <EpisodeHeader
-          titre={lieu.titre}
-          accroche={lieu.accroche}
-          dureeLabel={duree}
-          nbMedias={medias.length}
-          nbReperes={reperes.length}
-        />
+            <EpisodeHeader
+              titre={lieu.titre}
+              accroche={lieu.accroche}
+              dureeLabel={duree}
+              nbMedias={medias.length}
+              nbReperes={reperes.length}
+            />
 
-        <!-- Bloc d'écoute : point focal de la page. -->
-        <AudioFeature
-          titre={lieu.audio?.titre ?? `Le récit de ${lieu.titre}`}
-          dureeLabel={duree}
-          indisponible={!lieu.audio?.src}
-        >
-          <AudioPlayer
-            slot="player"
-            client:load
-            vedette
-            elementId="episodeAudio"
-            audio={lieu.audio}
-            titre={lieu.audio?.titre ?? lieu.titre}
-            dureeSecondes={lieu.audio?.duree}
-          />
-          <StoryDrawer
-            slot="recit"
-            client:idle
-            titre={lieu.titre}
-            eyebrow={eyebrow}
-            recit={lieu.recit}
-            dureeLabel={duree}
-            audioId="episodeAudio"
-          />
-        </AudioFeature>
+            <!-- Bloc d'écoute : point focal de la page. -->
+            <AudioFeature
+              titre={lieu.audio?.titre ?? `Le récit de ${lieu.titre}`}
+              dureeLabel={duree}
+              indisponible={!lieu.audio?.src}
+            >
+              <AudioPlayer
+                slot="player"
+                client:load
+                vedette
+                elementId="episodeAudio"
+                audio={lieu.audio}
+                titre={lieu.audio?.titre ?? lieu.titre}
+                dureeSecondes={lieu.audio?.duree}
+              />
+              <StoryDrawer
+                slot="recit"
+                client:idle
+                titre={lieu.titre}
+                eyebrow={eyebrow}
+                recit={lieu.recit}
+                dureeLabel={duree}
+                audioId="episodeAudio"
+              />
+            </AudioFeature>
 
-        {medias.length > 0 && <MediaLightbox client:idle titre="Contenus complémentaires" medias={medias} />}
-      </div>
-    </article>
+            {medias.length > 0 && <MediaLightbox client:idle titre="Contenus complémentaires" medias={medias} />}
+          </div>
+        </article>
 
-    {
-      reperes.length > 0 && (
+        {
+          reperes.length > 0 && (
+            <div class="shell-x mx-auto w-full max-w-shell">
+              <Timeline items={reperes} />
+            </div>
+          )
+        }
+
         <div class="shell-x mx-auto w-full max-w-shell">
-          <Timeline items={reperes} />
+          <TrailStrip lieux={resumes} slugCourant={lieu.slug} />
         </div>
-      )
-    }
 
-    <div class="shell-x mx-auto w-full max-w-shell">
-      <TrailStrip lieux={resumes} slugCourant={lieu.slug} />
-    </div>
+        <div class="shell-x mx-auto w-full max-w-episode">
+          <EpisodeNav
+            position="bas"
+            precedent={voisins.precedent}
+            suivant={voisins.suivant}
+          />
+        </div>
+      </main>
 
-    <div class="shell-x mx-auto w-full max-w-episode">
-      <EpisodeNav
-        position="bas"
-        precedent={voisins.precedent}
-        suivant={voisins.suivant}
-      />
-    </div>
-  </main>
-
-  <Footer />
-</BaseLayout>
+      <Footer />
+    </BaseLayout>
+  )
+}

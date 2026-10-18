@@ -40,6 +40,20 @@
         }
       }
     },
+    "maintenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actif"],
+      "description": "Mode maintenance : quand actif, toutes les routes affichent la page d'attente (non indexée).",
+      "properties": {
+        "actif": { "type": "boolean" },
+        "eyebrow": { "type": "string" },
+        "titre": { "type": "string" },
+        "titreAccent": { "type": "string" },
+        "message": { "type": "string" },
+        "signature": { "type": "string" }
+      }
+    },
     "accueil": {
       "type": "object",
       "additionalProperties": false,

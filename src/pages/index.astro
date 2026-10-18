@@ -7,34 +7,41 @@ import TrailSection from '../components/parcours/TrailSection.astro';
 import ProjectSection from '../components/projet/ProjectSection.astro';
 import EpicHero from '../islands/accueil/EpicHero';
 import WelcomeModal from '../islands/accueil/WelcomeModal';
-import { config } from '../lib/config';
+import MaintenancePage from '../components/site/MaintenancePage.astro';
+import { config, enMaintenance } from '../lib/config';
 
 const { site, accueil, projet } = config;
 ---
 
-<BaseLayout chemin="/" image={accueil?.heroImages?.front}>
-  <Header href="#epic" />
+{
+  enMaintenance() ? (
+    <MaintenancePage />
+  ) : (
+    <BaseLayout chemin="/" image={accueil?.heroImages?.front}>
+      <Header href="#epic" />
 
-  <main>
-    <section id="epic" class="relative">
-      <EpicHero
-        client:load
-        images={accueil?.heroImages ?? {}}
-        eyebrow={site.eyebrow}
-        nom={site.nomCourt ?? site.nom}
-        tagline={site.tagline}
-        badge={site.badge}
-      />
-    </section>
+      <main>
+        <section id="epic" class="relative">
+          <EpicHero
+            client:load
+            images={accueil?.heroImages ?? {}}
+            eyebrow={site.eyebrow}
+            nom={site.nomCourt ?? site.nom}
+            tagline={site.tagline}
+            badge={site.badge}
+          />
+        </section>
 
-    {accueil?.seuil && <Threshold phrase={accueil.seuil} image={accueil.imageSeuil} />}
+        {accueil?.seuil && <Threshold phrase={accueil.seuil} image={accueil.imageSeuil} />}
 
-    <TrailSection />
+        <TrailSection />
 
-    {projet && <ProjectSection projet={projet} />}
-  </main>
+        {projet && <ProjectSection projet={projet} />}
+      </main>
 
-  <Footer brandHref="#epic" />
+      <Footer brandHref="#epic" />
 
-  {accueil?.bienvenue && <WelcomeModal client:load bienvenue={accueil.bienvenue} />}
-</BaseLayout>
+      {accueil?.bienvenue && <WelcomeModal client:load bienvenue={accueil.bienvenue} />}
+    </BaseLayout>
+  )
+}

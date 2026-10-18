@@ -4,25 +4,33 @@ import Header from '../components/site/Header.astro';
 import Footer from '../components/site/Footer.astro';
 import Title from '../components/ui/Title.astro';
 import Rule from '../components/ui/Rule.astro';
+import MaintenancePage from '../components/site/MaintenancePage.astro';
+import { enMaintenance } from '../lib/config';
 ---
 
-<BaseLayout titre="Page introuvable" description="Ce lien ou ce QR code ne correspond à aucune étape du parcours.">
-  <Header href="/" />
+{
+  enMaintenance() ? (
+    <MaintenancePage />
+  ) : (
+    <BaseLayout titre="Page introuvable" description="Ce lien ou ce QR code ne correspond à aucune étape du parcours.">
+      <Header href="/" />
 
-  <main class="flex min-h-screen flex-col items-center justify-center px-5 py-[100px] text-center">
-    <div class="eyebrow mb-3">Erreur 404</div>
-    <Title niveau="h1" nom="LIEU INTROUVABLE" class="text-[clamp(38px,8vw,68px)]" />
-    <Rule />
-    <p class="max-w-[420px] font-serif text-lg font-medium text-ink italic">
-      Ce lien ou ce QR code ne correspond à aucune étape du parcours.
-    </p>
-    <a
-      href="/#parcours"
-      class="mt-7 inline-flex items-center gap-1.5 rounded-full bg-red px-5 py-3 text-[13px] font-bold text-white no-underline hover:bg-red-dark"
-    >
-      Revenir au parcours
-    </a>
-  </main>
+      <main class="flex min-h-screen flex-col items-center justify-center px-5 py-[100px] text-center">
+        <div class="eyebrow mb-3">Erreur 404</div>
+        <Title niveau="h1" nom="LIEU INTROUVABLE" class="text-[clamp(38px,8vw,68px)]" />
+        <Rule />
+        <p class="max-w-[420px] font-serif text-lg font-medium text-ink italic">
+          Ce lien ou ce QR code ne correspond à aucune étape du parcours.
+        </p>
+        <a
+          href="/#parcours"
+          class="mt-7 inline-flex items-center gap-1.5 rounded-full bg-red px-5 py-3 text-[13px] font-bold text-white no-underline hover:bg-red-dark"
+        >
+          Revenir au parcours
+        </a>
+      </main>
 
-  <Footer />
-</BaseLayout>
+      <Footer />
+    </BaseLayout>
+  )
+}

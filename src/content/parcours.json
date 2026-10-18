@@ -19,6 +19,14 @@
       "papier": "#fdfdfb"
     }
   },
+  "maintenance": {
+    "actif": false,
+    "eyebrow": "Bientôt sur le terrain",
+    "titre": "Votre parcours",
+    "titreAccent": "arrive prochainement",
+    "message": "Les dix lieux de Lieux communs s'installent dans la ville. Encore un peu de patience : bientôt, il suffira de scanner un QR code pour écouter ce que la mairie, l'école ou l'arrêt de bus ont à raconter.",
+    "signature": "Je suis partout où vous ne me voyez pas… et je serai bientôt là où vous passez."
+  },
   "accueil": {
     "seuil": "Je suis partout où vous ne me voyez pas.",
     "imageSeuil": "/images/seuil-marianne.webp",

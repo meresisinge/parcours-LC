@@ -54,6 +54,17 @@ export interface Site {
   theme?: Theme;
 }
 
+export interface Maintenance {
+  actif: boolean;
+  eyebrow?: string;
+  /** Première ligne du titre (navy). */
+  titre?: string;
+  /** Seconde ligne du titre (bleu vif). */
+  titreAccent?: string;
+  message?: string;
+  signature?: string;
+}
+
 export interface Bienvenue {
   titre?: string;
   texte?: string;
@@ -132,6 +143,7 @@ export interface Mentions {
 export interface ParcoursConfig {
   version: 1;
   site: Site;
+  maintenance?: Maintenance;
   accueil?: Accueil;
   projet?: Projet;
   diorama?: Diorama;

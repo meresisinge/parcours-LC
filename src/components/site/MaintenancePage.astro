@@ -1,0 +1,209 @@
+---
+/**
+ * Page d'attente servie sur toutes les routes quand `maintenance.actif` vaut true.
+ * Les URL des QR codes restent générées : un scan précoce tombe ici, pas sur une 404.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Brand from './Brand.astro';
+import Rule from '../ui/Rule.astro';
+import { config, getLieux } from '../../lib/config';
+
+const { site, accueil, maintenance } = config;
+const titre = maintenance?.titre ?? 'Votre parcours';
+const titreAccent = maintenance?.titreAccent ?? 'arrive prochainement';
+const images = accueil?.heroImages ?? {};
+const nbLieux = getLieux().length;
+---
+
+<BaseLayout titre={`${titre} ${titreAccent}`} description={maintenance?.message} noindex>
+  <div class="relative flex min-h-[100svh] flex-col overflow-hidden">
+    <svg
+      class="pointer-events-none absolute inset-0 z-0 h-full w-full"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M -5 82 C 18 70, 22 96, 44 84 S 72 58, 84 70 S 98 92, 108 78"
+        fill="none"
+        stroke="var(--color-line)"
+        stroke-width="0.6"
+        stroke-dasharray="0.2 2.4"
+        stroke-linecap="round"
+        vector-effect="non-scaling-stroke"
+        class="attente-trace"></path>
+    </svg>
+
+    {
+      accueil?.imageSeuil && (
+        <img
+          src={accueil.imageSeuil}
+          alt=""
+          aria-hidden="true"
+          class="pointer-events-none absolute top-1/2 -right-[12%] z-0 w-[min(70vw,560px)] -translate-y-1/2 opacity-[0.07] grayscale"
+        />
+      )
+    }
+
+    <header class="shell-x relative z-1 mx-auto flex w-full max-w-shell justify-center py-5 sm:justify-start">
+      <Brand />
+    </header>
+
+    <main
+      class="shell-x relative z-1 mx-auto flex w-full max-w-shell flex-1 flex-col items-center justify-center gap-10 py-10 wide:flex-row wide:gap-16"
+    >
+      {
+        (images.back || images.mid || images.front) && (
+          <div class="scene3d attente-apparition" aria-hidden="true">
+            <div class="scene3d-inner attente-balancement">
+              {images.back && (
+                <div class="scene3d-layer scene3d-layer--back">
+                  <img src={images.back} alt="" />
+                </div>
+              )}
+              {images.mid && (
+                <div class="scene3d-layer scene3d-layer--mid">
+                  <img src={images.mid} alt="" />
+                </div>
+              )}
+              {images.front && (
+                <div class="scene3d-layer scene3d-layer--front">
+                  <img src={images.front} alt="" />
+                </div>
+              )}
+            </div>
+          </div>
+        )
+      }
+
+      <div class="w-full max-w-[480px] text-center wide:text-left">
+        {maintenance?.eyebrow && <div class="eyebrow attente-apparition mb-3 [--delai:120ms]">{maintenance.eyebrow}</div>}
+
+        <h1 class="attente-apparition text-[clamp(34px,6.4vw,64px)] leading-[0.94] font-black uppercase [--delai:200ms]">
+          <span class="text-navy">{titre}</span>
+          <br />
+          <span class="text-blue-bright">{titreAccent}</span>
+        </h1>
+
+        <Rule class="attente-apparition mx-auto [--delai:280ms] wide:mx-0" />
+
+        {
+          maintenance?.message && (
+            <p class="attente-apparition font-serif text-[clamp(16px,2vw,19px)] leading-relaxed font-medium text-ink italic [--delai:360ms]">
+              {maintenance.message}
+            </p>
+          )
+        }
+
+        {
+          nbLieux > 0 && (
+            <div class="attente-apparition mt-8 [--delai:460ms]">
+              <ol class="relative mx-auto flex max-w-[340px] items-center justify-between wide:mx-0" aria-hidden="true">
+                <span class="absolute inset-x-1 top-1/2 h-px -translate-y-1/2 border-t border-dashed border-fog" />
+                {Array.from({ length: nbLieux }, (_, i) => (
+                  <li
+                    class:list={[
+                      'relative h-2.5 w-2.5 rounded-full border-2 border-paper',
+                      i === 0 ? 'attente-etape bg-red text-red' : 'bg-fog',
+                    ]}
+                  />
+                ))}
+              </ol>
+              <p class="mt-3 text-[11px] font-bold tracking-[0.14em] text-grey uppercase">
+                {nbLieux} lieux en préparation
+              </p>
+            </div>
+          )
+        }
+
+        {
+          site.badge && (
+            <span class="attente-apparition mt-7 inline-block rounded-full bg-blue-deep px-3.5 py-2 text-[11px] font-bold tracking-[0.03em] text-white [--delai:540ms]">
+              {site.badge}
+            </span>
+          )
+        }
+      </div>
+    </main>
+
+    <footer
+      class="shell-x relative z-1 mx-auto flex w-full max-w-shell flex-col items-center gap-3 border-t border-line py-6 text-center sm:flex-row sm:justify-between sm:text-left"
+    >
+      {
+        maintenance?.signature && (
+          <p class="font-serif text-sm font-medium text-ink italic">{maintenance.signature}</p>
+        )
+      }
+      <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-semibold text-grey">
+        {site.credits && <span>{site.credits}</span>}
+        {
+          site.contact && (
+            <a href={`mailto:${site.contact}`} class="text-blue-deep underline-offset-4 hover:underline">
+              {site.contact}
+            </a>
+          )
+        }
+      </div>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .attente-apparition {
+    animation: attente-in 0.9s var(--ease-soft) both;
+    animation-delay: var(--delai, 0ms);
+  }
+
+  /* La scène tourne doucement sur elle-même, comme une maquette posée sur table. */
+  .attente-balancement {
+    transform: rotateY(-18deg) rotateX(-4deg);
+    animation: attente-balancement 9s ease-in-out infinite alternate;
+  }
+
+  /* Première étape : le parcours démarre ici. */
+  .attente-etape::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    opacity: 0.45;
+    animation: poi-ping 2.6s var(--ease-soft) infinite;
+  }
+
+  .attente-trace {
+    animation: attente-marche 40s linear infinite;
+  }
+
+  @keyframes attente-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes attente-balancement {
+    to {
+      transform: rotateY(22deg) rotateX(-6deg);
+    }
+  }
+
+  @keyframes attente-marche {
+    to {
+      stroke-dashoffset: -26;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .attente-apparition,
+    .attente-balancement,
+    .attente-etape::before,
+    .attente-trace {
+      animation: none;
+    }
+  }
+</style>
