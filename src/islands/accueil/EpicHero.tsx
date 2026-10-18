@@ -21,8 +21,10 @@ const PISTE_SUPPLEMENTAIRE = '90svh';
 /**
  * Amplitude de rotation de la scène sur la piste, en degrés. Cumulée au
  * balancement (±20°), elle reste sous 90° : les calques ne passent jamais de dos.
+ * Réduite sur écran étroit, où la scène sortirait sinon du cadre.
  */
 const ROTATION_MAX = 60;
+const ROTATION_MAX_ETROIT = 20;
 
 /**
  * Fenêtres de disparition (fractions de la piste), du plus petit tableau au
@@ -43,6 +45,7 @@ function fenetre(p: number, [debut, fin]: readonly [number, number]): number {
 export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props) {
   const pisteRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<HTMLDivElement>(null);
+  const sceneFixeRef = useRef<HTMLDivElement>(null);
   const [titreVisible, setTitreVisible] = useState(true);
 
   useEffect(() => {
@@ -50,17 +53,22 @@ export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props
     if (!piste) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const large = window.matchMedia('(min-width: 960px)');
 
     const onScroll = () => {
       const rect = piste.getBoundingClientRect();
-      const amplitude = Math.max(piste.offsetHeight - window.innerHeight, 1);
+      // Based on layout heights (svh), not innerHeight: the mobile address bar
+      // changes innerHeight while scrolling and would make the animation jump.
+      const hauteurScene = sceneFixeRef.current?.offsetHeight ?? window.innerHeight;
+      const amplitude = Math.max(piste.offsetHeight - hauteurScene, 1);
       const parcouru = Math.min(Math.max(-rect.top, 0), amplitude);
       const progression = parcouru / amplitude;
 
       setTitreVisible(progression < FIN_TITRE);
 
       if (!reduceMotion && sceneRef.current) {
-        sceneRef.current.style.transform = `rotateY(${progression * ROTATION_MAX}deg) rotateX(-4deg)`;
+        const rotation = large.matches ? ROTATION_MAX : ROTATION_MAX_ETROIT;
+        sceneRef.current.style.transform = `rotateY(${progression * rotation}deg) rotateX(-4deg)`;
         // Layers drift apart in depth as the visitor scrolls (see .scene3d-layer in global.css).
         sceneRef.current.style.setProperty('--ecart', progression.toFixed(3));
         // Each layer vanishes in turn, smallest first (see .scene3d-layer--* in global.css).
@@ -85,10 +93,13 @@ export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props
   return (
     <div
       ref={pisteRef}
-      className="relative min-h-[calc(100svh+140px)]"
+      className="relative min-h-[calc(100svh+140px)] overflow-x-clip"
       style={{ height: `calc(100svh + ${PISTE_SUPPLEMENTAIRE})` }}
     >
-      <div className="shell-x pointer-events-none sticky top-0 z-5 mx-auto flex h-[100svh] max-w-shell flex-col items-center justify-center gap-7 pt-16 pb-10 wide:flex-row wide:gap-14 wide:pt-0 wide:pb-0">
+      <div
+        ref={sceneFixeRef}
+        className="shell-x pointer-events-none sticky top-0 z-5 mx-auto flex h-[100svh] max-w-shell flex-col items-center justify-center gap-14 pt-16 pb-10 wide:flex-row wide:gap-32 wide:pt-0 wide:pb-0"
+      >
         <div className="scene3d">
           <div ref={sceneRef} className="scene3d-inner">
             <div className="scene3d-balancement">

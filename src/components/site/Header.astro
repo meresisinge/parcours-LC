@@ -10,7 +10,7 @@ const { href = '/' } = Astro.props;
 
 <header
   id="siteHeader"
-  class="fixed inset-x-0 top-0 z-40 border-b border-transparent py-4 transition-[background,border-color,padding] duration-300 ease-soft sm:py-5"
+  class="fixed inset-x-0 top-0 z-40 border-b border-transparent py-4 sm:py-5"
 >
   <div
     class="shell-x mx-auto flex max-w-shell flex-wrap items-center justify-center gap-2.5 text-center sm:justify-between sm:text-left"
@@ -32,10 +32,5 @@ const { href = '/' } = Astro.props;
     background: rgb(253 253 251 / 0.92);
     backdrop-filter: blur(8px);
     border-color: var(--color-line);
-  }
-  @media (min-width: 640px) {
-    #siteHeader.is-solid {
-      padding-block: 14px;
-    }
   }
 </style>

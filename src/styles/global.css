@@ -167,9 +167,18 @@
   .scene3d-balancement {
     position: absolute;
     inset: 0;
+    --balancement-de: -18deg;
+    --balancement-a: 22deg;
     transform-style: preserve-3d;
-    transform: rotateY(-18deg) rotateX(-4deg);
+    transform: rotateY(var(--balancement-de)) rotateX(-4deg);
     animation: scene3d-balancement 9s ease-in-out infinite alternate;
+  }
+  /* Écran étroit : amplitude réduite, la scène ne sort pas du cadre. */
+  @media (width < 960px) {
+    .scene3d-balancement {
+      --balancement-de: -10deg;
+      --balancement-a: 12deg;
+    }
   }
 
   .scene3d-layer {
@@ -473,7 +482,7 @@
 
 @keyframes scene3d-balancement {
   to {
-    transform: rotateY(22deg) rotateX(-6deg);
+    transform: rotateY(var(--balancement-a)) rotateX(-6deg);
   }
 }
 

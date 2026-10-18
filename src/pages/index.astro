@@ -32,7 +32,8 @@ const { site, accueil, projet } = config;
           />
         </section>
 
-        {accueil?.seuil && <Threshold phrase={accueil.seuil} image={accueil.imageSeuil} />}
+        {/* Remonte sous la fin du hero : le tracé démarre pendant que le dernier tableau s'efface. */}
+        {accueil?.seuil && <Threshold class="-mt-[50svh]" phrase={accueil.seuil} image={accueil.imageSeuil} />}
 
         <TrailSection />
 

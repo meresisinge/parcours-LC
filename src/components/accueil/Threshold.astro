@@ -2,19 +2,24 @@
 interface Props {
   phrase: string;
   image?: string;
+  class?: string;
 }
-const { phrase, image } = Astro.props;
+const { phrase, image, class: classe } = Astro.props;
+
+const trace = 'M 50 0 L 60.52 66.67 L 63.88 133.33 L 57.81 200 L 46.42 266.67 L 37.47 333.33 L 37.04 400';
 ---
 
-<section class="relative overflow-hidden" id="accueil">
+<section class:list={['relative overflow-hidden', classe]} id="accueil">
+  <!-- Le chemin se dévoile de haut en bas au scroll (clip-path, fiable sur Safari iOS). -->
   <svg
-    class="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible"
+    id="seuilTrace"
+    class="seuil-trace pointer-events-none absolute inset-0 z-0 h-full w-full overflow-visible"
     viewBox="0 0 100 400"
     preserveAspectRatio="none"
     aria-hidden="true"
   >
     <path
-      d="M 50 0 L 60.52 66.67 L 63.88 133.33 L 57.81 200 L 46.42 266.67 L 37.47 333.33 L 37.04 400"
+      d={trace}
       fill="none"
       stroke="var(--color-line)"
       stroke-width="2.5"
@@ -35,11 +40,8 @@ const { phrase, image } = Astro.props;
   >
     {
       image && (
-        <div
-          class="seuil-fond absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-[1400ms] ease-soft"
-          aria-hidden="true"
-        >
-          <img src={image} alt="" class="w-[min(78vw,520px)] opacity-[0.14] grayscale contrast-90" />
+        <div class="pointer-events-none absolute inset-0 flex items-center justify-center" aria-hidden="true">
+          <img src={image} alt="" class="seuil-image w-[min(78vw,520px)]" />
         </div>
       )
     }
@@ -52,31 +54,66 @@ const { phrase, image } = Astro.props;
 </section>
 
 <script>
+  const section = document.getElementById('accueil');
   const stage = document.getElementById('stageSeuil');
-  if (stage) {
-    const reveler = () => stage.classList.add('is-in');
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              reveler();
-              observer.disconnect();
-            }
-          }
-        },
-        { threshold: 0.45 }
-      );
-      observer.observe(stage);
+  const image = stage?.querySelector<HTMLImageElement>('.seuil-image');
+  const trace = document.getElementById('seuilTrace');
+
+  /** Opacité atteinte en noir et blanc, puis une fois en couleur. */
+  const OPACITE_NOIR = 0.3;
+  const OPACITE_COULEUR = 0.4;
+  /** Part de la progression consacrée au fondu en noir et blanc ; la couleur vient ensuite. */
+  const FONDU = 0.55;
+  /** Progression à partir de laquelle la phrase se révèle. */
+  const PHRASE = 0.6;
+  /** Hauteur de la pointe du tracé dans la fenêtre (fraction), pendant le dessin. */
+  const HAUTEUR_POINTE = 0.65;
+
+  const borne = (t: number) => Math.min(Math.max(t, 0), 1);
+  const adoucir = (t: number) => t * t * (3 - 2 * t);
+
+  const colorer = (progression: number) => {
+    stage?.classList.toggle('is-in', progression >= PHRASE);
+    if (!image) return;
+    // First a soft fade-in in black and white, then the colour comes in at the end.
+    const f = adoucir(borne(progression / FONDU));
+    const c = adoucir(borne((progression - FONDU) / (1 - FONDU)));
+    image.style.opacity = String(f * OPACITE_NOIR + c * (OPACITE_COULEUR - OPACITE_NOIR));
+    image.style.filter = `grayscale(${1 - c}) contrast(${1.2 - c * 0.2})`;
+  };
+
+  const dessiner = (progression: number) => {
+    trace?.style.setProperty('clip-path', `inset(0 0 ${((1 - progression) * 100).toFixed(2)}% 0)`);
+  };
+
+  if (section && stage) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      colorer(1);
+      dessiner(1);
     } else {
-      reveler();
+      const onScroll = () => {
+        // Stage is 100svh tall: a stable viewport height, unlike innerHeight on mobile.
+        const vh = stage.offsetHeight;
+        const rect = section.getBoundingClientRect();
+        // Colour: 0 when the section enters the viewport, 1 when it reaches the top.
+        colorer(borne(1 - rect.top / vh));
+        // Path: its tip follows a fixed height in the viewport as the section scrolls by.
+        dessiner(borne((vh * HAUTEUR_POINTE - rect.top) / rect.height));
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
     }
   }
 </script>
 
 <style>
-  #stageSeuil.is-in .seuil-fond {
-    opacity: 1;
+  .seuil-trace {
+    clip-path: inset(0 0 100% 0);
+  }
+  .seuil-image {
+    opacity: 0;
+    filter: grayscale(1) contrast(1.2);
   }
   #stageSeuil.is-in .seuil-ligne {
     opacity: 1;
