@@ -18,8 +18,27 @@ const FIN_TITRE = 0.7;
  */
 const PISTE_SUPPLEMENTAIRE = '90svh';
 
-/** Amplitude totale de rotation de la scène sur la piste, en degrés. */
-const ROTATION_MAX = 220;
+/**
+ * Amplitude de rotation de la scène sur la piste, en degrés. Cumulée au
+ * balancement (±20°), elle reste sous 90° : les calques ne passent jamais de dos.
+ */
+const ROTATION_MAX = 60;
+
+/**
+ * Fenêtres de disparition (fractions de la piste), du plus petit tableau au
+ * plus grand : le dernier s'efface juste avant la fin de la piste.
+ */
+const SORTIES = {
+  front: [0.15, 0.45],
+  mid: [0.35, 0.7],
+  back: [0.6, 1],
+} as const;
+
+/** Progression locale 0 → 1 dans une fenêtre, adoucie (ease-in-out). */
+function fenetre(p: number, [debut, fin]: readonly [number, number]): number {
+  const t = Math.min(Math.max((p - debut) / (fin - debut), 0), 1);
+  return t * t * (3 - 2 * t);
+}
 
 export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props) {
   const pisteRef = useRef<HTMLDivElement>(null);
@@ -42,6 +61,12 @@ export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props
 
       if (!reduceMotion && sceneRef.current) {
         sceneRef.current.style.transform = `rotateY(${progression * ROTATION_MAX}deg) rotateX(-4deg)`;
+        // Layers drift apart in depth as the visitor scrolls (see .scene3d-layer in global.css).
+        sceneRef.current.style.setProperty('--ecart', progression.toFixed(3));
+        // Each layer vanishes in turn, smallest first (see .scene3d-layer--* in global.css).
+        for (const [calque, plage] of Object.entries(SORTIES)) {
+          sceneRef.current.style.setProperty(`--sortie-${calque}`, fenetre(progression, plage).toFixed(3));
+        }
       }
     };
 
@@ -66,21 +91,23 @@ export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props
       <div className="shell-x pointer-events-none sticky top-0 z-5 mx-auto flex h-[100svh] max-w-shell flex-col items-center justify-center gap-7 pt-16 pb-10 wide:flex-row wide:gap-14 wide:pt-0 wide:pb-0">
         <div className="scene3d">
           <div ref={sceneRef} className="scene3d-inner">
-            {images.back && (
-              <div className="scene3d-layer scene3d-layer--back">
-                <img src={images.back} alt="" />
-              </div>
-            )}
-            {images.mid && (
-              <div className="scene3d-layer scene3d-layer--mid">
-                <img src={images.mid} alt="" />
-              </div>
-            )}
-            {images.front && (
-              <div className="scene3d-layer scene3d-layer--front">
-                <img src={images.front} alt="" />
-              </div>
-            )}
+            <div className="scene3d-balancement">
+              {images.back && (
+                <div className="scene3d-layer scene3d-layer--back">
+                  <img src={images.back} alt="" />
+                </div>
+              )}
+              {images.mid && (
+                <div className="scene3d-layer scene3d-layer--mid">
+                  <img src={images.mid} alt="" />
+                </div>
+              )}
+              {images.front && (
+                <div className="scene3d-layer scene3d-layer--front">
+                  <img src={images.front} alt="" />
+                </div>
+              )}
+            </div>
           </div>
         </div>
 

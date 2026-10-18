@@ -55,22 +55,24 @@ const nbLieux = getLieux().length;
       {
         (images.back || images.mid || images.front) && (
           <div class="scene3d attente-apparition" aria-hidden="true">
-            <div class="scene3d-inner attente-balancement">
-              {images.back && (
-                <div class="scene3d-layer scene3d-layer--back">
-                  <img src={images.back} alt="" />
-                </div>
-              )}
-              {images.mid && (
-                <div class="scene3d-layer scene3d-layer--mid">
-                  <img src={images.mid} alt="" />
-                </div>
-              )}
-              {images.front && (
-                <div class="scene3d-layer scene3d-layer--front">
-                  <img src={images.front} alt="" />
-                </div>
-              )}
+            <div class="scene3d-inner">
+              <div class="scene3d-balancement">
+                {images.back && (
+                  <div class="scene3d-layer scene3d-layer--back">
+                    <img src={images.back} alt="" />
+                  </div>
+                )}
+                {images.mid && (
+                  <div class="scene3d-layer scene3d-layer--mid">
+                    <img src={images.mid} alt="" />
+                  </div>
+                )}
+                {images.front && (
+                  <div class="scene3d-layer scene3d-layer--front">
+                    <img src={images.front} alt="" />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )
@@ -154,12 +156,6 @@ const nbLieux = getLieux().length;
     animation-delay: var(--delai, 0ms);
   }
 
-  /* La scène tourne doucement sur elle-même, comme une maquette posée sur table. */
-  .attente-balancement {
-    transform: rotateY(-18deg) rotateX(-4deg);
-    animation: attente-balancement 9s ease-in-out infinite alternate;
-  }
-
   /* Première étape : le parcours démarre ici. */
   .attente-etape::before {
     content: '';
@@ -186,12 +182,6 @@ const nbLieux = getLieux().length;
     }
   }
 
-  @keyframes attente-balancement {
-    to {
-      transform: rotateY(22deg) rotateX(-6deg);
-    }
-  }
-
   @keyframes attente-marche {
     to {
       stroke-dashoffset: -26;
@@ -200,7 +190,6 @@ const nbLieux = getLieux().length;
 
   @media (prefers-reduced-motion: reduce) {
     .attente-apparition,
-    .attente-balancement,
     .attente-etape::before,
     .attente-trace {
       animation: none;

@@ -162,6 +162,16 @@
     transition: transform 0.1s linear;
   }
 
+  /* Lent balancement continu de la scène, indépendant du scroll (enfant de
+     .scene3d-inner : les deux rotations se cumulent). */
+  .scene3d-balancement {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: rotateY(-18deg) rotateX(-4deg);
+    animation: scene3d-balancement 9s ease-in-out infinite alternate;
+  }
+
   .scene3d-layer {
     position: absolute;
     border-radius: 10px;
@@ -174,21 +184,34 @@
     height: 100%;
     object-fit: cover;
   }
+  /* --ecart (0 → 1) écarte les calques en profondeur au fil du scroll ;
+     --s (0 → 1, propre à chaque calque) les fait disparaître un à un. */
+  .scene3d-layer {
+    opacity: calc(1 - var(--s, 0));
+  }
   .scene3d-layer--back {
+    --s: var(--sortie-back, 0);
     inset: 0;
-    transform: translateZ(-120px) scale(1.14);
-    filter: saturate(0.85) brightness(0.97);
+    transform: translateZ(calc(-120px - var(--ecart, 0) * 90px - var(--s) * 240px))
+      translateY(calc(var(--s) * 60px)) scale(calc(1.14 + var(--ecart, 0) * 0.08 - var(--s) * 0.18));
+    filter: saturate(0.85) brightness(0.97) blur(calc(var(--s) * 14px));
   }
   .scene3d-layer--mid {
+    --s: var(--sortie-mid, 0);
     inset: 6%;
-    transform: translateZ(-20px) scale(1.02);
+    transform: translateZ(calc(-20px + var(--ecart, 0) * 10px + var(--s) * 60px))
+      translateY(calc(var(--s) * -90px)) rotateZ(calc(var(--s) * -8deg)) scale(1.02);
+    filter: blur(calc(var(--s) * 12px));
   }
   .scene3d-layer--front {
+    --s: var(--sortie-front, 0);
     width: 46%;
     height: 46%;
     right: -8%;
     bottom: -8%;
-    transform: translateZ(90px);
+    transform: translateZ(calc(90px + var(--ecart, 0) * 80px + var(--s) * 340px))
+      translateY(calc(var(--s) * -120px)) rotateZ(calc(var(--s) * 14deg));
+    filter: blur(calc(var(--s) * 10px));
     border: 4px solid #fff;
     box-shadow: 0 16px 34px rgb(10 31 68 / 0.32);
   }
@@ -445,6 +468,18 @@
   }
   .wave-bar--playing {
     animation: barpulse 0.7s ease-in-out infinite;
+  }
+}
+
+@keyframes scene3d-balancement {
+  to {
+    transform: rotateY(22deg) rotateX(-6deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene3d-balancement {
+    animation: none;
   }
 }
 
