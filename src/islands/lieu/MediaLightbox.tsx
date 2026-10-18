@@ -47,33 +47,44 @@ export default function MediaLightbox({ titre, medias }: Props) {
 
   return (
     <section className="mt-13">
-      <h3 className="mb-4 text-sm font-bold tracking-[0.08em] text-grey uppercase">{titre}</h3>
+      <h3 className="mb-4 font-sans text-xs font-bold tracking-[0.08em] text-grey uppercase">{titre}</h3>
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4">
         {medias.map((media) => {
           const image = estMediaImage(media);
+          const phrase = media.label || media.alt || '';
           const contenu = (
             <>
-              {image ? (
-                <img src={media.src} alt={media.alt ?? ''} className="h-full w-full object-cover" />
-              ) : (
-                <>
-                  <IconeDocument taille={30} />
-                  <span className="text-[13.5px] leading-snug font-bold text-navy sm:text-[14.5px]">
-                    {media.label}
+              <span className="absolute inset-0 overflow-hidden rounded-xl">
+                {image ? (
+                  <img src={media.src} alt={media.alt ?? ''} className="h-full w-full object-cover" />
+                ) : (
+                  <span className="flex h-full w-full flex-col items-center justify-center gap-2.5 p-4">
+                    <IconeDocument taille={30} />
+                    <span className="text-[13.5px] leading-snug font-bold text-navy sm:text-[14.5px]">
+                      {media.label}
+                    </span>
                   </span>
-                </>
-              )}
+                )}
+              </span>
               {media.tag && (
-                <span className="absolute top-2 left-2 rounded-[4px] bg-navy/80 px-2 py-0.5 text-[10px] font-bold tracking-[0.05em] text-white backdrop-blur-sm">
+                <span className="absolute top-2 left-2 z-10 rounded-[4px] bg-navy/80 px-2 py-0.5 text-[10px] font-bold tracking-[0.05em] text-white backdrop-blur-sm">
                   {media.tag}
+                </span>
+              )}
+              {image && phrase && (
+                <span
+                  role="tooltip"
+                  className="pointer-events-none absolute inset-x-2 bottom-2 z-20 hidden translate-y-1 rounded-lg bg-navy/92 px-2.5 py-2 text-left text-[12px] leading-snug font-semibold text-white opacity-0 shadow-[0_8px_20px_rgba(10,31,68,0.28)] backdrop-blur-sm transition-[opacity,transform] duration-200 ease-soft sm:block sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-visible:translate-y-0 sm:group-focus-visible:opacity-100"
+                >
+                  {phrase}
                 </span>
               )}
             </>
           );
 
           const classes =
-            'group relative flex aspect-square cursor-pointer flex-col items-center justify-center gap-2.5 overflow-hidden rounded-xl border border-line bg-[#fbfcfe] p-4 text-center text-grey transition-all duration-200 ease-soft hover:-translate-y-0.5 hover:border-blue-deep hover:shadow-[0_10px_24px_rgba(10,31,68,0.1)]';
+            'group relative flex aspect-square cursor-pointer flex-col items-center justify-center rounded-xl border border-line bg-[#fbfcfe] text-center text-grey transition-all duration-200 ease-soft hover:-translate-y-0.5 hover:border-blue-deep hover:shadow-[0_10px_24px_rgba(10,31,68,0.1)] focus-visible:border-blue-deep';
 
           return media.type === 'lien' && media.url ? (
             <a

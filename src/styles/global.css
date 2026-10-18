@@ -343,47 +343,93 @@
   }
 
   /* ---- Chronologie ---------------------------------------------------------
-     Verticale en mobile, frise horizontale pleine largeur en desktop. */
+     Rail dédié (pastille + connecteur) : la ligne passe forcément
+     au centre des points. Frise horizontale en wide. */
   .timeline {
-    border-left: 1px solid var(--color-line);
-    padding-left: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
   .timeline-item {
-    position: relative;
-    margin-bottom: 1.4rem;
+    display: grid;
+    grid-template-columns: 12px minmax(0, 1fr);
+    column-gap: 1.25rem;
   }
-  .timeline-item:last-child {
-    margin-bottom: 0;
+  .timeline-marker {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 0.2rem;
   }
   .timeline-dot {
-    position: absolute;
-    top: 0.3rem;
-    left: calc(-1.3rem - 5px);
-    width: 9px;
-    height: 9px;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
     border-radius: 999px;
+    border: 2px solid #fff;
     background: var(--color-red);
-    box-shadow: 0 0 0 3px var(--color-paper);
+    box-shadow: 0 2px 8px rgb(10 31 68 / 0.28);
+    color: var(--color-red);
+  }
+  .timeline-dot::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    opacity: 0.45;
+    animation: poi-ping 2.6s var(--ease-soft) infinite;
+    animation-delay: var(--poi-delay, 0s);
+  }
+  /* Segment de ligne dans le même axe que la pastille. */
+  .timeline-connector {
+    position: absolute;
+    top: calc(0.2rem + 12px);
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    translate: -50% 0;
+    background: var(--color-fog);
+  }
+  .timeline-content {
+    padding-bottom: 2.25rem;
+  }
+  .timeline-item:last-child .timeline-content {
+    padding-bottom: 0;
   }
 
   @media (width >= 960px) {
     .timeline {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      column-gap: 2rem;
-      border-left: 0;
-      border-top: 1px solid var(--color-line);
-      padding-left: 0;
-      padding-top: 1.9rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      column-gap: 0;
     }
     .timeline-item {
-      margin-bottom: 0;
-      padding-right: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
     }
-    .timeline-dot {
-      top: -1.9rem;
-      left: 0;
+    .timeline-marker {
+      justify-content: flex-start;
+      align-items: center;
+      height: 12px;
+      margin-bottom: 1.15rem;
+      padding-top: 0;
+    }
+    .timeline-connector {
+      top: 50%;
+      right: 0;
+      bottom: auto;
+      left: 12px;
+      width: auto;
+      height: 1px;
       translate: 0 -50%;
+    }
+    .timeline-content {
+      padding-bottom: 0;
+      padding-right: 2rem;
     }
   }
 

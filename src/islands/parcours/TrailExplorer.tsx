@@ -158,7 +158,7 @@ export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
 
         {/* Cadre étiré sur la hauteur de la ligne ; la scène garde le ratio
             exact de l'illustration, donc les repères restent alignés. */}
-        <div className="diorama-frame flex w-full min-w-0 items-center wide:col-start-2">
+        <div className="diorama-frame relative flex w-full min-w-0 flex-col items-center wide:col-start-2">
           <div
             className="relative aspect-[1400/933] w-full overflow-hidden rounded-[18px] bg-mist"
             aria-label={
@@ -214,34 +214,36 @@ export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
                       ),
                   )}
                 </div>
-
-                {/* Invitation flottante, effacée dès qu'une étape est sélectionnée. */}
-                <div
-                  aria-hidden="true"
-                  className={`pointer-events-none absolute inset-x-0 bottom-3 flex justify-center transition-all duration-400 ease-soft ${
-                    actif ? 'translate-y-2 opacity-0' : 'translate-y-0 opacity-100'
-                  }`}
-                >
-                  <span className="flex items-center gap-2 rounded-full bg-navy/85 px-3.5 py-2 text-[11px] font-bold tracking-[0.04em] text-white uppercase backdrop-blur-sm">
-                    <svg
-                      width="13"
-                      height="13"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="shrink-0"
-                    >
-                      <path d="M9 11.5V5a1.8 1.8 0 013.6 0v6M12.6 11V9.2a1.8 1.8 0 013.6 0V11M16.2 11.2V10a1.8 1.8 0 013.6 0v4.5A6.5 6.5 0 0113.3 21h-1a5 5 0 01-3.6-1.6L5 15.6a1.9 1.9 0 012.7-2.6L9 14" />
-                    </svg>
-                    Sélectionnez une étape
-                  </span>
-                </div>
               </>
             )}
           </div>
+
+          {/* Sous l'image en mobile ; superposé en bas du cadre en wide. */}
+          {diorama?.image && (
+            <div
+              aria-hidden="true"
+              className={`pointer-events-none flex justify-center transition-all duration-400 ease-soft wide:absolute wide:inset-x-0 wide:bottom-3 ${
+                actif ? 'translate-y-2 opacity-0' : 'translate-y-0 opacity-100'
+              }`}
+            >
+              <span className="flex items-center gap-2 rounded-full bg-navy/85 px-3.5 py-2 text-[11px] font-bold tracking-[0.04em] text-white uppercase backdrop-blur-sm">
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="shrink-0"
+                >
+                  <path d="M9 11.5V5a1.8 1.8 0 013.6 0v6M12.6 11V9.2a1.8 1.8 0 013.6 0V11M16.2 11.2V10a1.8 1.8 0 013.6 0v4.5A6.5 6.5 0 0113.3 21h-1a5 5 0 01-3.6-1.6L5 15.6a1.9 1.9 0 012.7-2.6L9 14" />
+                </svg>
+                Sélectionnez une étape
+              </span>
+            </div>
+          )}
         </div>
 
         <div

@@ -10,17 +10,28 @@ const { items, titre = 'Repères' } = Astro.props;
 
 {
   items.length > 0 && (
-    <section class="mt-13" aria-label={titre}>
-      <h3 class="mb-5 text-xs font-bold tracking-[0.08em] text-grey uppercase">{titre}</h3>
+    <section class="mt-13 mb-2" aria-label={titre}>
+      <h3 class="mb-7 font-sans text-xs font-bold tracking-[0.08em] text-grey uppercase">{titre}</h3>
       <ol class="timeline m-0 list-none p-0">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <li class="timeline-item">
-            <span class="timeline-dot" aria-hidden="true" />
-            <div class="font-display text-[17px] leading-none font-extrabold text-blue-deep">
-              {item.annee}
+            <div class="timeline-marker">
+              <span
+                class="timeline-dot"
+                aria-hidden="true"
+                style={`--poi-delay: ${index * 0.28}s`}
+              />
+              {index < items.length - 1 && <span class="timeline-connector" aria-hidden="true" />}
             </div>
-            <div class="mt-1.5 text-[14.5px] leading-snug font-bold text-navy">{item.titre}</div>
-            {item.texte && <p class="mt-1.5 text-[13.5px] leading-relaxed text-ink">{item.texte}</p>}
+            <div class="timeline-content">
+              <div class="font-display text-[18px] leading-none font-extrabold tracking-wide text-blue-deep">
+                {item.annee}
+              </div>
+              <div class="mt-2.5 text-[15px] leading-snug font-bold text-navy">{item.titre}</div>
+              {item.texte && (
+                <p class="mt-2 text-[13.5px] leading-relaxed text-ink">{item.texte}</p>
+              )}
+            </div>
           </li>
         ))}
       </ol>
