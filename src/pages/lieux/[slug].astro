@@ -45,7 +45,13 @@ const reperes = lieu.chronologie ?? [];
     <article class="mx-auto w-full max-w-episode wide:pt-7">
       <EpisodeHero lieu={lieu} eyebrow={eyebrow} />
 
-      <div class="px-5 pt-7 sm:px-8 sm:pt-8">
+      <div class="shell-x pt-5 sm:pt-7">
+        <EpisodeNav
+          position="haut"
+          precedent={voisins.precedent}
+          suivant={voisins.suivant}
+        />
+
         <EpisodeHeader
           titre={lieu.titre}
           accroche={lieu.accroche}
@@ -86,18 +92,22 @@ const reperes = lieu.chronologie ?? [];
 
     {
       reperes.length > 0 && (
-        <div class="mx-auto w-full max-w-shell px-5 sm:px-10">
+        <div class="shell-x mx-auto w-full max-w-shell">
           <Timeline items={reperes} />
         </div>
       )
     }
 
-    <div class="mx-auto w-full max-w-shell px-5 sm:px-10">
+    <div class="shell-x mx-auto w-full max-w-shell">
       <TrailStrip lieux={resumes} slugCourant={lieu.slug} />
     </div>
 
-    <div class="mx-auto w-full max-w-episode px-5 sm:px-8">
-      <EpisodeNav precedent={voisins.precedent} suivant={voisins.suivant} />
+    <div class="shell-x mx-auto w-full max-w-episode">
+      <EpisodeNav
+        position="bas"
+        precedent={voisins.precedent}
+        suivant={voisins.suivant}
+      />
     </div>
   </main>
 

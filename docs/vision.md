@@ -4,7 +4,24 @@
 
 **Lieux communs** est un parcours de village (ou de commune) autour de la laïcité. Sur le terrain, chaque personne scanne un QR code placé sur un lieu. Elle arrive directement sur la page de cet épisode : récit audio, texte, images et documents associés.
 
-La maquette archivée dans [`docs/maquette/`](./maquette/) sert de référence visuelle et fonctionnelle. Les assets embarqués (base64 / images de démo) ne sont **pas** destinés à la production. Le site cible est un projet Astro à la racine du dépôt (voir [architecture.md](./architecture.md)).
+### Site parent (référence produit)
+
+L’application de parcours en cours est une **prolongation terrain** du site institutionnel [lieux-communs.fr](https://lieux-communs.fr) — vitrine du projet (collectivités, déploiement, cas d’usage). Le parcours Astro ne remplace pas ce site : il prolonge l’expérience une fois sur place (QR → épisode audio).
+
+Pages du site parent à prendre en compte pour la continuité produit / layout :
+
+| Route | Rôle |
+|---|---|
+| `/` | Accueil institutionnel, promesse, territoires engagés |
+| `/le-projet` | Présentation éditoriale du dispositif |
+| `/cas-d-usage` | Usages (communes, scolaires, médiation…) |
+| `/sur-mesure` | Adaptation territoriale |
+| `/a-propos` | Porteurs / crédits |
+| `/faq` | Questions fréquentes |
+
+**Layout parent (contrainte UI)** — coque principale `max-w-6xl` (1152px / 72rem), gutters `px-6 sm:px-10 lg:px-16`, colonnes de lecture plus étroites (`max-w-2xl` / `max-w-3xl`). Le parcours doit réutiliser ces largeurs pour rester aligné quand on bascule du site parent vers l’app.
+
+La maquette archivée dans [`docs/maquette/`](./maquette/) reste la référence d’interaction terrain (lecteur, diorama, drawer). Les assets embarqués (base64 / images de démo) ne sont **pas** destinés à la production. Le site cible est un projet Astro à la racine du dépôt (voir [architecture.md](./architecture.md)).
 
 ## Parcours utilisateur
 

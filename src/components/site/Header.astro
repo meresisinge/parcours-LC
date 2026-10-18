@@ -10,9 +10,13 @@ const { href = '/' } = Astro.props;
 
 <header
   id="siteHeader"
-  class="fixed inset-x-0 top-0 z-40 flex flex-wrap items-center justify-center gap-2.5 border-b border-transparent px-5 py-4 text-center transition-[background,border-color,padding] duration-300 ease-soft sm:justify-between sm:px-10 sm:py-5 sm:text-left"
+  class="fixed inset-x-0 top-0 z-40 border-b border-transparent py-4 transition-[background,border-color,padding] duration-300 ease-soft sm:py-5"
 >
-  <Brand href={href} />
+  <div
+    class="shell-x mx-auto flex max-w-shell flex-wrap items-center justify-center gap-2.5 text-center sm:justify-between sm:text-left"
+  >
+    <Brand href={href} />
+  </div>
 </header>
 
 <script>

@@ -24,11 +24,24 @@
   /* Point de bascule du parcours (grille 3 colonnes), repris de la maquette. */
   --breakpoint-wide: 960px;
 
-  /* Largeur desktop commune (parcours, projet, footer). */
-  --max-width-shell: 1240px;
+  /* Shell aligné sur lieux-communs.fr (Tailwind max-w-6xl). */
+  --max-width-shell: 72rem;
 
-  /* Colonne de lecture des pages épisode. */
-  --max-width-episode: 680px;
+  /* Colonne de lecture épisode ≈ max-w-2xl du site parent. */
+  --max-width-episode: 42rem;
+}
+
+/* Gutters du site parent : px-6 sm:px-10 lg:px-16 */
+@utility shell-x {
+  padding-inline: 1.5rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding-inline: 4rem;
+  }
 }
 
 @layer base {
@@ -432,6 +445,70 @@
     opacity: 1;
     transform: translateX(0);
   }
+}
+
+@keyframes cta-label-shine {
+  0% {
+    background-position: 140% 0;
+    opacity: 0;
+    filter: drop-shadow(0 0 0 rgb(255 255 255 / 0));
+  }
+  12% {
+    opacity: 1;
+    filter:
+      drop-shadow(0 0 6px rgb(255 255 255 / 1))
+      drop-shadow(0 0 14px rgb(255 255 255 / 0.75));
+  }
+  58% {
+    background-position: -140% 0;
+    opacity: 1;
+    filter:
+      drop-shadow(0 0 6px rgb(255 255 255 / 1))
+      drop-shadow(0 0 14px rgb(255 255 255 / 0.75));
+  }
+  78%,
+  100% {
+    background-position: -140% 0;
+    opacity: 0;
+    filter: drop-shadow(0 0 0 rgb(255 255 255 / 0));
+  }
+}
+
+/* Solid white label + brighter shine overlay with soft fade out. */
+.cta-attention-label {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.cta-attention-label::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    transparent 18%,
+    rgb(255 255 255 / 0.2) 34%,
+    rgb(255 255 255 / 0.55) 44%,
+    #fff 50%,
+    rgb(255 255 255 / 0.55) 56%,
+    rgb(255 255 255 / 0.2) 66%,
+    transparent 82%,
+    transparent 100%
+  );
+  background-size: 240% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: cta-label-shine 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.cta-attention:hover .cta-attention-label::after {
+  animation-play-state: paused;
 }
 
 @media (max-width: 640px) {

@@ -48,7 +48,7 @@ export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
   const selectionner = (slug: string) => setSlugActif((precedent) => (precedent === slug ? null : slug));
 
   return (
-    <div className="mx-auto max-w-[520px] px-5 sm:px-10 wide:max-w-shell">
+    <div className="shell-x mx-auto max-w-[520px] wide:max-w-shell">
       {/* Marge nulle en vue d'ensemble (tout est aligné), elle s'ouvre
           doucement dès qu'une étape est sélectionnée. */}
       <header
@@ -281,22 +281,25 @@ export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
                 <a
                   href={lieuPath(carte.slug)}
                   tabIndex={actif ? 0 : -1}
-                  className="mb-4.5 flex w-full cursor-pointer items-center justify-center gap-2 rounded-full bg-red px-5 py-3 text-[13px] font-bold text-white no-underline transition-colors hover:bg-red-dark"
+                  className="cta-attention mb-4.5 flex w-full cursor-pointer items-center justify-center rounded-full bg-red px-5 py-3 text-[13px] font-bold text-white no-underline transition-colors hover:bg-red-dark"
                 >
-                  Découvrir la piste
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
+                  <span className="relative z-10 inline-flex items-center gap-1.5">
+                    <span className="cta-attention-label" data-text="Découvrir la piste">
+                      Découvrir la piste
+                    </span>
+                    <svg
+                      className="h-4 w-4 shrink-0 text-white"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="m9 6 6 6-6 6" />
+                    </svg>
+                  </span>
                 </a>
 
                 {carte.dureeLabel && (

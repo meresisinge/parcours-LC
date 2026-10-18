@@ -63,7 +63,7 @@ export default function EpicHero({ images, eyebrow, nom, tagline, badge }: Props
       className="relative min-h-[calc(100svh+140px)]"
       style={{ height: `calc(100svh + ${PISTE_SUPPLEMENTAIRE})` }}
     >
-      <div className="pointer-events-none sticky top-0 z-5 flex h-[100svh] flex-col items-center justify-center gap-7 px-5 pt-16 pb-10 wide:flex-row wide:gap-14 wide:px-10 wide:pt-0 wide:pb-0">
+      <div className="shell-x pointer-events-none sticky top-0 z-5 mx-auto flex h-[100svh] max-w-shell flex-col items-center justify-center gap-7 pt-16 pb-10 wide:flex-row wide:gap-14 wide:pt-0 wide:pb-0">
         <div className="scene3d">
           <div ref={sceneRef} className="scene3d-inner">
             {images.back && (

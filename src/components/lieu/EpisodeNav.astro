@@ -5,45 +5,157 @@ import { lieuPath } from '../../lib/urls';
 interface Props {
   precedent: Lieu;
   suivant: Lieu;
+  /** Emplacement pour densite, espacement + libelle accessible. */
+  position?: 'haut' | 'bas';
 }
-const { precedent, suivant } = Astro.props;
+const { precedent, suivant, position = 'bas' } = Astro.props;
+
+const enHaut = position === 'haut';
+const ariaLabel = enHaut
+  ? 'Navigation entre les épisodes (haut de page)'
+  : 'Navigation entre les épisodes';
 ---
 
-<nav class="mt-13 border-t border-line pt-6" aria-label="Navigation entre les épisodes">
-  <div class="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-4">
+<nav
+  class:list={[
+    'border-line',
+    enHaut ? 'mb-4 border-b pb-3.5 sm:mb-5 sm:pb-4' : 'mt-10 border-t pt-7 sm:mt-13 sm:pt-8',
+  ]}
+  aria-label={ariaLabel}
+>
+  <div
+    class:list={[
+      'grid',
+      enHaut ? 'grid-cols-2 gap-2' : 'grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3.5',
+    ]}
+  >
     <a
       href={lieuPath(precedent.slug)}
       rel="prev"
-      class="flex items-center gap-3 rounded-xl border border-line bg-white px-4 py-3.5 no-underline transition-colors duration-200 hover:border-blue-deep"
+      class:list={[
+        'group flex items-center no-underline transition-[border-color,background-color,transform] duration-200',
+        enHaut
+          ? 'gap-2 rounded-xl border border-line bg-mist px-2.5 py-2 hover:border-blue-deep hover:bg-white'
+          : 'gap-3.5 rounded-2xl border-2 border-line bg-mist px-4 py-4 shadow-[0_8px_22px_rgba(10,31,68,0.06)] hover:border-blue-deep hover:bg-white hover:-translate-y-0.5 sm:px-5 sm:py-4.5',
+      ]}
     >
-      <span class="text-[15px] font-bold text-blue-bright" aria-hidden="true">←</span>
+      <span
+        class:list={[
+          'inline-grid shrink-0 place-items-center rounded-full text-blue-deep transition-colors duration-200 group-hover:bg-blue-deep group-hover:text-white',
+          enHaut
+            ? 'h-7 w-7 bg-white'
+            : 'h-10 w-10 bg-white shadow-[0_2px_8px_rgba(10,31,68,0.1)]',
+        ]}
+        aria-hidden="true"
+      >
+        <svg
+          class={enHaut ? 'h-3.5 w-3.5' : 'h-4.5 w-4.5'}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M15 6 9 12l6 6"></path>
+        </svg>
+      </span>
       <span class="min-w-0">
-        <span class="block text-[10.5px] font-bold tracking-[0.1em] text-grey uppercase">
-          Épisode précédent
+        <span
+          class:list={[
+            'block font-extrabold tracking-[0.1em] text-grey uppercase',
+            enHaut ? 'text-[9px]' : 'text-[10.5px] tracking-[0.12em]',
+          ]}
+        >
+          {enHaut ? 'Précédent' : 'Épisode précédent'}
         </span>
-        <span class="block truncate text-[14px] font-bold text-navy">{precedent.titre}</span>
+        <span
+          class:list={[
+            'block truncate font-black text-navy',
+            enHaut ? 'text-[12.5px] leading-tight' : 'mt-0.5 text-[15px] sm:text-[16px]',
+          ]}
+        >
+          {precedent.titre}
+        </span>
       </span>
     </a>
 
     <a
       href={lieuPath(suivant.slug)}
       rel="next"
-      class="flex items-center justify-end gap-3 rounded-xl border border-line bg-white px-4 py-3.5 text-right no-underline transition-colors duration-200 hover:border-blue-deep"
+      class:list={[
+        'group flex items-center justify-end text-right no-underline transition-[background-color,transform] duration-200',
+        enHaut
+          ? 'gap-2 rounded-xl border border-blue-deep/25 bg-blue-deep px-2.5 py-2 hover:bg-blue-bright'
+          : 'gap-3.5 rounded-2xl border-2 border-blue-deep/20 bg-blue-deep px-4 py-4 shadow-[0_10px_28px_rgba(13,71,161,0.22)] hover:bg-blue-bright hover:-translate-y-0.5 sm:px-5 sm:py-4.5',
+      ]}
     >
       <span class="min-w-0">
-        <span class="block text-[10.5px] font-bold tracking-[0.1em] text-grey uppercase">
-          Épisode suivant
+        <span
+          class:list={[
+            'block font-extrabold tracking-[0.1em] text-fog uppercase',
+            enHaut ? 'text-[9px]' : 'text-[10.5px] tracking-[0.12em]',
+          ]}
+        >
+          {enHaut ? 'Suivant' : 'Épisode suivant'}
         </span>
-        <span class="block truncate text-[14px] font-bold text-navy">{suivant.titre}</span>
+        <span
+          class:list={[
+            'block truncate font-black text-white',
+            enHaut ? 'text-[12.5px] leading-tight' : 'mt-0.5 text-[15px] sm:text-[16px]',
+          ]}
+        >
+          {suivant.titre}
+        </span>
       </span>
-      <span class="text-[15px] font-bold text-blue-bright" aria-hidden="true">→</span>
+      <span
+        class:list={[
+          'inline-grid shrink-0 place-items-center rounded-full text-white transition-colors duration-200 group-hover:bg-white group-hover:text-blue-deep',
+          enHaut ? 'h-7 w-7 bg-white/15' : 'h-10 w-10 bg-white/15',
+        ]}
+        aria-hidden="true"
+      >
+        <svg
+          class={enHaut ? 'h-3.5 w-3.5' : 'h-4.5 w-4.5'}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m9 6 6 6-6 6"></path>
+        </svg>
+      </span>
     </a>
   </div>
 
   <a
     href="/#parcours"
-    class="mt-4 block text-center text-[13px] font-bold text-grey no-underline sm:mt-5"
+    class:list={[
+      'group mx-auto flex w-fit items-center gap-2 no-underline transition-[background-color,color,border-color] duration-200',
+      enHaut
+        ? 'mt-2.5 rounded-full border border-transparent px-3 py-1.5 text-[11px] font-extrabold tracking-[0.06em] text-navy uppercase hover:border-line hover:bg-mist'
+        : 'mt-5 rounded-full border border-navy/15 bg-navy px-5 py-2.5 text-[12.5px] font-extrabold tracking-[0.05em] text-white uppercase shadow-[0_8px_20px_rgba(10,31,68,0.18)] hover:bg-blue-deep sm:mt-6',
+    ]}
   >
+    <svg
+      class:list={[
+        'shrink-0 transition-transform duration-200 group-hover:-translate-y-px',
+        enHaut ? 'h-3.5 w-3.5 text-red' : 'h-4 w-4 text-red',
+      ]}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 10.5 12 3l9 7.5"></path>
+      <path d="M5 9.5V21h14V9.5"></path>
+      <path d="M10 21v-7h4v7"></path>
+    </svg>
     Retour au parcours
   </a>
 </nav>

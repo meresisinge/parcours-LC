@@ -2,6 +2,8 @@
 
 Parcours audio urbain (village / commune). Chaque étape est accessible via un QR code scanné sur place. Le site sera généré en statique avec Astro, hébergé sur Cloudflare Pages, et alimenté par une configuration JSON locale.
 
+**Prolongation de** [lieux-communs.fr](https://lieux-communs.fr) : le site institutionnel présente le dispositif aux collectivités ; cette app Astro porte l’expérience terrain (QR → épisode). Voir [vision.md](./vision.md) et le plan dans [architecture.md](./architecture.md).
+
 ## État du dépôt (septembre 2026)
 
 | Zone | État |
@@ -31,7 +33,8 @@ La documentation ci-dessous décrit à la fois **l’existant** et la **cible**.
 
 ## Principes
 
-1. **Contenu hors code** — textes, images, audios, chronologie et médias complémentaires vivent dans la configuration.
-2. **Pages = QR codes** — chaque lieu a une URL stable (`/lieux/{slug}`) destinée à être gravée dans un QR.
-3. **Statique d’abord** — Astro génère le HTML ; les parties interactives sont des îlots TypeScript / React hydratés au besoin.
-4. **Évolution minimale** — changer un audio, une image ou un texte ne nécessite pas de toucher au code applicatif.
+1. **Prolongation du site parent** — cohérence produit et layout avec [lieux-communs.fr](https://lieux-communs.fr) ; le parcours ne duplique pas la vitrine, il la prolonge sur le terrain.
+2. **Contenu hors code** — textes, images, audios, chronologie et médias complémentaires vivent dans la configuration.
+3. **Pages = QR codes** — chaque lieu a une URL stable (`/lieux/{slug}`) destinée à être gravée dans un QR.
+4. **Statique d’abord** — Astro génère le HTML ; les parties interactives sont des îlots TypeScript / React hydratés au besoin.
+5. **Évolution minimale** — changer un audio, une image ou un texte ne nécessite pas de toucher au code applicatif.

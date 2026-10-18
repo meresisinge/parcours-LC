@@ -2,7 +2,7 @@
 
 ## État actuel
 
-Le dépôt est un **projet Astro 7 + React + Tailwind CSS 4** en SSG. La maquette HTML reste archivée dans `docs/maquette/` comme référence visuelle ; l'intégration vit sous `src/`, découpée par domaine métier.
+Le dépôt est un **projet Astro 7 + React + Tailwind CSS 4** en SSG. Il prolonge le site institutionnel [lieux-communs.fr](https://lieux-communs.fr) (expérience terrain / QR). La maquette HTML reste archivée dans `docs/maquette/` comme référence d’interaction ; l'intégration vit sous `src/`, découpée par domaine métier.
 
 ### Arborescence actuelle
 
@@ -163,6 +163,18 @@ Référence de contenu actuelle : [exemples/parcours.exemple.json](./exemples/pa
 
 ---
 
+## Continuité avec le site parent
+
+Référence produit : [lieux-communs.fr](https://lieux-communs.fr) (voir [vision.md](./vision.md)).
+
+| Token parcours (`src/styles/global.css`) | Équivalent parent | Valeur |
+|---|---|---|
+| `--max-width-shell` | `max-w-6xl` | `72rem` / 1152px |
+| `--max-width-episode` | `max-w-2xl` (colonne lecture) | `42rem` / 672px |
+| gutters `.shell-x` | `px-6 sm:px-10 lg:px-16` | idem |
+
+Le parcours (`/` exploration + `/lieux/{slug}`) est l’expérience usager terrain ; le site parent reste la porte d’entrée collectivités / découverte du dispositif.
+
 ## Plan de migration
 
 | # | Étape | Statut |
@@ -176,5 +188,7 @@ Référence de contenu actuelle : [exemples/parcours.exemple.json](./exemples/pa
 | 7 | Implémenter `/lieux/[slug]` + `AudioPlayer` | Fait |
 | 8 | Porter le diorama dans `ParcoursExplorer` | Fait |
 | 9 | Brancher médias réels, retirer base64 | Partiel — visuels extraits dans `public/images/`, audios et documents à fournir |
-| 10 | Générer / documenter les URLs QR | À faire |
-| 11 | Déployer sur Cloudflare Pages | À faire |
+| 10 | Aligner layout sur [lieux-communs.fr](https://lieux-communs.fr) (shell `max-w-6xl`, gutters parent) | Fait |
+| 11 | Continuité marque / navigation vers le site parent | À faire |
+| 12 | Générer / documenter les URLs QR | À faire |
+| 13 | Déployer sur Cloudflare Pages | À faire |
