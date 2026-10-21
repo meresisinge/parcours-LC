@@ -67,11 +67,6 @@ export default function MediaLightbox({ titre, medias }: Props) {
                   </span>
                 )}
               </span>
-              {media.tag && (
-                <span className="absolute top-2 left-2 z-10 rounded-[4px] bg-navy/80 px-2 py-0.5 text-[10px] font-bold tracking-[0.05em] text-white backdrop-blur-sm">
-                  {media.tag}
-                </span>
-              )}
               {image && phrase && (
                 <span
                   role="tooltip"
