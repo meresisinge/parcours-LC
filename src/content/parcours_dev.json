@@ -12,11 +12,11 @@
     "credits": "Un projet Jaïka et Mérésis",
     "contact": "contact@meresis.fr",
     "theme": {
-      "bleuProfond": "#0d47a1",
-      "bleuVif": "#1a5fd0",
-      "navy": "#0a1f44",
-      "rouge": "#d32f2f",
-      "papier": "#fdfdfb"
+      "bleuProfond": "#0a2e44",
+      "bleuVif": "#3d91c1",
+      "navy": "#0a2e44",
+      "rouge": "#d52a26",
+      "papier": "#f9f7f4"
     }
   },
   "accueil": {

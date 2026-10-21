@@ -160,7 +160,7 @@ export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
             exact de l'illustration, donc les repères restent alignés. */}
         <div className="diorama-frame relative flex w-full min-w-0 flex-col items-center wide:col-start-2">
           <div
-            className="relative aspect-[1400/933] w-full overflow-hidden rounded-[18px] bg-mist"
+            className="relative aspect-[1400/933] w-full overflow-hidden rounded-[18px] bg-paper"
             aria-label={
               actif
                 ? 'Illustration du parcours, le lieu sélectionné est mis en lumière'
@@ -252,7 +252,7 @@ export default function TrailExplorer({ lieux, diorama, nom, tagline }: Props) {
         >
           <div className="h-full min-h-0 overflow-hidden">
             {carte && (
-              <div className="flex h-full w-full flex-col rounded-xl border border-line bg-[#fbfcfe] px-5 pt-5.5 pb-5">
+              <div className="flex h-full w-full flex-col rounded-xl border border-line bg-[#fbfaf8] px-5 pt-5.5 pb-5">
                 <div className="mb-4 flex items-center justify-between">
                   <span className="flex h-8.5 w-8.5 shrink-0 items-center justify-center rounded-lg bg-mist text-red">
                     {chemin && (

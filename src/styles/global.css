@@ -2,18 +2,19 @@
 
 /* Tokens issus de site.theme (docs/configuration.md) et de la maquette. */
 @theme {
-  --color-blue-deep: #0d47a1;
-  --color-blue-bright: #1a5fd0;
-  --color-navy: #0a1f44;
-  --color-red: #d32f2f;
-  --color-red-dark: #b52a2a;
-  --color-paper: #fdfdfb;
-  --color-mist: #eef1f6;
-  --color-line: #e6eaf1;
-  --color-grey: #8a94a6;
-  --color-ink: #33415c;
-  --color-sky: #8ea6d8;
-  --color-fog: #c7d2e6;
+  /* Palette alignée sur lieux-communs.fr */
+  --color-blue-deep: #0a2e44;
+  --color-blue-bright: #3d91c1;
+  --color-navy: #0a2e44;
+  --color-red: #d52a26;
+  --color-red-dark: #b82320;
+  --color-paper: #f9f7f4;
+  --color-mist: #f2eee8;
+  --color-line: #e5ddd2;
+  --color-grey: #8a7263;
+  --color-ink: #4d3e35;
+  --color-sky: #5a8aa8;
+  --color-fog: #93b8cc;
 
   --font-display: "Big Shoulders Display", Arial, sans-serif;
   --font-serif: "Fraunces", Georgia, serif;
@@ -53,7 +54,7 @@
 
   body {
     background: var(--color-paper);
-    color: var(--color-navy);
+    color: #2e2420;
     font-family: var(--font-sans);
     overflow-x: hidden;
   }
@@ -221,7 +222,6 @@
     transform: translateZ(calc(90px + var(--ecart, 0) * 80px + var(--s) * 340px))
       translateY(calc(var(--s) * -120px)) rotateZ(calc(var(--s) * 14deg));
     filter: blur(calc(var(--s) * 10px));
-    border: 4px solid #fff;
     box-shadow: 0 16px 34px rgb(10 31 68 / 0.32);
   }
 

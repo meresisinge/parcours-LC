@@ -70,7 +70,7 @@ export default function MediaLightbox({ titre, medias }: Props) {
               {image && phrase && (
                 <span
                   role="tooltip"
-                  className="pointer-events-none absolute inset-x-2 bottom-2 z-20 hidden translate-y-1 rounded-lg bg-navy/92 px-2.5 py-2 text-left text-[12px] leading-snug font-semibold text-white opacity-0 shadow-[0_8px_20px_rgba(10,31,68,0.28)] backdrop-blur-sm transition-[opacity,transform] duration-200 ease-soft sm:block sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-visible:translate-y-0 sm:group-focus-visible:opacity-100"
+                  className="pointer-events-none absolute inset-x-2 bottom-2 z-20 hidden translate-y-1 rounded-lg bg-navy/92 px-2.5 py-2 text-left text-[12px] leading-snug font-semibold text-white opacity-0 shadow-[0_8px_20px_rgba(10,46,68,0.28)] backdrop-blur-sm transition-[opacity,transform] duration-200 ease-soft sm:block sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-visible:translate-y-0 sm:group-focus-visible:opacity-100"
                 >
                   {phrase}
                 </span>
@@ -79,7 +79,7 @@ export default function MediaLightbox({ titre, medias }: Props) {
           );
 
           const classes =
-            'group relative flex aspect-square cursor-pointer flex-col items-center justify-center rounded-xl border border-line bg-[#fbfcfe] text-center text-grey transition-all duration-200 ease-soft hover:-translate-y-0.5 hover:border-blue-deep hover:shadow-[0_10px_24px_rgba(10,31,68,0.1)] focus-visible:border-blue-deep';
+            'group relative flex aspect-square cursor-pointer flex-col items-center justify-center rounded-xl border border-line bg-[#fbfaf8] text-center text-grey transition-all duration-200 ease-soft hover:-translate-y-0.5 hover:border-blue-deep hover:shadow-[0_10px_24px_rgba(10,46,68,0.1)] focus-visible:border-blue-deep';
 
           return media.type === 'lien' && media.url ? (
             <a
@@ -145,7 +145,7 @@ export default function MediaLightbox({ titre, medias }: Props) {
           ) : (
             actif && (
               <div className="flex flex-col items-center gap-3.5 rounded-lg bg-white p-7 text-center sm:p-10">
-                <IconeDocument taille={36} couleur="#0d47a1" />
+                <IconeDocument taille={36} couleur="#0a2e44" />
                 <div className="font-bold text-navy">{actif.label}</div>
                 <span className="text-xs text-grey">
                   {actif.src ? actif.credit ?? 'Document' : 'Document à venir'}

@@ -49,6 +49,20 @@ export default function AudioPlayer({
     if (element) element.playbackRate = vitesse;
   }, [vitesse]);
 
+  // Reste aligné si un autre îlot (ex. StoryDrawer) change la vitesse.
+  useEffect(() => {
+    const element = audioRef.current;
+    if (!element) return;
+    const majVitesse = () => {
+      const index = VITESSES.findIndex(
+        (valeur) => Math.abs(valeur - element.playbackRate) < 0.01,
+      );
+      if (index >= 0) setIndexVitesse(index);
+    };
+    element.addEventListener("ratechange", majVitesse);
+    return () => element.removeEventListener("ratechange", majVitesse);
+  }, [disponible]);
+
   const basculer = () => {
     const element = audioRef.current;
     if (!element) return;
@@ -101,15 +115,15 @@ export default function AudioPlayer({
           ? `${enLecture ? "Mettre en pause" : "Écouter"} — ${titre}`
           : `Audio à venir — ${titre}`
       }
-      className={`flex shrink-0 items-center justify-center rounded-full border-none bg-blue-deep text-white transition-all duration-200 ease-soft ${
+      className={`flex shrink-0 items-center justify-center rounded-full border-none bg-gradient-to-br from-red to-red-dark text-white transition-all duration-200 ease-soft ${
         compact
           ? "h-9.5 w-9.5"
           : vedette
-            ? "h-13 w-13 shadow-[0_8px_22px_rgba(13,71,161,0.32)] sm:h-14 sm:w-14"
+            ? "h-13 w-13 shadow-[0_8px_22px_rgba(213,42,38,0.32)] sm:h-14 sm:w-14"
             : "h-11.5 w-11.5"
       } ${
         disponible
-          ? "cursor-pointer hover:bg-blue-bright" +
+          ? "cursor-pointer hover:from-red-dark hover:to-[#9e1e1c]" +
             (vedette ? " hover:scale-[1.04]" : "")
           : "cursor-not-allowed opacity-40"
       }`}
@@ -214,7 +228,7 @@ export default function AudioPlayer({
 
   return (
     <div
-      className={`flex items-center gap-4 rounded-[9px] border border-line bg-[#fbfcfe] ${
+      className={`flex items-center gap-4 rounded-[9px] border border-line bg-[#fbfaf8] ${
         compact ? "px-3.5 py-3" : "px-4.5 py-4"
       }`}
     >

@@ -59,7 +59,7 @@ export default function WelcomeModal({ bienvenue, cible = '#parcours' }: Props) 
       }}
     >
       <div
-        className={`relative my-auto w-full max-w-[440px] rounded-2xl bg-white px-5 pt-7 pb-6 shadow-[0_30px_60px_rgba(10,31,68,.35)] transition-[transform,opacity] duration-400 ease-soft sm:rounded-[10px] sm:px-8 sm:pt-9 sm:pb-7 ${
+        className={`relative my-auto w-full max-w-[440px] rounded-2xl bg-white px-5 pt-7 pb-6 shadow-[0_30px_60px_rgba(10,46,68,.35)] transition-[transform,opacity] duration-400 ease-soft sm:rounded-[10px] sm:px-8 sm:pt-9 sm:pb-7 ${
           ouvert ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-4 scale-[.98] opacity-0'
         }`}
       >

@@ -56,7 +56,7 @@ export default function LegalModal({ titre, sections, declencheurLabel }: Props)
         aria-hidden={!ouvert}
       >
         <div
-          className={`relative w-full max-w-[440px] rounded-2xl bg-white px-5 pt-7 pb-6 sm:rounded-[10px] sm:px-8 sm:pt-9 sm:pb-7 shadow-[0_30px_60px_rgba(10,31,68,.35)] transition-[transform,opacity] duration-400 ease-soft ${
+          className={`relative w-full max-w-[440px] rounded-2xl bg-white px-5 pt-7 pb-6 sm:rounded-[10px] sm:px-8 sm:pt-9 sm:pb-7 shadow-[0_30px_60px_rgba(10,46,68,.35)] transition-[transform,opacity] duration-400 ease-soft ${
             ouvert ? 'translate-y-0 scale-100 opacity-100' : 'translate-y-4 scale-[.98] opacity-0'
           }`}
         >

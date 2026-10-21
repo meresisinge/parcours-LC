@@ -11,6 +11,8 @@ interface Props {
   audioId?: string;
 }
 
+const VITESSES = [1, 1.25, 0.75];
+
 export default function StoryDrawer({
   titre,
   eyebrow,
@@ -24,6 +26,8 @@ export default function StoryDrawer({
   const corpsRef = useRef<HTMLDivElement>(null);
   const [audioEnLecture, setAudioEnLecture] = useState(false);
   const [audioPresent, setAudioPresent] = useState(false);
+  const [indexVitesse, setIndexVitesse] = useState(0);
+  const vitesse = VITESSES[indexVitesse]!;
 
   const paragraphes = useMemo(
     () =>
@@ -50,13 +54,23 @@ export default function StoryDrawer({
     setAudioEnLecture(!element.paused && !element.ended);
 
     const majEtat = () => setAudioEnLecture(!element.paused && !element.ended);
+    const majVitesse = () => {
+      const index = VITESSES.findIndex(
+        (valeur) => Math.abs(valeur - element.playbackRate) < 0.01,
+      );
+      if (index >= 0) setIndexVitesse(index);
+    };
+    majVitesse();
+
     element.addEventListener("play", majEtat);
     element.addEventListener("pause", majEtat);
     element.addEventListener("ended", majEtat);
+    element.addEventListener("ratechange", majVitesse);
     return () => {
       element.removeEventListener("play", majEtat);
       element.removeEventListener("pause", majEtat);
       element.removeEventListener("ended", majEtat);
+      element.removeEventListener("ratechange", majVitesse);
     };
   }, [elementAudio, ouvert]);
 
@@ -66,6 +80,14 @@ export default function StoryDrawer({
     if (element.paused || element.ended) void element.play();
     else element.pause();
   }, [elementAudio]);
+
+  const basculerVitesse = useCallback(() => {
+    const element = elementAudio();
+    if (!element) return;
+    const suivant = (indexVitesse + 1) % VITESSES.length;
+    element.playbackRate = VITESSES[suivant]!;
+    setIndexVitesse(suivant);
+  }, [elementAudio, indexVitesse]);
 
   const fermer = useCallback(() => {
     setOuvert(false);
@@ -150,7 +172,7 @@ export default function StoryDrawer({
         aria-labelledby="recitTitre"
         aria-hidden={!ouvert}
         inert={!ouvert}
-        className={`fixed inset-y-0 right-0 z-89 flex w-full flex-col bg-white shadow-[-18px_0_54px_rgba(10,31,68,0.22)] transition-transform duration-[420ms] ease-soft sm:w-[min(560px,92vw)] wide:w-[min(680px,52vw)] ${
+        className={`fixed inset-y-0 right-0 z-89 flex w-full flex-col bg-white shadow-[-18px_0_54px_rgba(10,46,68,0.22)] transition-transform duration-[420ms] ease-soft sm:w-[min(560px,92vw)] wide:w-[min(680px,52vw)] ${
           ouvert ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -169,43 +191,54 @@ export default function StoryDrawer({
             </div>
             <div className="flex shrink-0 items-center gap-2">
               {audioPresent && (
-                <button
-                  type="button"
-                  onClick={basculerAudio}
-                  aria-label={
-                    audioEnLecture
-                      ? "Mettre le récit sonore en pause"
-                      : "Écouter le récit sonore"
-                  }
-                  title={audioEnLecture ? "Pause" : "Écouter"}
-                  className="inline-flex h-9 cursor-pointer items-center justify-center gap-1.5 rounded-full border-none bg-blue-deep px-3 text-[11.5px] leading-[2] font-bold tracking-[0.04em] text-white uppercase transition-colors duration-200 hover:bg-blue-bright"
-                >
-                  {audioEnLecture ? (
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="block shrink-0"
-                      aria-hidden="true"
-                    >
-                      <rect x="6" y="5" width="4" height="14" />
-                      <rect x="14" y="5" width="4" height="14" />
-                    </svg>
-                  ) : (
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="block shrink-0"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  )}
-                  {audioEnLecture ? "Pause" : "Écouter"}
-                </button>
+                <>
+                  <button
+                    type="button"
+                    onClick={basculerVitesse}
+                    aria-label={`Vitesse de lecture, actuellement ${vitesse}×`}
+                    title={`Vitesse ${vitesse}×`}
+                    className="inline-flex h-9 cursor-pointer items-center justify-center rounded-full border border-line bg-white px-3 text-[12px] font-bold text-navy transition-colors duration-200 hover:border-blue-deep"
+                  >
+                    {vitesse}×
+                  </button>
+                  <button
+                    type="button"
+                    onClick={basculerAudio}
+                    aria-label={
+                      audioEnLecture
+                        ? "Mettre le récit sonore en pause"
+                        : "Écouter le récit sonore"
+                    }
+                    title={audioEnLecture ? "Pause" : "Écouter"}
+                    className="inline-flex h-9 cursor-pointer items-center justify-center gap-1.5 rounded-full border-none bg-gradient-to-br from-red to-red-dark px-3 text-[11.5px] leading-[2] font-bold tracking-[0.04em] text-white uppercase transition-all duration-200 hover:from-red-dark hover:to-[#9e1e1c]"
+                  >
+                    {audioEnLecture ? (
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="block shrink-0"
+                        aria-hidden="true"
+                      >
+                        <rect x="6" y="5" width="4" height="14" />
+                        <rect x="14" y="5" width="4" height="14" />
+                      </svg>
+                    ) : (
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="block shrink-0"
+                        aria-hidden="true"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    )}
+                    {audioEnLecture ? "Pause" : "Écouter"}
+                  </button>
+                </>
               )}
 
               <button
