@@ -1,0 +1,47 @@
+---
+import type { MentionsSection } from '../../types/parcours';
+
+interface Props {
+  titre: string;
+  sections: MentionsSection[];
+}
+
+const { titre, sections } = Astro.props;
+
+const [premiere, ...reste] = sections;
+const estMiseAJour = premiere?.titre.toLowerCase().includes('mise à jour');
+const miseAJour = estMiseAJour ? (premiere.paragraphes[0] ?? null) : null;
+const corps = estMiseAJour ? reste : sections;
+---
+
+<article class="mx-auto max-w-[62ch]">
+  <header class="mb-10 border-b border-line pb-6">
+    <h1 class="font-display text-[clamp(28px,5vw,40px)] leading-tight font-black text-navy">
+      {titre}
+    </h1>
+    {
+      miseAJour && (
+        <p class="mt-2.5 text-[13px] font-semibold tracking-[0.02em] text-grey">
+          Dernière mise à jour : {miseAJour}
+        </p>
+      )
+    }
+  </header>
+
+  <div class="space-y-8 text-[15px] leading-[1.7] text-ink">
+    {
+      corps.map((section) => (
+        <section>
+          <h2 class="mb-3 font-display text-[17px] leading-snug font-black tracking-[-0.01em] text-navy sm:text-[18px]">
+            {section.titre}
+          </h2>
+          <div class="space-y-3">
+            {section.paragraphes.map((paragraphe) => (
+              <p>{paragraphe}</p>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</article>

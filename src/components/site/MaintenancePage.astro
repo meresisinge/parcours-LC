@@ -8,7 +8,8 @@ import Brand from './Brand.astro';
 import Rule from '../ui/Rule.astro';
 import { config, getLieux } from '../../lib/config';
 
-const { site, accueil, maintenance } = config;
+const { site, accueil, maintenance, mentions } = config;
+const mentionsLabel = mentions?.titre ?? 'Mentions légales';
 const titre = maintenance?.titre ?? 'Votre parcours';
 const titreAccent = maintenance?.titreAccent ?? 'arrive prochainement';
 const images = accueil?.heroImages ?? {};
@@ -138,6 +139,13 @@ const nbLieux = getLieux().length;
       }
       <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-semibold text-grey">
         {site.credits && <span>{site.credits}</span>}
+        {
+          mentions?.sections?.length && (
+            <a href="/mentions-legales" class="text-grey no-underline hover:text-navy">
+              {mentionsLabel}
+            </a>
+          )
+        }
         {
           site.contact && (
             <a href={`mailto:${site.contact}`} class="text-blue-deep underline-offset-4 hover:underline">

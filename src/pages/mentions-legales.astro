@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/site/Header.astro';
+import Footer from '../components/site/Footer.astro';
+import MentionsContent from '../components/mentions/MentionsContent.astro';
+import { config } from '../lib/config';
+
+const { mentions } = config;
+const titre = mentions?.titre ?? 'Mentions légales';
+const sections = mentions?.sections ?? [];
+---
+
+<BaseLayout
+  titre={titre}
+  description="Mentions légales, éditeur, hébergement, propriété intellectuelle et données personnelles du parcours Lieux Communs."
+  chemin="/mentions-legales"
+>
+  <Header href="/" />
+
+  <main class="shell-x mx-auto w-full max-w-episode pt-28 pb-16 sm:pt-32 sm:pb-24">
+    {
+      sections.length > 0 ? (
+        <MentionsContent titre={titre} sections={sections} />
+      ) : (
+        <p class="text-ink">Mentions légales indisponibles.</p>
+      )
+    }
+  </main>
+
+  <Footer />
+</BaseLayout>

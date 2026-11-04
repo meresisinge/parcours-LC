@@ -20,7 +20,7 @@
     }
   },
   "maintenance": {
-    "actif": false,
+    "actif": true,
     "eyebrow": "Bientôt sur le terrain",
     "titre": "Votre parcours",
     "titreAccent": "arrive prochainement",
@@ -830,22 +830,104 @@
     "titre": "Mentions légales",
     "sections": [
       {
-        "titre": "Éditeur",
+        "titre": "Dernière mise à jour",
         "paragraphes": [
-          "Mérésis Ingénierie — studio d'ingénierie culturelle et mémorielle."
+          "23/10/2026"
         ]
       },
       {
-        "titre": "Contenu",
+        "titre": "Éditeur du site",
         "paragraphes": [
-          "Les textes, visuels et enregistrements du parcours « Lieux communs » sont la propriété de Mérésis Ingénierie et de ses partenaires, sauf mention contraire."
+          "Le site lieux-communs.fr (ci-après « le site ») est édité par :",
+          "Agence Jaïka, entreprise individuelle de Janaïne Golonka",
+          "SIRET : 75165995400018",
+          "Adresse : 1 chemin de gentis 31320 Vieille-Toulouse",
+          "Courriel : hello@jaika.io",
+          "Lieux Communs est un projet conçu en collaboration avec Mérésis.",
+          "Directrice de la publication : Janaïne Golonka",
+          "Contact : Janaïne Golonka, contact@lieux-communs.fr"
         ]
       },
       {
-        "titre": "Contact",
+        "titre": "Hébergement",
         "paragraphes": [
-          "contact@meresis.fr",
-          "Contenu de démonstration — à finaliser avant mise en ligne."
+          "Le site est hébergé par Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, États-Unis (www.cloudflare.com).",
+          "Le nom de domaine est enregistré auprès d'OVH SAS, 2 rue Kellermann, 59100 Roubaix, France."
+        ]
+      },
+      {
+        "titre": "Objet du site et nature des contenus",
+        "paragraphes": [
+          "Le site donne accès au parcours sonore Lieux Communs : dix capsules audio, leurs textes et des contenus complémentaires (documents d'archives, repères historiques et juridiques). Il est accessible notamment par des QR codes installés par les collectivités participantes.",
+          "Dans les capsules, la laïcité s'exprime à la première personne. Il s'agit d'un procédé narratif : les récits sont des créations éditoriales. Ils ne constituent ni un avis juridique, ni une interprétation officielle du droit.",
+          "Les contenus s'appuient sur le cadre juridique en vigueur à la date de leur rédaction, en particulier la loi du 9 décembre 1905 concernant la séparation des Églises et de l'État et la jurisprudence associée. Certains territoires relèvent de régimes particuliers (Alsace-Moselle, plusieurs collectivités d'outre-mer). Pour toute situation précise, il convient de se reporter aux textes officiels publiés sur Légifrance ou de solliciter un référent laïcité."
+        ]
+      },
+      {
+        "titre": "Soutien",
+        "paragraphes": [
+          "Lieux Communs est lauréat du Prix de la laïcité de la République française 2025 et bénéficie à ce titre d'un financement du ministère de l'Intérieur. Les contenus sont élaborés sous la seule responsabilité éditoriale de l'Agence Jaïka. Ils n'engagent pas le ministère et ne constituent pas une communication officielle de l'État."
+        ]
+      },
+      {
+        "titre": "Collectivités participantes",
+        "paragraphes": [
+          "Le contenu du parcours est identique pour toutes les collectivités. Chaque collectivité participante choisit les lieux d'implantation, imprime et installe les supports, et en assure l'entretien. L'éditeur n'est pas responsable de l'emplacement, de la pose ni de l'état des supports physiques.",
+          "Sécurité des QR codes : les QR codes officiels du parcours renvoient exclusivement vers lieux-communs.fr. Si l'adresse affichée par votre téléphone est différente, ne poursuivez pas et signalez-le à la mairie concernée ou à contact@lieux-communs.fr."
+        ]
+      },
+      {
+        "titre": "Propriété intellectuelle et conditions de réutilisation",
+        "paragraphes": [
+          "Textes des récits et capsules audio. Ils sont mis à disposition sous licence Creative Commons Attribution, Pas d'utilisation commerciale, Pas de modification 4.0 International (CC BY-NC-ND 4.0). Vous pouvez les reproduire et les diffuser librement, sous trois conditions : citer la source « Lieux Communs, Agence Jaïka », indiquer la licence, et ne les diffuser que dans leur intégralité, sans coupe, montage, remixage, réenregistrement ni altération. Toute utilisation commerciale est exclue. Texte de la licence : creativecommons.org/licenses/by-nc-nd/4.0/deed.fr",
+          "Illustrations, charte graphique, logo, structure et code du site. Ces éléments sont protégés par le droit d'auteur et ne sont pas couverts par la licence ci-dessus. Tous droits réservés. Les collectivités participantes peuvent reproduire les supports fournis (panneaux, visuels, kit de communication) dans les conditions prévues par le kit d'accompagnement, pour les seuls besoins du parcours. Toute autre reproduction nécessite une autorisation écrite préalable.",
+          "Voix. Les capsules sont interprétées par Janaïne Golonka, dont les droits ont été cédés pour cet usage.",
+          "Documents d'archives et contenus complémentaires. Ils sont crédités sous chaque élément et ne relèvent pas de la licence Creative Commons. Ils appartiennent au domaine public ou sont reproduits avec l'autorisation de leurs ayants droit ; leur réutilisation reste soumise aux droits de ces derniers."
+        ]
+      },
+      {
+        "titre": "Liens",
+        "paragraphes": [
+          "Les liens vers des sites extérieurs sont proposés à titre informatif ; l'éditeur n'exerce aucun contrôle sur leur contenu.",
+          "La création de liens vers le site est libre, à condition que les contenus ne soient pas présentés dans un cadre extérieur (framing) et que le lien ne laisse pas croire à une adhésion du projet Lieux Communs aux positions du site qui l'établit."
+        ]
+      },
+      {
+        "titre": "Données personnelles",
+        "paragraphes": [
+          "Le site ne requiert aucune inscription et ne collecte aucune donnée nominative. La fréquentation est mesurée par Cloudflare Web Analytics, sans cookie, sous forme de données agrégées.",
+          "Cloudflare peut déposer des cookies strictement techniques, destinés à la sécurité du site (protection contre les robots et les attaques). Ils sont exemptés de consentement et ne servent à aucun suivi. Une information peut également être conservée dans votre navigateur pour mémoriser vos préférences d'affichage (par exemple, la fenêtre de présentation déjà vue).",
+          "Comme tout hébergeur, Cloudflare traite des données techniques de connexion (adresse IP, date et heure, page consultée) à des fins de sécurité et de bon fonctionnement. Ces données peuvent être traitées hors de l'Union européenne, notamment aux États-Unis ; ce transfert est encadré par le Data Privacy Framework UE–États-Unis et les clauses contractuelles types de la Commission européenne.",
+          "Conformément au Règlement général sur la protection des données et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition, à exercer auprès de contact@lieux-communs.fr. Vous pouvez également adresser une réclamation à la CNIL (www.cnil.fr)."
+        ]
+      },
+      {
+        "titre": "Accessibilité",
+        "paragraphes": [
+          "Le texte intégral de chaque capsule est disponible sur sa page (« Lire le texte du récit »). Le site n'a pas encore fait l'objet d'un audit de conformité au RGAA. Si vous rencontrez une difficulté d'accès à un contenu, écrivez à contact@lieux-communs.fr : nous vous le transmettrons sous une forme adaptée."
+        ]
+      },
+      {
+        "titre": "Responsabilité",
+        "paragraphes": [
+          "L'éditeur veille à l'exactitude et à la mise à jour des contenus, sans pouvoir garantir l'absence d'erreur ni la disponibilité permanente du site. L'écoute du parcours dans l'espace public s'effectue sous la responsabilité de chaque auditeur : restez attentif à votre environnement et à la circulation."
+        ]
+      },
+      {
+        "titre": "Crédits",
+        "paragraphes": [
+          "Conception, recherche et écriture : Jaïka et Mérésis (Janaïne Golonka, Marion Decome)",
+          "Voix : Janaïne Golonka",
+          "Production sonore : Amélie Angebault",
+          "Illustrations : Janaïne Golonka",
+          "Conception et développement du site : Timothé Périgois, Janaïne Golonka",
+          "Documents d'archives : crédits indiqués sous chaque contenu"
+        ]
+      },
+      {
+        "titre": "Droit applicable",
+        "paragraphes": [
+          "Les présentes mentions sont régies par le droit français. En cas de litige, et à défaut de résolution amiable, les juridictions françaises sont compétentes."
         ]
       }
     ]
