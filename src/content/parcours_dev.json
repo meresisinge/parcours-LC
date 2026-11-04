@@ -8,7 +8,7 @@
     "tagline": "Et si la laïcité se découvrait en arpentant la ville ?",
     "badge": "Lauréat du Prix de la Laïcité 2025 · Ministère de l'Intérieur",
     "descriptionSeo": "Parcours audio urbain en 10 lieux pour découvrir la laïcité sur le terrain : mairie, école, monument aux morts, poste, lieu de culte, bibliothèque, rue, CCAS, salle des fêtes, arrêt de bus.",
-    "urlCanonique": "https://lieux-communs.pages.dev",
+    "urlCanonique": "https://app.lieux-communs.fr",
     "credits": "Un projet Jaïka et Mérésis",
     "contact": "contact@meresis.fr",
     "theme": {
@@ -789,7 +789,7 @@
       {
         "titre": "Éditeur du site",
         "paragraphes": [
-          "Le site lieux-communs.fr (ci-après « le site ») est édité par :",
+          "Le site app.lieux-communs.fr (ci-après « le site ») est édité par :",
           "Agence Jaïka, entreprise individuelle de Janaïne Golonka",
           "SIRET : 75165995400018",
           "Adresse : 1 chemin de gentis 31320 Vieille-Toulouse",
@@ -824,7 +824,7 @@
         "titre": "Collectivités participantes",
         "paragraphes": [
           "Le contenu du parcours est identique pour toutes les collectivités. Chaque collectivité participante choisit les lieux d'implantation, imprime et installe les supports, et en assure l'entretien. L'éditeur n'est pas responsable de l'emplacement, de la pose ni de l'état des supports physiques.",
-          "Sécurité des QR codes : les QR codes officiels du parcours renvoient exclusivement vers lieux-communs.fr. Si l'adresse affichée par votre téléphone est différente, ne poursuivez pas et signalez-le à la mairie concernée ou à contact@lieux-communs.fr."
+          "Sécurité des QR codes : les QR codes officiels du parcours renvoient exclusivement vers app.lieux-communs.fr. Si l'adresse affichée par votre téléphone est différente, ne poursuivez pas et signalez-le à la mairie concernée ou à contact@lieux-communs.fr."
         ]
       },
       {

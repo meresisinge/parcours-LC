@@ -1,0 +1,13 @@
+Lieux Communs — URLs QR codes
+Base : https://app.lieux-communs.fr
+
+01  La Mairie                https://app.lieux-communs.fr/lieux/mairie
+02  L'École                  https://app.lieux-communs.fr/lieux/ecole
+03  Le monument aux morts    https://app.lieux-communs.fr/lieux/monument
+04  Maison France Services   https://app.lieux-communs.fr/lieux/poste
+05  Le lieu de culte         https://app.lieux-communs.fr/lieux/culte
+06  La bibliothèque          https://app.lieux-communs.fr/lieux/biblio
+07  La rue Aristide Briand   https://app.lieux-communs.fr/lieux/rue
+08  Le CCAS                  https://app.lieux-communs.fr/lieux/ccas
+09  La salle des fêtes       https://app.lieux-communs.fr/lieux/salle
+10  L'arrêt de bus           https://app.lieux-communs.fr/lieux/bus
