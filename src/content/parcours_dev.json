@@ -117,24 +117,7 @@
         "duree": 12,
         "titre": "Récit — La Mairie",
         "version": "2026-09-mock"
-      },
-      "chronologie": [
-        {
-          "annee": "1790",
-          "titre": "La Nation, source du pouvoir",
-          "texte": "La Révolution affirme que l'autorité politique ne tient plus de l'Église, mais de la Nation."
-        },
-        {
-          "annee": "1792",
-          "titre": "L'état civil passe à la mairie",
-          "texte": "La naissance officielle d'un enfant commence ici, et non plus dans les registres de la paroisse."
-        },
-        {
-          "annee": "1905",
-          "titre": "Loi de séparation des Églises et de l'État",
-          "texte": "Liberté de croire et de ne pas croire ; neutralité de l'État et de ses agents."
-        }
-      ]
+      }
     },
     {
       "id": "ecole",
@@ -199,27 +182,7 @@
         "duree": 11,
         "titre": "Récit — L'École",
         "version": "2026-09-mock"
-      },
-      "chronologie": [
-        {
-          "annee": "1881",
-          "titre": "L'école devient gratuite"
-        },
-        {
-          "annee": "1882",
-          "titre": "L'école devient obligatoire et laïque",
-          "texte": "L'instruction morale et civique remplace l'instruction religieuse dans les programmes."
-        },
-        {
-          "annee": "1886",
-          "titre": "Laïcité du personnel enseignant"
-        },
-        {
-          "annee": "2004",
-          "titre": "Signes religieux ostensibles",
-          "texte": "La loi encadre le port de signes religieux ostensibles dans les écoles publiques."
-        }
-      ]
+      }
     },
     {
       "id": "monument",
@@ -284,19 +247,7 @@
         "duree": 10,
         "titre": "Récit — Monument aux morts",
         "version": "2026-09-mock"
-      },
-      "chronologie": [
-        {
-          "annee": "1919",
-          "titre": "Loi sur les monuments aux morts",
-          "texte": "L'État subventionne les communes qui souhaitent honorer leurs morts de la Grande Guerre."
-        },
-        {
-          "annee": "1920",
-          "titre": "Des noms sans confession",
-          "texte": "Les noms sont gravés par ordre alphabétique ou par année, sans distinction de croyance."
-        }
-      ]
+      }
     },
     {
       "id": "poste",
@@ -426,19 +377,7 @@
         "duree": 11,
         "titre": "Récit — Le lieu de culte",
         "version": "2026-09-mock"
-      },
-      "chronologie": [
-        {
-          "annee": "1789",
-          "titre": "Déclaration des droits de l'homme et du citoyen",
-          "texte": "« Nul ne doit être inquiété pour ses opinions, même religieuses. »"
-        },
-        {
-          "annee": "1905",
-          "titre": "Les édifices deviennent propriété publique",
-          "texte": "Les communes héritent de l'entretien des lieux de culte construits avant la loi."
-        }
-      ]
+      }
     },
     {
       "id": "biblio",
@@ -503,18 +442,7 @@
         "duree": 11,
         "titre": "Récit — La Bibliothèque",
         "version": "2026-09-mock"
-      },
-      "chronologie": [
-        {
-          "annee": "1803",
-          "titre": "Les bibliothèques confiées aux communes"
-        },
-        {
-          "annee": "1945",
-          "titre": "Lecture publique et accès libre",
-          "texte": "La bibliothèque publique s'affirme comme un service ouvert à tous, sans condition."
-        }
-      ]
+      }
     },
     {
       "id": "rue",
