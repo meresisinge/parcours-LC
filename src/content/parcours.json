@@ -88,7 +88,7 @@
           "type": "image",
           "tag": "1.1",
           "label": "Proclamation du roi pour la Constitution civile du Clergé",
-          "src": "/images/docs/1.1.png",
+          "src": "/images/mairie/proclamation-constitution-civile-clerge.png",
           "alt": "Proclamation du roi pour la Constitution civile du Clergé",
           "credit": "Par Assemblée nationale constituante ; Louis XVI — Proclamation du roi pour la Constitution civile du Clergé, 24 août 1790, Page de titre, Domaine public, https://commons.wikimedia.org/w/index.php?curid=135268919"
         },
@@ -97,7 +97,7 @@
           "type": "image",
           "tag": "1.2",
           "label": "Une des estampes opposant le « prêtre patriote prêtant de bonne foi le serment civique » au « prêtre aristocrate » fuyant le même serment (1790).",
-          "src": "/images/docs/1.2.jpg",
+          "src": "/images/mairie/pretre-patriote-serment-civique.jpg",
           "alt": "Une des estampes opposant le « prêtre patriote prêtant de bonne foi le serment civique » au « prêtre aristocrate » fuyant le même serment (1790).",
           "credit": "Par Auteur inconnu — Cette image provient de la bibliothèque en ligne Gallica sous l'identifiant ARK btv1b84112485/f1, Domaine public, https://commons.wikimedia.org/w/index.php?curid=98986826"
         },
@@ -106,7 +106,7 @@
           "type": "image",
           "tag": "1.3",
           "label": "Anicet Lepors : la loi qui porte son nom impose aux agents publics l’exercice de leurs fonctions dans le respect du principe de laïcité et de neutralité.",
-          "src": "/images/docs/1.3.jpg",
+          "src": "/images/mairie/anicet-le-pors.jpg",
           "alt": "Anicet Lepors : la loi qui porte son nom impose aux agents publics l’exercice de leurs fonctions dans le respect du principe de laïcité et de neutralité.",
           "credit": "Anicet Le Pors, 2020",
           "url": "https://interface-juniorconseil.com/2023/10/10/de-la-loi-le-pors-au-code-general-de-la-fonction-publique-2/"
@@ -116,7 +116,7 @@
           "type": "image",
           "tag": "1.4",
           "label": "L'obligation de continuité du service public exclut un refus individuel arbitraire d’exécution",
-          "src": "/images/docs/1.4.jpg",
+          "src": "/images/mairie/boite-aux-lettres-la-poste.jpg",
           "alt": "L'obligation de continuité du service public exclut un refus individuel arbitraire d’exécution",
           "credit": "La boite jaune"
         }
@@ -126,7 +126,7 @@
         "note": "À placer près de l'entrée principale, sous les panneaux d'affichage légal."
       },
       "audio": {
-        "src": "/audio/mairie.m4a",
+        "src": "/audio/mairie.wav",
         "duree": 12,
         "titre": "Récit — La Mairie",
         "version": "2026-09-mock"
@@ -158,7 +158,7 @@
           "type": "image",
           "tag": "2.1",
           "label": "Le Convention internationale des Droits de l'Enfant",
-          "src": "/images/docs/2.1.jpg",
+          "src": "/images/ecole/convention-droits-enfant.jpg",
           "alt": "Le Convention internationale des Droits de l'Enfant",
           "url": "https://www.unicef.fr/convention-droits-enfants/"
         },
@@ -167,7 +167,7 @@
           "type": "image",
           "tag": "2.2",
           "label": "Loi du 15 mars 2004 : Dans les écoles, les collèges et les lycées publics, le port de signes ou tenues par lesquels les élèves manifestent ostensiblement une appartenance religieuse est interdit",
-          "src": "/images/docs/2.2.jpg",
+          "src": "/images/ecole/ecole-laicite.jpg",
           "alt": "Loi du 15 mars 2004 : Dans les écoles, les collèges et les lycées publics, le port de signes ou tenues par lesquels les élèves manifestent ostensiblement une appartenance religieuse est interdit",
           "credit": "Source : Témoignage chrétien",
           "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000417977"
@@ -177,7 +177,7 @@
           "type": "image",
           "tag": "2.3",
           "label": "La loi du 28 mars 1882 consacre l’enseignement primaire obligatoire",
-          "src": "/images/docs/2.3.jpg",
+          "src": "/images/ecole/loi-enseignement-primaire-1882.jpg",
           "alt": "La loi du 28 mars 1882 consacre l’enseignement primaire obligatoire",
           "credit": "© Archives du Doubs, 24FI133",
           "url": "https://clespourlhistoire.ac-besancon.fr/loi-sur-lenseignement-primaire-obligatoire/"
@@ -187,7 +187,7 @@
           "type": "image",
           "tag": "2.4",
           "label": "Charte de la Laïcité à l'école",
-          "src": "/images/docs/2.4.jpg",
+          "src": "/images/ecole/charte-laicite-ecole.jpg",
           "alt": "Charte de la Laïcité à l'école",
           "credit": "Source : Education.gouv.fr",
           "url": "https://www.education.gouv.fr/la-laicite-l-ecole-12482"
@@ -198,7 +198,7 @@
         "note": "Portail de l'école publique, côté rue."
       },
       "audio": {
-        "src": "/audio/ecole.m4a",
+        "src": "/audio/ecole.wav",
         "duree": 11,
         "titre": "Récit — L'École",
         "version": "2026-09-mock"
@@ -230,7 +230,7 @@
           "type": "image",
           "tag": "3.1",
           "label": "La loi de 1915 crée la mention officielle « Mort pour la France »",
-          "src": "/images/docs/3.1.jpg",
+          "src": "/images/monument/loi-mort-pour-la-france-1915.jpg",
           "alt": "La loi de 1915 crée la mention officielle « Mort pour la France »",
           "url": "https://francearchives.gouv.fr/fr/pages_histoire/267940146"
         },
@@ -239,7 +239,7 @@
           "type": "image",
           "tag": "3.2",
           "label": "Hommage aux soldats du village tués pendant la Première Guerre mondiale, Cimetière de Montaigut-le-Blanc",
-          "src": "/images/docs/3.2.jpg",
+          "src": "/images/monument/plaque-cimetiere-montaigut.jpg",
           "alt": "Hommage aux soldats du village tués pendant la Première Guerre mondiale, Cimetière de Montaigut-le-Blanc",
           "credit": "Par Romary — Travail personnel, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=2472745"
         },
@@ -248,7 +248,7 @@
           "type": "image",
           "tag": "3.3",
           "label": "Plaques autour du monument aux morts de Murato, Corse.",
-          "src": "/images/docs/3.3.jpg",
+          "src": "/images/monument/plaques-monument-murato.jpg",
           "alt": "Plaques autour du monument aux morts de Murato, Corse.",
           "credit": "Source : gallica.bnf.fr / BnF"
         },
@@ -257,7 +257,7 @@
           "type": "image",
           "tag": "3.4",
           "label": "Monument aux morts - Bohain-en-Vermandois",
-          "src": "/images/docs/3.4.jpg",
+          "src": "/images/monument/monument-bohain.jpg",
           "alt": "Monument aux morts - Bohain-en-Vermandois",
           "credit": "Source : CPArama.com"
         }
@@ -267,7 +267,7 @@
         "note": "Sur le socle, face à l'allée centrale."
       },
       "audio": {
-        "src": "/audio/monument.m4a",
+        "src": "/audio/monument.wav",
         "duree": 10,
         "titre": "Récit — Le monument aux morts",
         "version": "2026-09-mock"
@@ -299,7 +299,7 @@
           "type": "image",
           "tag": "4.1",
           "label": "L’agent public ou le salarié chargé d’une mission de service public est tenu à la neutralité",
-          "src": "/images/docs/4.1.jpg",
+          "src": "/images/poste/neutralite-agent-public.jpg",
           "alt": "L’agent public ou le salarié chargé d’une mission de service public est tenu à la neutralité"
         },
         {
@@ -307,7 +307,7 @@
           "type": "image",
           "tag": "4.2",
           "label": "Le service public accueille chacun sans distinction d’origine, de religion ou de conviction",
-          "src": "/images/docs/4.2.jpg",
+          "src": "/images/poste/france-services.jpg",
           "alt": "Le service public accueille chacun sans distinction d’origine, de religion ou de conviction",
           "credit": "© GILE Michel/SIPA"
         },
@@ -316,7 +316,7 @@
           "type": "image",
           "tag": "4.3",
           "label": "L’usager d’un service public a droit à l’égalité de traitement",
-          "src": "/images/docs/4.3.jpg",
+          "src": "/images/poste/france-travail.jpg",
           "alt": "L’usager d’un service public a droit à l’égalité de traitement",
           "credit": "Source : expressions-venissieux.fr"
         },
@@ -325,7 +325,7 @@
           "type": "image",
           "tag": "4.4",
           "label": "Le service public n’est pas réservé à ceux qui maîtrisent déjà les codes administratifs, le numérique ou la langue des formulaires.",
-          "src": "/images/docs/4.4.jpg",
+          "src": "/images/poste/principe-egalite.jpg",
           "alt": "Le service public n’est pas réservé à ceux qui maîtrisent déjà les codes administratifs, le numérique ou la langue des formulaires.",
           "credit": "Source : Vie publique.fr",
           "url": "https://anct.gouv.fr/programmes-dispositifs/france-services"
@@ -336,7 +336,7 @@
         "note": "Vitrine de la Maison France services."
       },
       "audio": {
-        "src": "/audio/poste.m4a",
+        "src": "/audio/poste.wav",
         "duree": 13,
         "titre": "Récit — Maison France Services",
         "version": "2026-09-mock"
@@ -368,7 +368,7 @@
           "type": "image",
           "tag": "5.1",
           "label": "Instruction relative à la loi du 9 décembre 1905 concernant la séparation des Églises et de l’État",
-          "src": "/images/docs/5.1.jpg",
+          "src": "/images/culte/instruction-loi-1905.jpg",
           "alt": "Instruction relative à la loi du 9 décembre 1905 concernant la séparation des Églises et de l’État",
           "credit": "Instruction relative à la loi du 9 décembre 1905 concernant la séparation des Églises et de l’État (2 janvier 1906). Arch. dép. du Gard : V 528"
         },
@@ -377,7 +377,7 @@
           "type": "image",
           "tag": "5.2",
           "label": "Le décret du 2 novembre 1789 nationalise les biens du clergé.",
-          "src": "/images/docs/5.2.jpg",
+          "src": "/images/culte/caricature-biens-clerge.jpg",
           "alt": "Le décret du 2 novembre 1789 nationalise les biens du clergé."
         },
         {
@@ -385,7 +385,7 @@
           "type": "image",
           "tag": "5.3",
           "label": "Les édifices cultuels construits après la loi de 1905 appartiennent aux fidèles organisés en association.",
-          "src": "/images/docs/5.3.jpg",
+          "src": "/images/culte/mosquee-montpellier.jpg",
           "alt": "Les édifices cultuels construits après la loi de 1905 appartiennent aux fidèles organisés en association.",
           "credit": "Source © Amar - Mosquée Annour"
         },
@@ -394,7 +394,7 @@
           "type": "image",
           "tag": "5.4",
           "label": "« La République ne reconnaît, ne salarie ni ne subventionne aucun culte ».",
-          "src": "/images/docs/5.4.png",
+          "src": "/images/culte/article-2-loi-1905.png",
           "alt": "« La République ne reconnaît, ne salarie ni ne subventionne aucun culte »."
         }
       ],
@@ -403,7 +403,7 @@
         "note": "Sur le mur d'enceinte, hors de l'édifice."
       },
       "audio": {
-        "src": "/audio/culte.m4a",
+        "src": "/audio/culte.wav",
         "duree": 11,
         "titre": "Récit — Le lieu de culte",
         "version": "2026-09-mock"
@@ -435,7 +435,7 @@
           "type": "image",
           "tag": "6.1",
           "label": "Déclaration universelle des DDH",
-          "src": "/images/docs/6.1.jpg",
+          "src": "/images/biblio/declaration-droits-homme.jpg",
           "alt": "Déclaration universelle des DDH"
         },
         {
@@ -443,7 +443,7 @@
           "type": "image",
           "tag": "6.2",
           "label": "La bibliothèque est un espace essentiel à la formation de l’esprit critique et à l’exercice éclairé de la citoyenneté",
-          "src": "/images/docs/6.2.jpg",
+          "src": "/images/biblio/bibliotheque-espace-enfant.jpg",
           "alt": "La bibliothèque est un espace essentiel à la formation de l’esprit critique et à l’exercice éclairé de la citoyenneté"
         },
         {
@@ -451,7 +451,7 @@
           "type": "image",
           "tag": "6.3",
           "label": "Les bibliothèques publiques sont soumises au principe de neutralité et doivent garantir un accès pluraliste aux œuvres et aux idées.",
-          "src": "/images/docs/6.3.png",
+          "src": "/images/biblio/etagere-bibles-anciennes.png",
           "alt": "Les bibliothèques publiques sont soumises au principe de neutralité et doivent garantir un accès pluraliste aux œuvres et aux idées."
         },
         {
@@ -459,7 +459,7 @@
           "type": "image",
           "tag": "6.4",
           "label": "La liberté de manifester ses opinions est notamment encadrée par la loi du 29 juillet 1881 sur la liberté de la presse, qui réprime la diffamation, l’injure ou l’incitation à la haine.",
-          "src": "/images/docs/6.4.jpg",
+          "src": "/images/biblio/loi-liberte-presse-1881.jpg",
           "alt": "La liberté de manifester ses opinions est notamment encadrée par la loi du 29 juillet 1881 sur la liberté de la presse, qui réprime la diffamation, l’injure ou l’incitation à la haine.",
           "url": "https://www.legifrance.gouv.fr/loda/id/LEGITEXT000006070722"
         }
@@ -469,7 +469,7 @@
         "note": "Banque d'accueil et vitrine extérieure."
       },
       "audio": {
-        "src": "/audio/biblio.m4a",
+        "src": "/audio/biblio.wav",
         "duree": 11,
         "titre": "Récit — La bibliothèque",
         "version": "2026-09-mock"
@@ -501,7 +501,7 @@
           "type": "image",
           "tag": "7.1",
           "label": "Aristide Briand fut le rapporteur de la commission parlementaire chargée de préparer la loi de séparation des Églises et de l’État.",
-          "src": "/images/docs/7.1.jpg",
+          "src": "/images/rue/aristide-briand.jpg",
           "alt": "Aristide Briand fut le rapporteur de la commission parlementaire chargée de préparer la loi de séparation des Églises et de l’État.",
           "credit": "Par Henri Manuel — [1], Domaine public, https://commons.wikimedia.org/w/index.php?curid=1444552"
         },
@@ -510,7 +510,7 @@
           "type": "image",
           "tag": "7.2",
           "label": "Le terme « Laïcité » prend sa connotation actuelle dans le « Dictionnaire de pédagogie et d’instruction primaire » de Ferdinand Buisson",
-          "src": "/images/docs/7.2.jpg",
+          "src": "/images/rue/dictionnaire-pedagogie-buisson.jpg",
           "alt": "Le terme « Laïcité » prend sa connotation actuelle dans le « Dictionnaire de pédagogie et d’instruction primaire » de Ferdinand Buisson"
         },
         {
@@ -518,7 +518,7 @@
           "type": "image",
           "tag": "7.3",
           "label": "Jean Jaurès a défendu une laïcité attentive à la justice sociale.",
-          "src": "/images/docs/7.3.jpg",
+          "src": "/images/rue/jean-jaures-1904.jpg",
           "alt": "Jean Jaurès a défendu une laïcité attentive à la justice sociale.",
           "credit": "Jean Jaurès, 1904, par Nadar."
         },
@@ -527,7 +527,7 @@
           "type": "image",
           "tag": "7.4",
           "label": "Le film « La Séparation » revient sur ce passage de l’histoire de la laïcité.",
-          "src": "/images/docs/7.4.jpg",
+          "src": "/images/rue/film-la-separation.jpg",
           "alt": "Le film « La Séparation » revient sur ce passage de l’histoire de la laïcité.",
           "credit": "La Séparation, François Hanss, 2005"
         }
@@ -537,7 +537,7 @@
         "note": "Sous la plaque de rue, au croisement."
       },
       "audio": {
-        "src": "/audio/rue.m4a",
+        "src": "/audio/rue.wav",
         "duree": 13,
         "titre": "Récit — La rue Aristide Briand",
         "version": "2026-09-mock"
@@ -569,7 +569,7 @@
           "type": "image",
           "tag": "8.1",
           "label": "Le CCAS est un lieu d’application concrète de la laïcité.",
-          "src": "/images/docs/8.1.jpg",
+          "src": "/images/ccas/ccas.jpg",
           "alt": "Le CCAS est un lieu d’application concrète de la laïcité."
         },
         {
@@ -577,7 +577,7 @@
           "type": "image",
           "tag": "8.2",
           "label": "Si le principe de laïcité encadre l’action des agents, ces derniers participent grandement à la partie « fraternité » de nos valeurs républicaines.",
-          "src": "/images/docs/8.2.jpg",
+          "src": "/images/ccas/aides-demarches.jpg",
           "alt": "Si le principe de laïcité encadre l’action des agents, ces derniers participent grandement à la partie « fraternité » de nos valeurs républicaines.",
           "credit": "Espacefraternite.fr"
         },
@@ -586,7 +586,7 @@
           "type": "image",
           "tag": "8.3",
           "label": "Le CCAS incarne concrètement le principe fondamental d’égalité de tous devant la loi.",
-          "src": "/images/docs/8.3.jpg",
+          "src": "/images/ccas/egalite-devant-la-loi.jpg",
           "alt": "Le CCAS incarne concrètement le principe fondamental d’égalité de tous devant la loi."
         },
         {
@@ -594,7 +594,7 @@
           "type": "image",
           "tag": "8.4",
           "label": "Le Code de l'action sociale et des familles prévoit l'existence d'un centre communal d'action sociale dans toute commune de 1 500 habitants et plus.",
-          "src": "/images/docs/8.4.jpg",
+          "src": "/images/ccas/code-action-sociale.jpg",
           "alt": "Le Code de l'action sociale et des familles prévoit l'existence d'un centre communal d'action sociale dans toute commune de 1 500 habitants et plus."
         }
       ],
@@ -603,7 +603,7 @@
         "note": "Hall d'accueil du CCAS."
       },
       "audio": {
-        "src": "/audio/ccas.m4a",
+        "src": "/audio/ccas.wav",
         "duree": 12,
         "titre": "Récit — Le CCAS",
         "version": "2026-09-mock"
@@ -635,7 +635,7 @@
           "type": "image",
           "tag": "9.1",
           "label": "La Laïcité sert à organiser un espace commun où chacun peut venir avec ce qu’il est, sans craindre d’être écarté, dominé ou assigné à une croyance.",
-          "src": "/images/docs/9.1.jpg",
+          "src": "/images/salle/soiree-mariage.jpg",
           "alt": "La Laïcité sert à organiser un espace commun où chacun peut venir avec ce qu’il est, sans craindre d’être écarté, dominé ou assigné à une croyance."
         },
         {
@@ -643,7 +643,7 @@
           "type": "image",
           "tag": "9.2",
           "label": "Une salle des fêtes municipale n’appartient pas à un groupe particulier, ni à une religion, ni à une opinion, ni à une identité culturelle exclusive. Elle relève d’un usage commun.",
-          "src": "/images/docs/9.2.jpg",
+          "src": "/images/salle/salle-activites.jpg",
           "alt": "Une salle des fêtes municipale n’appartient pas à un groupe particulier, ni à une religion, ni à une opinion, ni à une identité culturelle exclusive. Elle relève d’un usage commun."
         },
         {
@@ -651,7 +651,7 @@
           "type": "image",
           "tag": "9.3",
           "label": "La laïcité n’est pas une valeur de plus ajoutée au triptyque républicain, mais bien un principe juridique au service de la liberté, de l’égalité et du vivre-ensemble.",
-          "src": "/images/docs/9.3.png",
+          "src": "/images/salle/fete-multiculturelle.png",
           "alt": "La laïcité n’est pas une valeur de plus ajoutée au triptyque républicain, mais bien un principe juridique au service de la liberté, de l’égalité et du vivre-ensemble."
         },
         {
@@ -659,7 +659,7 @@
           "type": "image",
           "tag": "9.4",
           "label": "La Laïcité rend possible une forme de fraternité, parce qu’elle crée les conditions d’un lieu partagé, où l’on ne demande pas aux personnes d’être semblables pour coexister.",
-          "src": "/images/docs/9.4.jpg",
+          "src": "/images/salle/loto.jpg",
           "alt": "La Laïcité rend possible une forme de fraternité, parce qu’elle crée les conditions d’un lieu partagé, où l’on ne demande pas aux personnes d’être semblables pour coexister."
         }
       ],
@@ -668,7 +668,7 @@
         "note": "Panneau d'affichage à l'entrée de la salle."
       },
       "audio": {
-        "src": "/audio/salle.m4a",
+        "src": "/audio/salle.wav",
         "duree": 11,
         "titre": "Récit — La salle des fêtes",
         "version": "2026-09-mock"
@@ -700,7 +700,7 @@
           "type": "image",
           "tag": "10.1",
           "label": "Un arrêt de bus n’est pas un espace neutre au sens où les citoyens devraient y devenir invisibles",
-          "src": "/images/docs/10.1.jpg",
+          "src": "/images/bus/espace-public.jpg",
           "alt": "Un arrêt de bus n’est pas un espace neutre au sens où les citoyens devraient y devenir invisibles"
         },
         {
@@ -708,7 +708,7 @@
           "type": "image",
           "tag": "10.2",
           "label": "Dans l’espace public, la liberté d’exprimer ses convictions est la règle, tant qu’elle respecte l’ordre public et les droits d’autrui.",
-          "src": "/images/docs/10.2.jpg",
+          "src": "/images/bus/groupe-bus.jpg",
           "alt": "Dans l’espace public, la liberté d’exprimer ses convictions est la règle, tant qu’elle respecte l’ordre public et les droits d’autrui."
         },
         {
@@ -716,7 +716,7 @@
           "type": "image",
           "tag": "10.3",
           "label": "L'article 14 de la Convention Internationale des Droits de l’Enfant consacre le droit de l'enfant à la liberté de pensée, de conscience et de religion",
-          "src": "/images/docs/10.3.png",
+          "src": "/images/bus/enfants-bus.png",
           "alt": "L'article 14 de la Convention Internationale des Droits de l’Enfant consacre le droit de l'enfant à la liberté de pensée, de conscience et de religion"
         },
         {
@@ -724,7 +724,7 @@
           "type": "image",
           "tag": "10.4",
           "label": "L'article 9 de la Convention européenne des Droits de l'Hommes consacre la liberté de pensée, de conscience et de religion",
-          "src": "/images/docs/10.4.jpg",
+          "src": "/images/bus/convention-droits-homme.jpg",
           "alt": "L'article 9 de la Convention européenne des Droits de l'Hommes consacre la liberté de pensée, de conscience et de religion",
           "url": "https://www.echr.coe.int/documents/d/echr/convention_FRA"
         }
@@ -734,7 +734,7 @@
         "note": "Abribus, panneau horaires."
       },
       "audio": {
-        "src": "/audio/bus.m4a",
+        "src": "/audio/bus.wav",
         "duree": 9,
         "titre": "Récit — L'arrêt de bus",
         "version": "2026-09-mock"
