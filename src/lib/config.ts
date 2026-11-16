@@ -1,7 +1,8 @@
 import raw from '../content/parcours.json';
 import type { Lieu, LieuResume, ParcoursConfig } from '../types/parcours';
+import { resoudreMediasDistants } from './media';
 
-export const config = raw as unknown as ParcoursConfig;
+export const config = resoudreMediasDistants(raw as unknown as ParcoursConfig);
 
 /** Mode maintenance actif : toutes les routes affichent la page d'attente. */
 export function enMaintenance(): boolean {

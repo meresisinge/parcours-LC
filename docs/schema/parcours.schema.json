@@ -25,6 +25,11 @@
         "badge": { "type": "string" },
         "descriptionSeo": { "type": "string" },
         "urlCanonique": { "type": "string", "format": "uri" },
+        "mediaBase": {
+          "type": "string",
+          "format": "uri",
+          "description": "Base CDN des médias distants (audios .wav, images de galerie)."
+        },
         "credits": { "type": "string" },
         "contact": { "type": "string" },
         "theme": {

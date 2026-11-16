@@ -49,6 +49,8 @@ export interface Site {
   badge?: string;
   descriptionSeo: string;
   urlCanonique?: string;
+  /** Base CDN des médias distants (ex. `https://media.meresis.dev`). */
+  mediaBase?: string;
   credits?: string;
   contact?: string;
   theme?: Theme;

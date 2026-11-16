@@ -1,6 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import type { MediaItem } from '../../types/parcours';
-import { dureeLabel, estMediaImage, formatDuree, lienMedia } from '../media';
+import type { MediaItem, ParcoursConfig } from '../../types/parcours';
+import {
+  dureeLabel,
+  estMediaDistant,
+  estMediaImage,
+  formatDuree,
+  lienMedia,
+  resoudreMediasDistants,
+  urlMedia,
+} from '../media';
 
 describe('formatDuree', () => {
   it('formate en minutes:secondes', () => {
@@ -48,5 +56,49 @@ describe('lienMedia', () => {
     expect(lienMedia({ id: 'd', type: 'document', label: 'Pdf', src: '/documents/a.pdf' })).toBe(
       '/documents/a.pdf'
     );
+  });
+});
+
+describe('estMediaDistant / urlMedia', () => {
+  const base = 'https://media.meresis.dev';
+
+  it('détecte les audios wav et les images de galerie', () => {
+    expect(estMediaDistant('/audio/mairie.wav')).toBe(true);
+    expect(estMediaDistant('/images/mairie/anicet-le-pors.jpg')).toBe(true);
+    expect(estMediaDistant('/images/mairie.webp')).toBe(false);
+    expect(estMediaDistant('/audio/intro.m4a')).toBe(false);
+  });
+
+  it('préfixe uniquement les médias distants', () => {
+    expect(urlMedia('/audio/mairie.wav', base)).toBe('https://media.meresis.dev/audio/mairie.wav');
+    expect(urlMedia('/images/mairie.webp', base)).toBe('/images/mairie.webp');
+    expect(urlMedia('https://cdn.example/a.wav', base)).toBe('https://cdn.example/a.wav');
+  });
+});
+
+describe('resoudreMediasDistants', () => {
+  it('réécrit audio et galerie quand mediaBase est défini', () => {
+    const raw = {
+      version: 1 as const,
+      site: { nom: 'T', langue: 'fr', tagline: 't', descriptionSeo: 'd', mediaBase: 'https://media.meresis.dev' },
+      lieux: [
+        {
+          id: 'mairie',
+          slug: 'mairie',
+          ordre: 1,
+          titre: 'Mairie',
+          accroche: 'a',
+          recit: 'r',
+          image: { hero: '/images/mairie.webp' },
+          audio: { src: '/audio/mairie.wav' },
+          medias: [{ id: 'm1', type: 'image' as const, label: 'Doc', src: '/images/mairie/doc.jpg' }],
+        },
+      ],
+    } satisfies ParcoursConfig;
+
+    const resolved = resoudreMediasDistants(raw);
+    expect(resolved.lieux[0]!.audio!.src).toBe('https://media.meresis.dev/audio/mairie.wav');
+    expect(resolved.lieux[0]!.medias![0]!.src).toBe('https://media.meresis.dev/images/mairie/doc.jpg');
+    expect(resolved.lieux[0]!.image.hero).toBe('/images/mairie.webp');
   });
 });

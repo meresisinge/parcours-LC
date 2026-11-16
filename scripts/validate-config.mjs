@@ -35,12 +35,18 @@ for (const lieu of config.lieux) {
   ordres.add(lieu.ordre);
 }
 
-// Les chemins médias déclarés doivent exister dans public/.
+// Chemins relatifs locaux → public/. Les médias CDN (mediaBase) sont exclus.
 const publicDir = path.join(root, 'public');
+const mediaBase = config.site?.mediaBase;
 const seen = new Set();
+const estMediaDistant = (src) => {
+  if (src.startsWith('/audio/') && src.endsWith('.wav')) return true;
+  return /^\/images\/[^/]+\/[^/]+$/.test(src);
+};
 const checkAsset = (src) => {
   if (!src || !src.startsWith('/') || seen.has(src)) return;
   seen.add(src);
+  if (mediaBase && estMediaDistant(src)) return;
   if (!fs.existsSync(path.join(publicDir, src))) errors.push(`fichier absent : public${src}`);
 };
 checkAsset(config.accueil?.imageSeuil);
