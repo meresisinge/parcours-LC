@@ -28,6 +28,7 @@
       "front": "/images/hero-front.webp"
     },
     "bienvenue": {
+      "actif": false,
       "titre": "Bienvenue dans Lieux communs",
       "texte": "Un parcours en 10 lieux pour découvrir la laïcité autrement : sur place, au fil des rues, à l'écoute d'un patrimoine ordinaire. Scannez un QR code sur le terrain, ou explorez le parcours ici même.",
       "badge": "Prix de la Laïcité 2025",

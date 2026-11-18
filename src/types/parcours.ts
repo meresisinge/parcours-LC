@@ -68,6 +68,7 @@ export interface Maintenance {
 }
 
 export interface Bienvenue {
+  actif?: boolean;
   titre?: string;
   texte?: string;
   badge?: string;

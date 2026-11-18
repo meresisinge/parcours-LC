@@ -78,6 +78,7 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "actif": { "type": "boolean", "default": true },
             "titre": { "type": "string" },
             "texte": { "type": "string" },
             "badge": { "type": "string" },
